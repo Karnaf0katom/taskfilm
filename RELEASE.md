@@ -44,6 +44,13 @@ The workflow checks the exact archive checksum, rejects escaping paths,
 duplicates, symlinks and oversized bundles, then deploys the retained site.
 It never renders new movies during deployment.
 
+The optional **Build from assets** input prepares the preview on the GitHub
+runner from a checksum-bound `showcase.json`, release distributions, movies,
+posters and historical editable-demo archive. It preserves original take and
+composition bytes, adds current recipes and notices, attaches the resulting
+downloads, and checks desktop/mobile playback before deploying. Historical
+inputs are removed from the draft release after their public archive is ready.
+
 The showcase includes checked 45-second Excalidraw and 72-second drawDB films,
 plus an original 24-second motion study. Those recordings retain the wordmark
 used before the public rename. Penpot remains a prepared recipe; a completed

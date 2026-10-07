@@ -48,9 +48,9 @@
     {
       "source": "apps/video/jarvis/.github/workflows/preview.yml",
       "path": ".github/workflows/preview.yml",
-      "source_sha256": "ce98943db840fc063849715006b8329d3a986823bc96512a02981072867dcab9",
-      "sha256": "ce98943db840fc063849715006b8329d3a986823bc96512a02981072867dcab9",
-      "bytes": 1724,
+      "source_sha256": "789dd2cc28b6301835298425512763f44ef8637af48fbcfb9fa5fa494bce3bd0",
+      "sha256": "789dd2cc28b6301835298425512763f44ef8637af48fbcfb9fa5fa494bce3bd0",
+      "bytes": 5201,
       "license": "MIT"
     },
     {
@@ -96,9 +96,9 @@
     {
       "source": "apps/video/jarvis/MANIFEST.in",
       "path": "MANIFEST.in",
-      "source_sha256": "ccb732c77731909ef7ba694ac86fc28833e4f8b127fd5d4cfd7864b028def298",
-      "sha256": "ccb732c77731909ef7ba694ac86fc28833e4f8b127fd5d4cfd7864b028def298",
-      "bytes": 438,
+      "source_sha256": "7b7d0a6f020c2c2b1e3fdbe2ba9b865de191d0f0a58801d626802d1f33434630",
+      "sha256": "7b7d0a6f020c2c2b1e3fdbe2ba9b865de191d0f0a58801d626802d1f33434630",
+      "bytes": 509,
       "license": "MIT"
     },
     {
@@ -120,9 +120,9 @@
     {
       "source": "apps/video/jarvis/RELEASE.md",
       "path": "RELEASE.md",
-      "source_sha256": "e5e50ae3f3e345776e42330ac0c542822962dfd345039ac9d1d6edbbcbb62581",
-      "sha256": "e5e50ae3f3e345776e42330ac0c542822962dfd345039ac9d1d6edbbcbb62581",
-      "bytes": 3011,
+      "source_sha256": "af7a5a924031b80dcc5b7d2b2fb227671a61d4b2b6af6302566871b963e7f98a",
+      "sha256": "af7a5a924031b80dcc5b7d2b2fb227671a61d4b2b6af6302566871b963e7f98a",
+      "bytes": 3472,
       "license": "MIT"
     },
     {
@@ -158,11 +158,27 @@
       "license": "MIT"
     },
     {
+      "source": "apps/video/jarvis/release/prepare_downloads.py",
+      "path": "release/prepare_downloads.py",
+      "source_sha256": "b5dbeab432e10b5252caa06baf01cdb618331bec4e262c81b957cca58c061790",
+      "sha256": "b5dbeab432e10b5252caa06baf01cdb618331bec4e262c81b957cca58c061790",
+      "bytes": 5672,
+      "license": "MIT"
+    },
+    {
       "source": "apps/video/jarvis/release/unpack_preview.py",
       "path": "release/unpack_preview.py",
       "source_sha256": "1b488e27ecd890b2baab350ed18c9bc9290ff9eeb7c081a1aee55f35b8112a9c",
       "sha256": "1b488e27ecd890b2baab350ed18c9bc9290ff9eeb7c081a1aee55f35b8112a9c",
       "bytes": 3265,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/release/verify_preview.py",
+      "path": "release/verify_preview.py",
+      "source_sha256": "b5b8be80c5c6bb6142b6b530a0c8f659554e55e1b55c09f7aa78fa4a62db38fa",
+      "sha256": "b5b8be80c5c6bb6142b6b530a0c8f659554e55e1b55c09f7aa78fa4a62db38fa",
+      "bytes": 3975,
       "license": "MIT"
     },
     {

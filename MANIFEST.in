@@ -4,6 +4,8 @@ include CONTRIBUTING.md SECURITY.md
 recursive-include docs *.md
 recursive-include skills *.md
 include release/unpack_preview.py
+include release/verify_preview.py
+include release/prepare_downloads.py
 include LICENSE
 recursive-include src/taskfilm/_vendor *
 recursive-include src/taskfilm/examples *

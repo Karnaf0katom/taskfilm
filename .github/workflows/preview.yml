@@ -6,6 +6,10 @@ on:
         description: Release tag with an attached checked preview bundle
         required: true
         default: v0.1.0a1
+      build_from_assets:
+        description: Build the static preview from checksum-bound release assets
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -15,9 +19,15 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-      - name: Download the named release preview
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Build from checked release inputs
+        if: inputs.build_from_assets
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -26,10 +36,69 @@ jobs:
           python - <<'PY'
           import os, re
           if not re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+(?:a[0-9]+|b[0-9]+|rc[0-9]+)?', os.environ['TAG']):
-              raise SystemExit('use a TASKFILM version tag')
+              raise SystemExit('use a Taskfilm version tag')
+          PY
+          gh release download "$TAG" --pattern showcase.json --pattern SHA256SUMS --pattern 'taskfilm*' --pattern '*-poster.png' --pattern '*.mp4' --pattern historical-demo-inputs.zip --dir inputs
+          python - <<'PY'
+          import hashlib, re
+          from pathlib import Path
+          base = Path('inputs')
+          for line in (base / 'SHA256SUMS').read_text().splitlines():
+              digest, name = line.split(maxsplit=1)
+              name = name.lstrip(' *')
+              if not re.fullmatch(r'[a-f0-9]{64}', digest) or Path(name).name != name:
+                  raise SystemExit('invalid release checksum entry')
+              if hashlib.sha256((base / name).read_bytes()).hexdigest() != digest:
+                  raise SystemExit('release checksum mismatch: ' + name)
+          PY
+          python release/prepare_downloads.py --inputs inputs --tag "$TAG"
+          gh release upload "$TAG" inputs/taskfilm-source-*.zip inputs/taskfilm-demo-projects-*.zip inputs/showcase.json inputs/SHA256SUMS --clobber
+          gh release delete-asset "$TAG" historical-demo-inputs.zip --yes
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          python -m pip install inputs/*.whl
+          taskfilm package --showcase inputs/showcase.json --out generated
+          python - <<'PY'
+          import hashlib, os, zipfile
+          from pathlib import Path
+          base = Path('generated')
+          Path('package').mkdir()
+          output = Path('package') / ('taskfilm-preview-' + os.environ['TAG'] + '.zip')
+          with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=3) as archive:
+              for path in sorted(base.rglob('*')):
+                  if path.is_file():
+                      archive.write(path, path.relative_to(base).as_posix())
+          digest = hashlib.sha256(output.read_bytes()).hexdigest()
+          (output.parent / 'DEMO-SHA256SUMS').write_text(digest + '  ' + output.name + '\n')
+          PY
+          gh release upload "$TAG" "package/taskfilm-preview-${TAG}.zip" package/DEMO-SHA256SUMS --clobber
+      - name: Download the named release preview
+        if: '!inputs.build_from_assets'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          python - <<'PY'
+          import os, re
+          if not re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+(?:a[0-9]+|b[0-9]+|rc[0-9]+)?', os.environ['TAG']):
+              raise SystemExit('use a Taskfilm version tag')
           PY
           gh release download "$TAG" --pattern "taskfilm-preview-${TAG}.zip" --pattern DEMO-SHA256SUMS --dir package
+      - name: Verify the exact deployment archive
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
           python release/unpack_preview.py "package/taskfilm-preview-${TAG}.zip" --checksums package/DEMO-SHA256SUMS --out website
+      - name: Verify desktop and mobile playback
+        run: |
+          python -m pip install 'playwright>=1.50,<2'
+          python -m playwright install --with-deps chromium
+          python release/verify_preview.py --site website --out preview-proof
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: release-preview-browser-proof
+          path: preview-proof/
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
