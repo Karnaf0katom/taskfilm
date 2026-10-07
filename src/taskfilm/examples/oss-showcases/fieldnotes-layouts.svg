@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="640" viewBox="0 0 1100 640">
+  <title>Fieldnotes — original desktop and mobile layout samples</title>
+  <style>#Desktop > text, #Mobile > text { font-family: Arial, sans-serif; }</style>
+  <g id="Desktop">
+    <rect id="desktop-paper" x="20" y="70" width="720" height="500" rx="12" fill="#f5f3eb"/>
+    <rect id="desktop-navigation" x="20" y="70" width="160" height="500" rx="12" fill="#203c33"/>
+    <rect x="172" y="70" width="8" height="500" fill="#203c33"/>
+    <text x="42" y="115" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#f5f3eb">Fieldnotes</text>
+    <text x="42" y="161" font-family="Arial,sans-serif" font-size="10" letter-spacing="2" fill="#a4b8ab">YOUR WORKSPACE</text>
+    <rect id="active-navigation" x="36" y="184" width="128" height="34" rx="6" fill="#35574a"/>
+    <text x="49" y="206" font-family="Arial,sans-serif" font-size="13" fill="#f5f3eb">Overview</text>
+    <text x="49" y="246" font-family="Arial,sans-serif" font-size="13" fill="#bccbc1">Projects</text>
+    <text x="49" y="286" font-family="Arial,sans-serif" font-size="13" fill="#bccbc1">Weekly notes</text>
+    <text x="42" y="537" font-family="Arial,sans-serif" font-size="11" fill="#bccbc1">A LITTLE MORE FOCUS.</text>
+    <text x="210" y="111" font-family="Arial,sans-serif" font-size="10" letter-spacing="2" fill="#637b69">MONDAY / 06 OCT</text>
+    <text id="desktop-title" x="210" y="157" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#203c33">Make room for good work.</text>
+    <text x="210" y="188" font-family="Arial,sans-serif" font-size="14" fill="#67746b">Your projects, one clear next step at a time.</text>
+    <rect id="active-projects-card" x="210" y="224" width="152" height="107" rx="8" fill="#e4eadc"/>
+    <text x="226" y="250" font-family="Arial,sans-serif" font-size="11" fill="#596e5d">ACTIVE PROJECTS</text>
+    <text x="226" y="298" font-family="Arial,sans-serif" font-size="37" font-weight="700" fill="#203c33">03</text>
+    <rect id="next-up-card" x="378" y="224" width="152" height="107" rx="8" fill="#ecdccb"/>
+    <text x="394" y="250" font-family="Arial,sans-serif" font-size="11" fill="#886a50">NEXT UP</text>
+    <text x="394" y="298" font-family="Arial,sans-serif" font-size="37" font-weight="700" fill="#203c33">02</text>
+    <rect id="completed-card" x="546" y="224" width="164" height="107" rx="8" fill="#e7e5df"/>
+    <text x="562" y="250" font-family="Arial,sans-serif" font-size="11" fill="#67746b">COMPLETED</text>
+    <text x="562" y="298" font-family="Arial,sans-serif" font-size="37" font-weight="700" fill="#203c33">12</text>
+    <rect id="desktop-project-list" x="210" y="356" width="500" height="181" rx="8" fill="#fffefa"/>
+    <text x="230" y="388" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#203c33">This week's focus</text>
+    <path d="M230 407H690M230 455H690" stroke="#dedfd6"/>
+    <circle cx="239" cy="431" r="7" fill="#aab994"/>
+    <text x="259" y="436" font-family="Arial,sans-serif" font-size="14" fill="#203c33">Design the first useful screen</text>
+    <text x="647" y="436" font-family="Arial,sans-serif" font-size="11" fill="#67746b">TODAY</text>
+    <circle cx="239" cy="480" r="7" fill="#c6a786"/>
+    <text x="259" y="485" font-family="Arial,sans-serif" font-size="14" fill="#203c33">Share a small working prototype</text>
+    <text x="647" y="485" font-family="Arial,sans-serif" font-size="11" fill="#67746b">NEXT</text>
+    <text x="230" y="517" font-family="Arial,sans-serif" font-size="11" fill="#67746b">Fewer tabs. A clearer direction.</text>
+  </g>
+  <g id="Mobile">
+    <rect id="mobile-paper" x="790" y="34" width="280" height="572" rx="18" fill="#f5f3eb"/>
+    <rect id="mobile-header" x="790" y="34" width="280" height="72" rx="18" fill="#203c33"/>
+    <rect x="790" y="88" width="280" height="18" fill="#203c33"/>
+    <text x="811" y="79" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#f5f3eb">Fieldnotes</text>
+    <path d="M1033 66H1049M1033 74H1049M1033 82H1049" stroke="#f5f3eb" stroke-width="2"/>
+    <text x="812" y="139" font-family="Arial,sans-serif" font-size="10" letter-spacing="1.5" fill="#637b69">MONDAY / 06 OCT</text>
+    <text id="mobile-title" x="812" y="176" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#203c33">Good work.</text>
+    <text x="812" y="209" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#203c33">More focus.</text>
+    <text x="812" y="239" font-family="Arial,sans-serif" font-size="12" fill="#67746b">One clear next step at a time.</text>
+    <rect id="mobile-project-card" x="812" y="265" width="236" height="91" rx="8" fill="#e4eadc"/>
+    <text x="829" y="290" font-family="Arial,sans-serif" font-size="11" fill="#596e5d">ACTIVE PROJECTS</text>
+    <text x="829" y="335" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#203c33">03</text>
+    <text x="812" y="397" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#203c33">This week's focus</text>
+    <rect id="mobile-task-card" x="812" y="416" width="236" height="98" rx="8" fill="#fffefa"/>
+    <circle cx="835" cy="446" r="6" fill="#aab994"/>
+    <text x="852" y="450" font-family="Arial,sans-serif" font-size="12" fill="#203c33">Design the first screen</text>
+    <path d="M829 466H1031" stroke="#dedfd6"/>
+    <text x="829" y="493" font-family="Arial,sans-serif" font-size="11" fill="#67746b">TODAY / A USEFUL FIRST STEP</text>
+    <rect id="mobile-action" x="812" y="538" width="236" height="43" rx="7" fill="#203c33"/>
+    <text x="865" y="565" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#f5f3eb">Open workspace</text>
+  </g>
+</svg>

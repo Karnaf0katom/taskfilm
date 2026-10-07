@@ -1,0 +1,24 @@
+name: Bug report
+description: Report a reproducible Taskfilm problem.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the expected result and the actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include exact commands and a small original or synthetic input. Remove credentials and private media.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version, Taskfilm version, and relevant doctor output.
+    validations:
+      required: true

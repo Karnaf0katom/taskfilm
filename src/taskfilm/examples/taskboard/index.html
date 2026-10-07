@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taskboard — Taskfilm sample</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f2ed;color:#17251f;font:20px/1.5 system-ui,sans-serif}
+main{max-width:1160px;margin:70px auto;padding:0 42px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #cad1c8;padding-bottom:24px}
+.label{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#53645b}h1{font-size:64px;font-weight:650;letter-spacing:-.055em;margin:35px 0 8px}p{margin:0 0 32px;color:#53645b}
+.tag{border:1px solid #b2c0b6;border-radius:30px;padding:7px 18px;font-size:14px}form{display:flex;gap:12px;margin:28px 0 36px}
+input{flex:1;font:inherit;padding:16px 20px;border:1px solid #aab8ae;border-radius:6px;background:white;min-width:0}
+button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:14px 25px;background:#193d36;color:white}button:focus-visible,input:focus-visible{outline:3px solid #7ba998;outline-offset:4px}
+nav{display:flex;align-items:center;gap:8px;margin-bottom:18px}nav button{font-size:17px;background:transparent;color:#53645b;padding:9px 17px}nav button[aria-pressed=true]{background:#e0e9e1;color:#193d36}
+#count{margin-left:auto;font-size:17px;color:#53645b}.empty{padding:56px 30px;border:1px dashed #aab8ae;text-align:center;border-radius:6px;color:#53645b}
+ul{padding:0;list-style:none}li{background:white;border-bottom:1px solid #cad1c8;display:flex;gap:24px;align-items:center;padding:26px 22px}li span{flex:1}li[data-done=true] span{text-decoration:line-through;color:#53645b}li button{font-size:16px;background:#e0e9e1;color:#193d36}footer{margin-top:54px;font-size:14px;color:#53645b}
+@media(max-width:700px){main{margin:32px auto;padding:0 20px}h1{font-size:46px}form{flex-direction:column}li{padding:18px 12px;gap:12px}}
+</style>
+</head>
+<body>
+<main>
+<header><strong>TASKBOARD</strong><span class="tag">Working sample · local data</span></header>
+<div class="label" style="margin-top:40px">A smaller list. A clearer day.</div>
+<h1>Make room for progress.</h1>
+<p>Add one task, finish it, and see what changed.</p>
+<form id="task-form"><input id="task-title" aria-label="Task title" placeholder="What needs to get done?" required maxlength="100" autocomplete="off"><button type="submit">Add task</button></form>
+<nav aria-label="Task filters"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="active" aria-pressed="false">Active</button><button type="button" data-filter="done" aria-pressed="false">Completed</button><output id="count" aria-live="polite"></output></nav>
+<ul id="tasks" aria-label="Tasks"></ul><div class="empty" id="empty">Your first task starts here.</div>
+<footer>Original Taskfilm demonstration app. Tasks stay in this browser. No account or API key.</footer>
+</main>
+<script>
+const tasks = JSON.parse(localStorage.getItem('taskfilm-taskboard') || '[]');
+let filter = 'all';
+function render() {
+  localStorage.setItem('taskfilm-taskboard', JSON.stringify(tasks));
+  const list = document.querySelector('#tasks'); list.replaceChildren();
+  const shown = tasks.filter(t => filter === 'all' || (filter === 'done' ? t.done : !t.done));
+  for (const task of shown) {
+    const row = document.createElement('li'); row.dataset.done = String(task.done);
+    const title = document.createElement('span'); title.textContent = task.title;
+    const toggle = document.createElement('button'); toggle.type = 'button';
+    toggle.textContent = task.done ? 'Reopen' : 'Mark complete';
+    toggle.setAttribute('aria-label', (task.done ? 'Reopen ' : 'Complete ') + task.title);
+    toggle.addEventListener('click', () => { task.done = !task.done; render(); });
+    row.append(title, toggle); list.append(row);
+  }
+  document.querySelector('#count').textContent = `${tasks.filter(t => t.done).length} of ${tasks.length} complete`;
+  document.querySelector('#empty').hidden = shown.length > 0;
+  for (const b of document.querySelectorAll('[data-filter]')) b.setAttribute('aria-pressed', String(b.dataset.filter === filter));
+}
+document.querySelector('#task-form').addEventListener('submit', e => {
+  e.preventDefault(); const input = document.querySelector('#task-title');
+  if (!input.value.trim()) return;
+  tasks.push({title: input.value.trim(), done: false}); input.value = ''; render();
+});
+for (const button of document.querySelectorAll('[data-filter]')) button.addEventListener('click', () => { filter = button.dataset.filter; render(); });
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{
+  "name": "drawDB \u2014 understand a schema and export SQL",
+  "url": "https://drawdb.app/editor",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "until": "domcontentloaded",
+  "settle_s": 1.5,
+  "setup": [
+    {
+      "do": "wait_for",
+      "selector": "[role=dialog]",
+      "timeout": 45
+    }
+  ],
+  "stage": {
+    "seed_files": [
+      {
+        "path": "schema.sql",
+        "as": "schema.sql"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "do": "beat",
+      "id": "intro",
+      "explain": "drawDB is an open-source database diagram editor and SQL generator."
+    },
+    {
+      "do": "wait",
+      "s": 2
+    },
+    {
+      "do": "click",
+      "selector": "[role=dialog] >> text=PostgreSQL"
+    },
+    {
+      "do": "click",
+      "selector": "button[aria-label=confirm]",
+      "settle": 1
+    },
+    {
+      "do": "click",
+      "selector": "text=File"
+    },
+    {
+      "do": "click",
+      "selector": "text=Import from SQL"
+    },
+    {
+      "do": "click",
+      "selector": "text=Upload file"
+    },
+    {
+      "do": "upload",
+      "id": "schema",
+      "selector": "input.semi-upload-hidden-input:not(.semi-upload-hidden-input-replace)",
+      "seed": "schema.sql",
+      "expected_bytes": 258,
+      "expected_sha256": "fd523f2940c31f7b0eafb6b4fbd175a0ce2b4f64c87b5eeb8f50dbf9b25df151",
+      "max_bytes": 1048576,
+      "timeout": 30
+    },
+    {
+      "do": "click",
+      "selector": "[role=dialog] button:has-text(\"Import\")",
+      "settle": 3
+    },
+    {
+      "do": "key",
+      "key": "Control+Alt+w",
+      "settle": 0.5
+    },
+    {
+      "do": "key",
+      "key": "Control+ArrowDown",
+      "settle": 0.3
+    },
+    {
+      "do": "key",
+      "key": "Control+ArrowDown",
+      "settle": 0.5
+    },
+    {
+      "do": "click",
+      "at": {"x": 1150, "y": 320}
+    },
+    {
+      "do": "wait",
+      "s": 2.5
+    },
+    {
+      "do": "assert",
+      "selector": "[role=tab][data-tabkey=semiTab1]",
+      "text": "Tables (2)",
+      "screenshot": "tables.png",
+      "timeout": 30
+    },
+    {
+      "do": "assert",
+      "selector": "[role=tab][data-tabkey=semiTab2]",
+      "text": "Relationships (1)",
+      "screenshot": "relationship.png",
+      "timeout": 30
+    },
+    {
+      "do": "beat",
+      "id": "tables",
+      "explain": "Users own projects. The owner_id foreign key connects the two tables."
+    },
+    {
+      "do": "wait",
+      "s": 5
+    },
+    {
+      "do": "click",
+      "selector": "text=File"
+    },
+    {
+      "do": "click",
+      "selector": "text=Export SQL"
+    },
+    {
+      "do": "wait_for",
+      "selector": "[role=dialog] input[placeholder=Filename]",
+      "timeout": 30
+    },
+    {
+      "do": "beat",
+      "id": "export",
+      "explain": "The generated SQL creates both tables and keeps the foreign key."
+    },
+    {
+      "do": "wait",
+      "s": 4
+    },
+    {
+      "do": "download",
+      "id": "sql",
+      "selector": "[role=dialog] button[aria-label=confirm]",
+      "filename": "project-tracker.sql",
+      "max_bytes": 1048576,
+      "timeout": 30
+    },
+    {
+      "do": "wait",
+      "s": 2.5
+    }
+  ]
+}

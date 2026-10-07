@@ -1,0 +1,9 @@
+{
+  "name": "taskfilm-motion-lab",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx --yes hyperframes@0.8.134 check",
+    "render": "npx --yes hyperframes@0.8.134 render"
+  }
+}

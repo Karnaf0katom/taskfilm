@@ -1,0 +1,13 @@
+{
+  "schema_version": "product-story/v1",
+  "mode": "saas_launch",
+  "product_name": "Taskboard sample",
+  "audience": "People who want a small local task list",
+  "tone": "polished",
+  "hook_claim_id": "hook",
+  "durations_seconds": {"master": 35},
+  "moments": [
+    {"id": "add", "claim_id": "add-task", "source_id": "taskboard-take", "capture_kind": "browser", "before": "The board is empty", "action": "Add Ship the demo", "after": "The new task is visible"},
+    {"id": "complete", "claim_id": "complete-task", "source_id": "taskboard-take", "capture_kind": "browser", "before": "Ship the demo is active", "action": "Mark it complete, then select Completed", "after": "The completed task remains visible and the count reads 1 of 1 complete"}
+  ]
+}

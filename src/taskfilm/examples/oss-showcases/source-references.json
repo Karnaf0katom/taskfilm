@@ -1,0 +1,34 @@
+{
+  "schema": "taskfilm-oss-showcase-sources/v1",
+  "references": [
+    {
+      "id": "excalidraw",
+      "repository": "https://github.com/excalidraw/excalidraw",
+      "documentation_commit": "ed10ac7dca7e40f3f4a31269b4bfba980d0db41e",
+      "runtime": "https://excalidraw.com/",
+      "runtime_revision": "not_exposed_by_hosted_editor",
+      "description": "An open-source whiteboard for hand-drawn diagrams.",
+      "license": "MIT",
+      "capture_browser_compatibility": "Disable File System Access pickers before navigation so the app uses its native browser-download fallback; actual downloaded scene is verified."
+    },
+    {
+      "id": "drawdb",
+      "repository": "https://github.com/drawdb-io/drawdb",
+      "documentation_commit": "60532401449fbc998b405937d373f9cb1b737a6a",
+      "runtime": "https://drawdb.app/editor",
+      "runtime_revision": "not_exposed_by_hosted_editor",
+      "description": "A database schema editor and SQL generator.",
+      "license": "AGPL-3.0"
+    },
+    {
+      "id": "penpot",
+      "repository": "https://github.com/penpot/penpot",
+      "source_tag": "2.18.2",
+      "runtime": "Disposable self-hosted Docker instance",
+      "runtime_revision": "Official image digest and source-revision labels retained in each execution receipt",
+      "description": "An open-source interface design and prototyping platform.",
+      "license": "MPL-2.0",
+      "inspected_image_source_revision": "cf46b53bcb61c2a9be8f202bec03647a5470d43d"
+    }
+  ]
+}

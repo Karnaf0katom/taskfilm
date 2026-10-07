@@ -1,0 +1,22 @@
+{
+  "name": "Taskboard — add, complete, filter",
+  "url": "http://127.0.0.1:8765/",
+  "viewport": {"width": 1280, "height": 720},
+  "wait_for": "#task-title",
+  "steps": [
+    {"do": "beat", "id": "opening", "vo": "Start with an empty board. We will add one task and finish it.", "explain": "One task. A visible result."},
+    {"do": "wait", "s": 2},
+    {"do": "click", "selector": "#task-title"},
+    {"do": "type", "text": "Ship the demo", "delay": 0.11},
+    {"do": "click", "selector": "button[type=submit]", "settle": 1.0},
+    {"do": "assert", "selector": "#tasks li span", "text": "Ship the demo", "screenshot": "added.png"},
+    {"do": "beat", "id": "added", "vo": "The task is on the board. Select Mark complete to finish it.", "explain": "Add a task. See it appear."},
+    {"do": "wait", "s": 2},
+    {"do": "click", "selector": "button[aria-label='Complete Ship the demo']", "settle": 1.2},
+    {"do": "click", "selector": "button[data-filter=done]", "settle": 0.8},
+    {"do": "assert", "selector": "#tasks li[data-done=true] span", "text": "Ship the demo", "screenshot": "completed.png"},
+    {"do": "assert", "selector": "#count", "text": "1 of 1 complete", "screenshot": "count.png"},
+    {"do": "beat", "id": "result", "vo": "Completed shows the finished task. The count confirms one of one complete.", "explain": "Complete it. Filter the result."},
+    {"do": "wait", "s": 3}
+  ]
+}

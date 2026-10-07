@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taskfilm"
+version = "0.1.0a1"
+description = "Real product films, editable HTML motion graphics and evidence for lessons, promos and OSS demos"
+readme = "PUBLIC-README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Karnaf0katom and contributors"}]
+keywords = ["product-demo", "browser-recording", "motion-graphics", "video", "hyperframes"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Multimedia :: Video",
+]
+dependencies = ["PyYAML>=6,<7", "Pillow>=10,<13"]
+
+[project.urls]
+Homepage = "https://github.com/Karnaf0katom/taskfilm"
+Documentation = "https://github.com/Karnaf0katom/taskfilm#readme"
+Issues = "https://github.com/Karnaf0katom/taskfilm/issues"
+Changelog = "https://github.com/Karnaf0katom/taskfilm/blob/main/CHANGELOG.md"
+Demo = "https://karnaf0katom.github.io/taskfilm/"
+
+[project.optional-dependencies]
+browser = ["playwright>=1.50,<2"]
+motion = ["numpy>=1.26,<3", "scipy>=1.12,<2"]
+dev = ["pytest>=8,<10", "pytest-asyncio>=0.23,<2", "build>=1,<2"]
+
+[project.scripts]
+taskfilm = "taskfilm.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["taskfilm"]
+include-package-data = false
+
+[tool.setuptools.package-data]
+taskfilm = ["_vendor/**/*", "examples/**/*", "skill/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

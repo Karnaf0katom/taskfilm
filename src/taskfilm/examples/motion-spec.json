@@ -1,0 +1,253 @@
+{
+  "schema": "product-motion/v1",
+  "id": "taskboard",
+  "take": "takes/taskboard-motion",
+  "source": {
+    "w": 3840,
+    "h": 2160,
+    "css_zoom": 3,
+    "prepare_for_seek": true
+  },
+  "expect": {
+    "clicks": 4,
+    "keys": 13
+  },
+  "duration": 31,
+  "music": {
+    "synthesis": "pulse",
+    "period": 0.5,
+    "phase": 0,
+    "offset": 0,
+    "rights": "Original deterministic synthesis from the included sfx.py"
+  },
+  "palette": {
+    "paper": "#f3f2ed",
+    "ink": "#17251f",
+    "deep": "#10231d",
+    "accent": "#c1e3b5",
+    "hi": "#d8ec7f",
+    "mute": "#53645b",
+    "page": "#f3f2ed",
+    "card": "#ffffff",
+    "tag": "#24654f",
+    "herob": "#24654f"
+  },
+  "layout": {
+    "landscape": {
+      "slab": {
+        "left": 96,
+        "top": 140,
+        "h2": 70,
+        "p": 29,
+        "max_w": 1100
+      }
+    }
+  },
+  "copy": {
+    "brand": {
+      "name": "Taskboard",
+      "wordmark": "taskboard",
+      "dot": "."
+    },
+    "window_title": "Taskboard &middot; original local sample",
+    "hook": {
+      "a": [
+        "So much to do.",
+        "[Where to start?]"
+      ],
+      "b": [
+        "Make room",
+        "for progress."
+      ]
+    },
+    "storm": [
+      [
+        "Launch the demo",
+        "#today"
+      ],
+      [
+        "Finish the draft",
+        "#next"
+      ],
+      [
+        "One more tab",
+        "#later"
+      ],
+      [
+        "Inbox: 42",
+        "#noise"
+      ],
+      [
+        "Plan the week",
+        "#todo"
+      ],
+      [
+        "What was first?",
+        "#lost"
+      ],
+      [
+        "Review the cut",
+        "#today"
+      ],
+      [
+        "A smaller list",
+        "#focus"
+      ],
+      [
+        "Ship the demo",
+        "#now"
+      ],
+      [
+        "Clear the desk",
+        "#later"
+      ],
+      [
+        "Call the team",
+        "#next"
+      ],
+      [
+        "Something else",
+        "#noise"
+      ]
+    ],
+    "storm_labels": [
+      "LATER",
+      "NEXT",
+      "TODAY",
+      "NOW"
+    ],
+    "hero": {
+      "eyebrow": "ONE REAL TASK",
+      "text": "Ship the demo",
+      "accent": "#now"
+    },
+    "intro": {
+      "eyebrow": "MEET",
+      "tagline": [
+        "A smaller list.",
+        "A clearer day."
+      ],
+      "chips": [
+        "LOCAL DATA",
+        "NO ACCOUNT"
+      ]
+    },
+    "steps": [
+      {
+        "pill": "01 ADD",
+        "eyebrow": "01 &mdash; START",
+        "title": "Name one thing.",
+        "sub": "Add the task you want to finish."
+      },
+      {
+        "pill": "02 FINISH",
+        "eyebrow": "02 &mdash; FINISH",
+        "title": "Make it happen.",
+        "sub": "A real click. A visible change."
+      },
+      {
+        "pill": "03 SEE",
+        "eyebrow": "03 &mdash; PROGRESS",
+        "title": "See what changed.",
+        "sub": "Completed. One of one. Right here."
+      }
+    ],
+    "recap": [
+      "Add.",
+      "Finish.",
+      "See."
+    ],
+    "end": {
+      "tagline": [
+        "A real workflow.",
+        "A film with movement."
+      ],
+      "url": "taskfilm init demo",
+      "chips": [
+        "EDITABLE HTML",
+        "REAL CAPTURE",
+        "31 SECONDS"
+      ],
+      "limit": "Taskboard is an original sample, not a hosted product.",
+      "foot": "A MOTION STUDY MADE WITH THE TASKFILM PRODUCT-FILM KIT"
+    }
+  },
+  "edit": {
+    "reveal_src": 0.3,
+    "act1": {
+      "click": 0,
+      "submit_click": 1,
+      "keys": [
+        0,
+        13
+      ],
+      "type_region": [
+        346,
+        1202,
+        1556,
+        1354
+      ]
+    },
+    "act2": {
+      "click": 2,
+      "instant_result": true,
+      "result_region": [
+        306,
+        1672,
+        3534,
+        1987
+      ],
+      "lift_region": [
+        306,
+        1672,
+        3228,
+        315
+      ],
+      "lock_label": "MARK COMPLETE",
+      "stamp": "DONE"
+    },
+    "act3": {
+      "click": 3,
+      "instant_result": true,
+      "result_region": [
+        306,
+        1482,
+        3534,
+        1612
+      ],
+      "track_region": [
+        306,
+        1672,
+        3228,
+        315
+      ],
+      "track_label": "ONE OF ONE COMPLETE",
+      "label_side": "below",
+      "hold_rate": 0.8
+    },
+    "recap": [
+      [
+        "type_end",
+        0.15,
+        300,
+        1120,
+        1800
+      ],
+      [
+        "saved_visible",
+        0.2,
+        300,
+        1570,
+        1800
+      ],
+      [
+        "filtered",
+        0.3,
+        300,
+        1570,
+        1800
+      ]
+    ],
+    "recap_stills": true
+  }
+}

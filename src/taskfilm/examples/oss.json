@@ -1,0 +1,14 @@
+{
+  "schema_version": "product-story/v1",
+  "mode": "github_review",
+  "product_name": "TASKFILM · original Taskboard sample",
+  "audience": "Developers trying the local TASKFILM release",
+  "tone": "app-store",
+  "hook_claim_id": "hook",
+  "durations_seconds": {"master": 35},
+  "moments": [
+    {"id": "add", "claim_id": "add-task", "source_id": "taskboard-take", "capture_kind": "browser", "before": "The original sample board is empty", "action": "Add Ship the demo", "after": "The new task is visible"},
+    {"id": "complete", "claim_id": "complete-task", "source_id": "taskboard-take", "capture_kind": "browser", "before": "Ship the demo is active", "action": "Complete the task and select Completed", "after": "The task remains visible and the count reads 1 of 1 complete"}
+  ],
+  "review": {"fit_claim_id": "fit", "limitation_claim_id": "limitation"}
+}

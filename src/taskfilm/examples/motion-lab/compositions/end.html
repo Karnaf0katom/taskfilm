@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"></head><body><template>
+<style>
+@font-face{font-family:Manrope;src:url('assets/Manrope.ttf')}@font-face{font-family:GeistMono;src:url('assets/GeistMono.ttf')}
+#root{position:absolute;inset:0;width:100%;height:100%;background:#ff6947;color:#11191c;font-family:Manrope,sans-serif;overflow:hidden}
+.end-top{position:absolute;left:110px;right:110px;top:76px;display:flex;justify-content:space-between;font:26px GeistMono,monospace;letter-spacing:.08em}
+#lab-word{position:absolute;left:98px;top:225px;font-size:285px;font-weight:850;letter-spacing:-.08em;line-height:1}#lab-word span{display:inline-block}
+#lab-tag{position:absolute;left:112px;top:646px;font-size:56px;font-weight:650;letter-spacing:-.025em}.end-bottom{position:absolute;left:110px;right:110px;bottom:115px;display:flex;justify-content:space-between;font:26px GeistMono,monospace;border-top:3px solid #11191c;padding-top:34px}
+</style>
+<div id="root" data-composition-id="lab-end" data-width="1920" data-height="1080" data-duration="4">
+<div class="end-top"><span>Taskfilm / MOTION LAB</span><span>ALL EDITABLE.</span></div>
+<div id="lab-word"><span>T</span><span>A</span><span>S</span><span>K</span><span>F</span><span>I</span><span>L</span><span>M</span><span>.</span></div>
+<div id="lab-tag">A composition. A timeline. A film.</div>
+<div class="end-bottom"><span>taskfilm init demo</span><span>ORIGINAL ANIMATION STUDY / 24 SEC</span></div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#lab-word span',{y:140,rotationX:-80,opacity:0},{y:0,rotationX:0,opacity:1,duration:.7,stagger:.055,ease:'back.out(1.2)'},.05);
+tl.fromTo('#lab-tag',{x:-90,opacity:0},{x:0,opacity:1,duration:.6,ease:'power3.out'},.8);
+tl.fromTo('.end-bottom',{y:24,opacity:0},{y:0,opacity:1,duration:.55,ease:'power2.out'},1.15);
+window.__timelines['lab-end']=tl;
+</script></template></body></html>

@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"></head><body><template>
+<style>
+@font-face{font-family:Manrope;src:url('assets/Manrope.ttf')}@font-face{font-family:GeistMono;src:url('assets/GeistMono.ttf')}
+#root{position:absolute;inset:0;width:100%;height:100%;background:#f5efe5;color:#11191c;font-family:Manrope,sans-serif;overflow:hidden}
+.vec-top{position:absolute;left:110px;right:110px;top:76px;display:flex;justify-content:space-between;font:26px GeistMono,monospace;letter-spacing:.08em}
+.vec-copy{position:absolute;left:108px;top:246px;width:700px}.vec-copy h1{font-size:116px;line-height:1.07;font-weight:850;letter-spacing:-.055em;margin:0 0 45px}.vec-copy p{font-size:34px;line-height:1.5;max-width:590px;color:#53645b;margin:0}
+.vec-stage{position:absolute;left:900px;top:202px;width:840px;height:700px;display:grid;place-items:center}#vec-mark{width:600px;height:600px;overflow:visible}#vec-mark path{stroke:#ff6947;stroke-width:16;fill:none;stroke-linejoin:round;stroke-linecap:round}
+#vec-orbit{position:absolute;inset:42px;border:2px solid #bac5ba;border-radius:50%}#vec-orbit:after{content:'';position:absolute;left:44px;top:94px;width:28px;height:28px;background:#11191c;border-radius:50%}
+.vec-foot{position:absolute;left:110px;bottom:86px;font:26px GeistMono,monospace;letter-spacing:.05em}#vec-rule{position:absolute;left:110px;right:110px;bottom:144px;height:3px;background:#bac5ba;transform-origin:left}
+</style>
+<div id="root" data-composition-id="lab-vector" data-width="1920" data-height="1080" data-duration="7">
+<div class="vec-top"><span>Taskfilm / MOTION LAB</span><span>02 — VECTOR</span></div>
+<div class="vec-copy"><h1 id="vec-title">Draw it.<br>Transform it.</h1><p id="vec-description">A path becomes a shape. The shape carries the motion.</p></div>
+<div class="vec-stage"><div id="vec-orbit"></div><svg id="vec-mark" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"><path id="vec-path" d="M300 65 C430 65 535 170 535 300 C535 430 430 535 300 535 C170 535 65 430 65 300 C65 170 170 65 300 65 Z"/></svg></div>
+<div id="vec-rule"></div><div class="vec-foot">SVG PATHS / SHAPE INTERPOLATION / CAMERA ROTATION</div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true}),path=document.querySelector('#vec-path'),len=path.getTotalLength();
+path.style.strokeDasharray=String(len);path.style.strokeDashoffset=String(len);
+tl.fromTo('#vec-title',{y:65,opacity:0},{y:0,opacity:1,duration:.7,ease:'power3.out'},.12);
+tl.fromTo('#vec-description',{x:-30,opacity:0},{x:0,opacity:1,duration:.55,ease:'power2.out'},.6);
+tl.to(path,{strokeDashoffset:0,duration:1.2,ease:'power2.out'},.35);
+tl.set(path,{strokeDasharray:'none',strokeDashoffset:0},1.56);
+tl.to(path,{attr:{d:'M300 65 C365 130 470 235 535 300 C470 365 365 470 300 535 C235 470 130 365 65 300 C130 235 235 130 300 65 Z'},duration:1.15,ease:'power2.inOut'},2);
+tl.to(path,{fill:'#ff6947',duration:.55,ease:'power1.out'},3.1);
+tl.to('#vec-mark',{rotation:90,scale:.8,duration:1.35,ease:'expo.inOut'},3.4);
+tl.to(path,{attr:{d:'M300 65 C430 65 535 65 535 300 C535 430 535 535 300 535 C170 535 65 535 65 300 C65 170 65 65 300 65 Z'},duration:1.1,ease:'power2.inOut'},4.6);
+tl.fromTo('#vec-orbit',{scale:.6,opacity:0},{scale:1,opacity:1,rotation:130,duration:5.8,ease:'power1.out'},.4);
+tl.fromTo('#vec-rule',{scaleX:0},{scaleX:1,duration:.7,ease:'expo.inOut'},.7);
+window.__timelines['lab-vector']=tl;
+</script></template></body></html>

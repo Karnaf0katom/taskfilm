@@ -1,0 +1,26 @@
+{
+  "name": "taskfilm-demo",
+  "wordmark": "TASKBOARD",
+  "type": {
+    "family": "Manrope",
+    "weights": {
+      "normal": "../../hyperframes-lane/product-motion/assets/Manrope.ttf",
+      "bold": "../../hyperframes-lane/product-motion/assets/Manrope.ttf"
+    },
+    "licence": {
+      "id": "OFL-1.1",
+      "file": "../../hyperframes-lane/product-motion/assets/Manrope-OFL.txt",
+      "redistributable": true,
+      "source": "https://github.com/sharanda/manrope"
+    }
+  },
+  "palette": {
+    "bg": "#F3F2ED",
+    "primary": "#193D36",
+    "secondary": "#193D36",
+    "accent": "#193D36",
+    "ink": "#17251F",
+    "mute": "#53645B",
+    "card": "#FFFFFF"
+  }
+}

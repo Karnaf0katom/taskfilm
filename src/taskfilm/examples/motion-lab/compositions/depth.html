@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"></head><body><template>
+<style>
+@font-face{font-family:Manrope;src:url('assets/Manrope.ttf')}@font-face{font-family:GeistMono;src:url('assets/GeistMono.ttf')}
+#root{position:absolute;inset:0;width:100%;height:100%;background:#11191c;color:#f5efe5;font-family:Manrope,sans-serif;overflow:hidden}
+.depth-top{position:absolute;left:110px;right:110px;top:76px;display:flex;justify-content:space-between;font:26px GeistMono,monospace;letter-spacing:.08em}
+.depth-stage{position:absolute;left:150px;right:150px;top:220px;height:620px;perspective:1500px;display:grid;place-items:center}#depth-world{width:1500px;height:550px;position:relative;transform-style:preserve-3d}
+.depth-card{position:absolute;width:400px;height:510px;top:0;left:550px;border:3px solid #587070;background:#1c292d;padding:38px;transform-style:preserve-3d;backface-visibility:hidden}.depth-card .number{font:26px GeistMono,monospace;color:#a5b7b5}.depth-card h2{font-size:64px;line-height:1.08;letter-spacing:-.04em;margin:38px 0 32px}.depth-card svg{width:240px;height:190px;display:block}.depth-card:nth-child(2){background:#ff6947;color:#11191c;border-color:#ff6947}.depth-card:nth-child(2) .number{color:#11191c}
+#depth-rail{position:absolute;left:110px;right:110px;bottom:154px;height:3px;background:#587070;transform-origin:left}.depth-foot{position:absolute;left:110px;right:110px;bottom:84px;font:26px GeistMono,monospace;display:flex;justify-content:space-between;color:#a5b7b5}
+</style>
+<div id="root" data-composition-id="lab-depth" data-width="1920" data-height="1080" data-duration="7">
+<div class="depth-top"><span>Taskfilm / MOTION LAB</span><span>03 — DEPTH</span></div>
+<div class="depth-stage"><div id="depth-world">
+<div class="depth-card" id="depth-one"><span class="number">01 / LAYERS</span><h2>Build the<br>scene.</h2><svg viewBox="0 0 240 190"><rect x="24" y="20" width="154" height="104" fill="none" stroke="#f5efe5" stroke-width="5"/><rect x="48" y="44" width="154" height="104" fill="none" stroke="#ff6947" stroke-width="5"/><rect x="72" y="68" width="154" height="104" fill="none" stroke="#a5b7b5" stroke-width="5"/></svg></div>
+<div class="depth-card" id="depth-two"><span class="number">02 / CAMERA</span><h2>Find the<br>angle.</h2><svg viewBox="0 0 240 190"><circle cx="120" cy="95" r="66" fill="none" stroke="#11191c" stroke-width="6"/><circle cx="120" cy="95" r="26" fill="#11191c"/><path d="M120 0V40 M120 150V190 M20 95H62 M178 95H220" stroke="#11191c" stroke-width="6"/></svg></div>
+<div class="depth-card" id="depth-three"><span class="number">03 / TIMING</span><h2>Land the<br>moment.</h2><svg viewBox="0 0 240 190"><path d="M14 145 C65 145 65 40 120 40 C175 40 175 145 226 145" fill="none" stroke="#ff6947" stroke-width="7"/><circle cx="120" cy="40" r="12" fill="#f5efe5"/></svg></div>
+</div></div><div id="depth-rail"></div><div class="depth-foot"><span>PERSPECTIVE / PARALLAX / CHOREOGRAPHY</span><span>EDIT THE SOURCE.</span></div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+['#depth-one','#depth-two','#depth-three'].forEach((id,i)=>{
+ const x=(i-1)*485;
+ tl.fromTo(id,{x:x*1.3,y:(i-1)*130,z:-620,rotationY:(i-1)*65,rotationX:30,opacity:0},{x,y:0,z:0,rotationY:0,rotationX:0,opacity:1,duration:1.25,ease:'power3.out'},.12+i*.12);
+});
+tl.fromTo('#depth-world',{rotationY:-18,rotationX:10},{rotationY:16,rotationX:-5,duration:3.1,ease:'sine.inOut'},1.55);
+tl.to('#depth-two',{z:180,y:-24,duration:1,ease:'power3.out'},2.3);
+tl.to('#depth-world',{rotationY:0,rotationX:0,duration:1.1,ease:'power3.inOut'},4.7);
+tl.to('#depth-two',{z:0,y:0,duration:1.1,ease:'power3.inOut'},4.7);
+tl.fromTo('#depth-rail',{scaleX:0},{scaleX:1,duration:.8,ease:'expo.inOut'},.4);
+window.__timelines['lab-depth']=tl;
+</script></template></body></html>

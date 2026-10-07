@@ -1,0 +1,31 @@
+{
+  "repository": "https://github.com/latent-spaces/brag",
+  "commit": "57ce4c9bb912f01a0078b154318bf67c5cbf780f",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "LICENSE",
+      "upstream_path": "LICENSE",
+      "sha256": "92d538e0da9abeaafff8ecfc62e142f5053fa92b2c3ef29978742c325c554089",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/57ce4c9bb912f01a0078b154318bf67c5cbf780f/LICENSE"
+    },
+    {
+      "path": "step-1-inspect.md",
+      "upstream_path": "skills/brag/references/step-1-inspect.md",
+      "sha256": "eb2ca315b727d8fa1e2dec12c58aa79e30888f98485217a588e84a7252e33e51",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/57ce4c9bb912f01a0078b154318bf67c5cbf780f/skills/brag/references/step-1-inspect.md"
+    },
+    {
+      "path": "step-2-plan.md",
+      "upstream_path": "skills/brag/references/step-2-plan.md",
+      "sha256": "2caec3b2f21626174683804961dc7f2b1c4bf439827cca9b1423f7ebd805e7db",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/57ce4c9bb912f01a0078b154318bf67c5cbf780f/skills/brag/references/step-2-plan.md"
+    },
+    {
+      "path": "step-3-compose.md",
+      "upstream_path": "skills/brag/references/step-3-compose.md",
+      "sha256": "25af404871fd4eba782c1e7f00cadc634fac900db4847a5a15a6eaa4f6346808",
+      "url": "https://raw.githubusercontent.com/latent-spaces/brag/57ce4c9bb912f01a0078b154318bf67c5cbf780f/skills/brag/references/step-3-compose.md"
+    }
+  ]
+}

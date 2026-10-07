@@ -1,0 +1,811 @@
+{
+  "schema": "taskfilm-source-export/v1",
+  "source_revision": "8a02856d9ed275f52479cf2fc8da104a29a01ae0",
+  "public_repository": "https://github.com/Karnaf0katom/taskfilm",
+  "transform": "project_branding_and_supported_cli_closure/v1",
+  "source_state": "working_files_hashed",
+  "files": [
+    {
+      "source": "apps/video/jarvis/.github/ISSUE_TEMPLATE/bug_report.yml",
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "source_sha256": "6be563bb9fecc501649ae0c21516934abef514531f2c7f24f1734634f6ccff97",
+      "sha256": "6be563bb9fecc501649ae0c21516934abef514531f2c7f24f1734634f6ccff97",
+      "bytes": 708,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/.github/ISSUE_TEMPLATE/config.yml",
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "source_sha256": "ade999fa5bbe9f642b9ce357c2db1f5dda65686df81fabac04d609ab7fea5a09",
+      "sha256": "ade999fa5bbe9f642b9ce357c2db1f5dda65686df81fabac04d609ab7fea5a09",
+      "bytes": 259,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/.github/ISSUE_TEMPLATE/feature_request.yml",
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "source_sha256": "ae23e09d2a8765e4f5b4ec329d3974e6c0d345a1ef2a85cd949fc1e606994ee1",
+      "sha256": "ae23e09d2a8765e4f5b4ec329d3974e6c0d345a1ef2a85cd949fc1e606994ee1",
+      "bytes": 473,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/.github/pull_request_template.md",
+      "path": ".github/pull_request_template.md",
+      "source_sha256": "8570d2ca7660e3bfe588368192e0ed600ce91621b4735b6b264f86b340f72d71",
+      "sha256": "8570d2ca7660e3bfe588368192e0ed600ce91621b4735b6b264f86b340f72d71",
+      "bytes": 390,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/.github/workflows/ci.yml",
+      "path": ".github/workflows/ci.yml",
+      "source_sha256": "d694f6685e28b62d2be5e4522f2e95fb64bf99d713ba2147a1bc86d48c62e15a",
+      "sha256": "d694f6685e28b62d2be5e4522f2e95fb64bf99d713ba2147a1bc86d48c62e15a",
+      "bytes": 3332,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/.github/workflows/preview.yml",
+      "path": ".github/workflows/preview.yml",
+      "source_sha256": "ce98943db840fc063849715006b8329d3a986823bc96512a02981072867dcab9",
+      "sha256": "ce98943db840fc063849715006b8329d3a986823bc96512a02981072867dcab9",
+      "bytes": 1724,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/.github/workflows/release.yml",
+      "path": ".github/workflows/release.yml",
+      "source_sha256": "c1895cb15484ff21d18d1bb7ba7112eaac283009fcc130e3f76eb2cb6a0ac16c",
+      "sha256": "c1895cb15484ff21d18d1bb7ba7112eaac283009fcc130e3f76eb2cb6a0ac16c",
+      "bytes": 2464,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/.gitignore",
+      "path": ".gitignore",
+      "source_sha256": "2a4d2c283c61bbe68deb7d6abadd999499f3fff7d7ffe2149b304e9b0ea6bb0b",
+      "sha256": "2a4d2c283c61bbe68deb7d6abadd999499f3fff7d7ffe2149b304e9b0ea6bb0b",
+      "bytes": 174,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/CHANGELOG.md",
+      "path": "CHANGELOG.md",
+      "source_sha256": "8713a2597ccd1e43a17862b6bcd5543d665c27769507801f0a7c4bbecd335a57",
+      "sha256": "8713a2597ccd1e43a17862b6bcd5543d665c27769507801f0a7c4bbecd335a57",
+      "bytes": 1142,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/CONTRIBUTING.md",
+      "path": "CONTRIBUTING.md",
+      "source_sha256": "a2e0a31ab7e7119565b1b57cb70d6052a20d8665a04383d91f5125c9f5d7e057",
+      "sha256": "a2e0a31ab7e7119565b1b57cb70d6052a20d8665a04383d91f5125c9f5d7e057",
+      "bytes": 1503,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/LICENSE",
+      "path": "LICENSE",
+      "source_sha256": "b686b29e63edbcc563b72acc5895c2e590e6540216137acda2ed2afd664dc74e",
+      "sha256": "b686b29e63edbcc563b72acc5895c2e590e6540216137acda2ed2afd664dc74e",
+      "bytes": 1086,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/MANIFEST.in",
+      "path": "MANIFEST.in",
+      "source_sha256": "ccb732c77731909ef7ba694ac86fc28833e4f8b127fd5d4cfd7864b028def298",
+      "sha256": "ccb732c77731909ef7ba694ac86fc28833e4f8b127fd5d4cfd7864b028def298",
+      "bytes": 438,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/PUBLIC-README.md",
+      "path": "PUBLIC-README.md",
+      "source_sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
+      "sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
+      "bytes": 6921,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/PUBLIC-README.md",
+      "path": "README.md",
+      "source_sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
+      "sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
+      "bytes": 6921,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/RELEASE.md",
+      "path": "RELEASE.md",
+      "source_sha256": "e5e50ae3f3e345776e42330ac0c542822962dfd345039ac9d1d6edbbcbb62581",
+      "sha256": "e5e50ae3f3e345776e42330ac0c542822962dfd345039ac9d1d6edbbcbb62581",
+      "bytes": 3011,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/SECURITY.md",
+      "path": "SECURITY.md",
+      "source_sha256": "bb18c588ed9e71f07d4b5e3c76432cd9e81dbb171f763bd2cf03e335fa176d9b",
+      "sha256": "bb18c588ed9e71f07d4b5e3c76432cd9e81dbb171f763bd2cf03e335fa176d9b",
+      "bytes": 966,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/THIRD-PARTY-NOTICES.md",
+      "path": "THIRD-PARTY-NOTICES.md",
+      "source_sha256": "83efb7b69f5e6a88f76a3a89501d2f20d5e4d2bf53ec5654483644b2c38ac37c",
+      "sha256": "83efb7b69f5e6a88f76a3a89501d2f20d5e4d2bf53ec5654483644b2c38ac37c",
+      "bytes": 2455,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/docs/WORKFLOWS.md",
+      "path": "docs/WORKFLOWS.md",
+      "source_sha256": "c00782cfbb272b0d5e66b72458a34e78f03a4e206c63e1583a4c997660a04c84",
+      "sha256": "c00782cfbb272b0d5e66b72458a34e78f03a4e206c63e1583a4c997660a04c84",
+      "bytes": 9147,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/pyproject.toml",
+      "path": "pyproject.toml",
+      "source_sha256": "da6c700245aab3fffa778eeca13db9ed476d6c14895a9dba31848fb5ca13ead9",
+      "sha256": "da6c700245aab3fffa778eeca13db9ed476d6c14895a9dba31848fb5ca13ead9",
+      "bytes": 1659,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/release/unpack_preview.py",
+      "path": "release/unpack_preview.py",
+      "source_sha256": "1b488e27ecd890b2baab350ed18c9bc9290ff9eeb7c081a1aee55f35b8112a9c",
+      "sha256": "1b488e27ecd890b2baab350ed18c9bc9290ff9eeb7c081a1aee55f35b8112a9c",
+      "bytes": 3265,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-video/SKILL.md",
+      "path": "skills/taskfilm-video/SKILL.md",
+      "source_sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
+      "sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
+      "bytes": 3930,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/src/taskfilm/__init__.py",
+      "path": "src/taskfilm/__init__.py",
+      "source_sha256": "f11584c739e10cedea886f1428e2ef9764265fda1a72462322a078b0c42f8b31",
+      "sha256": "f11584c739e10cedea886f1428e2ef9764265fda1a72462322a078b0c42f8b31",
+      "bytes": 95,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/src/taskfilm/__main__.py",
+      "path": "src/taskfilm/__main__.py",
+      "source_sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "bytes": 48,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/automation-platform/clicker-man/humanflow/src/humanflow/agent/dom_scan.py",
+      "path": "src/taskfilm/_vendor/humanflow/humanflow/agent/dom_scan.py",
+      "source_sha256": "1306c48fc535966fa01a2f941f2adb57239d63e3f54369c7d0b8115797f1aed3",
+      "sha256": "1306c48fc535966fa01a2f941f2adb57239d63e3f54369c7d0b8115797f1aed3",
+      "bytes": 4890,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/automation-platform/clicker-man/humanflow/src/humanflow/motion/path_generator.py",
+      "path": "src/taskfilm/_vendor/humanflow/humanflow/motion/path_generator.py",
+      "source_sha256": "f7bdc58c0c4502bada9db21b1d169fc685503f769ad0f9261580cebf4f179f83",
+      "sha256": "f7bdc58c0c4502bada9db21b1d169fc685503f769ad0f9261580cebf4f179f83",
+      "bytes": 2267,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/hfcomp.py",
+      "path": "src/taskfilm/_vendor/video/capture-lane/hfcomp.py",
+      "source_sha256": "1cabce4204b5cc13dff476a604136e7b966e52bea347019ba423890e428f420b",
+      "sha256": "1cabce4204b5cc13dff476a604136e7b966e52bea347019ba423890e428f420b",
+      "bytes": 34997,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/pixels.py",
+      "path": "src/taskfilm/_vendor/video/capture-lane/pixels.py",
+      "source_sha256": "e53e77a203893a9340cab857d582331312224f47bd97b0c637ff05b510ab128f",
+      "sha256": "e53e77a203893a9340cab857d582331312224f47bd97b0c637ff05b510ab128f",
+      "bytes": 6003,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/plan.py",
+      "path": "src/taskfilm/_vendor/video/capture-lane/plan.py",
+      "source_sha256": "142bcc2902e1fd31adc3e8d604ac91bc22599d059cc8649361bc2909f799d566",
+      "sha256": "142bcc2902e1fd31adc3e8d604ac91bc22599d059cc8649361bc2909f799d566",
+      "bytes": 38681,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/provenance.py",
+      "path": "src/taskfilm/_vendor/video/capture-lane/provenance.py",
+      "source_sha256": "9b7debd66f9f50f6ac1e3095881716c846ac53ce493149d5fc92bb233df59aa4",
+      "sha256": "9b7debd66f9f50f6ac1e3095881716c846ac53ce493149d5fc92bb233df59aa4",
+      "bytes": 12633,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/reel.py",
+      "path": "src/taskfilm/_vendor/video/capture-lane/reel.py",
+      "source_sha256": "f5f37604beec98f1d4749e1e811b96f4d9ae86b492bfb0170a4e98ad0156f8f5",
+      "sha256": "f5f37604beec98f1d4749e1e811b96f4d9ae86b492bfb0170a4e98ad0156f8f5",
+      "bytes": 30785,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/webrec.py",
+      "path": "src/taskfilm/_vendor/video/capture-lane/webrec.py",
+      "source_sha256": "bc101e1aded3deed6fdbbf39ac8e19a32083c4bbd0df2ab3f40d67c049387299",
+      "sha256": "49dd920023c875957e7d22df38eb1490e06633505bba287c78c4443990bba27a",
+      "bytes": 141287,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/format_select.py",
+      "path": "src/taskfilm/_vendor/video/director/format_select.py",
+      "source_sha256": "ea290c5346e8841c8684987024fa31c31c0c4e17d17a369cbdd636e707ab17cc",
+      "sha256": "ea290c5346e8841c8684987024fa31c31c0c4e17d17a369cbdd636e707ab17cc",
+      "bytes": 4463,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/product_story.py",
+      "path": "src/taskfilm/_vendor/video/director/product_story.py",
+      "source_sha256": "8e677e142422ce78a6afc4c40cd2b0c16ba9606b3088489322dbb80855b9184a",
+      "sha256": "8e677e142422ce78a6afc4c40cd2b0c16ba9606b3088489322dbb80855b9184a",
+      "bytes": 24625,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/production_recipe.py",
+      "path": "src/taskfilm/_vendor/video/director/production_recipe.py",
+      "source_sha256": "81f0b491849b2eb9938ce1ac4642f67e29743a86af7326d34ce6d05f670ffd84",
+      "sha256": "81f0b491849b2eb9938ce1ac4642f67e29743a86af7326d34ce6d05f670ffd84",
+      "bytes": 34511,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/production_request.py",
+      "path": "src/taskfilm/_vendor/video/director/production_request.py",
+      "source_sha256": "9f9f999cafde2805dc3d2451e26a224bda8c504cda52214bf5a6b3799c7fc7d3",
+      "sha256": "9f9f999cafde2805dc3d2451e26a224bda8c504cda52214bf5a6b3799c7fc7d3",
+      "bytes": 15666,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/skills/exemplar_site_tour/references/brag/LICENSE",
+      "path": "src/taskfilm/_vendor/video/director/skills/exemplar_site_tour/references/brag/LICENSE",
+      "source_sha256": "92d538e0da9abeaafff8ecfc62e142f5053fa92b2c3ef29978742c325c554089",
+      "sha256": "92d538e0da9abeaafff8ecfc62e142f5053fa92b2c3ef29978742c325c554089",
+      "bytes": 1076,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/skills/exemplar_site_tour/references/brag/UPSTREAM.json",
+      "path": "src/taskfilm/_vendor/video/director/skills/exemplar_site_tour/references/brag/UPSTREAM.json",
+      "source_sha256": "eceefe3f5c2cab314b4ef6b6ef58a016d363a9a6a29dcda04277f59ae38a4797",
+      "sha256": "eceefe3f5c2cab314b4ef6b6ef58a016d363a9a6a29dcda04277f59ae38a4797",
+      "bytes": 1464,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/skills/exemplar_site_tour/references/brag/step-1-inspect.md",
+      "path": "src/taskfilm/_vendor/video/director/skills/exemplar_site_tour/references/brag/step-1-inspect.md",
+      "source_sha256": "eb2ca315b727d8fa1e2dec12c58aa79e30888f98485217a588e84a7252e33e51",
+      "sha256": "eb2ca315b727d8fa1e2dec12c58aa79e30888f98485217a588e84a7252e33e51",
+      "bytes": 6049,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/skills/exemplar_site_tour/references/brag/step-2-plan.md",
+      "path": "src/taskfilm/_vendor/video/director/skills/exemplar_site_tour/references/brag/step-2-plan.md",
+      "source_sha256": "2caec3b2f21626174683804961dc7f2b1c4bf439827cca9b1423f7ebd805e7db",
+      "sha256": "2caec3b2f21626174683804961dc7f2b1c4bf439827cca9b1423f7ebd805e7db",
+      "bytes": 13151,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/director/skills/exemplar_site_tour/references/brag/step-3-compose.md",
+      "path": "src/taskfilm/_vendor/video/director/skills/exemplar_site_tour/references/brag/step-3-compose.md",
+      "source_sha256": "25af404871fd4eba782c1e7f00cadc634fac900db4847a5a15a6eaa4f6346808",
+      "sha256": "25af404871fd4eba782c1e7f00cadc634fac900db4847a5a15a6eaa4f6346808",
+      "bytes": 13127,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/edit-lane/freecut_timeline_ops.py",
+      "path": "src/taskfilm/_vendor/video/edit-lane/freecut_timeline_ops.py",
+      "source_sha256": "e1e67f1fc7632b56ab2e07fc4469187ee03c33233403e404dd6c8f6676a2f6df",
+      "sha256": "e1e67f1fc7632b56ab2e07fc4469187ee03c33233403e404dd6c8f6676a2f6df",
+      "bytes": 9681,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/hyperframes-lane/product-motion/assets/GeistMono-OFL.txt",
+      "path": "src/taskfilm/_vendor/video/hyperframes-lane/product-motion/assets/GeistMono-OFL.txt",
+      "source_sha256": "c683bfbcc7e087f5d37a54ef628f10387c451a83ddc459b151403a164ac46c90",
+      "sha256": "c683bfbcc7e087f5d37a54ef628f10387c451a83ddc459b151403a164ac46c90",
+      "bytes": 4383,
+      "license": "OFL-1.1"
+    },
+    {
+      "source": "apps/video/hyperframes-lane/product-motion/assets/GeistMono.ttf",
+      "path": "src/taskfilm/_vendor/video/hyperframes-lane/product-motion/assets/GeistMono.ttf",
+      "source_sha256": "678ff43c7d3a9b3e971399ea53b3043f98ba51be5a76f4dd6cda61e59a96df05",
+      "sha256": "678ff43c7d3a9b3e971399ea53b3043f98ba51be5a76f4dd6cda61e59a96df05",
+      "bytes": 171072,
+      "license": "OFL-1.1"
+    },
+    {
+      "source": "apps/video/hyperframes-lane/product-motion/assets/Manrope-OFL.txt",
+      "path": "src/taskfilm/_vendor/video/hyperframes-lane/product-motion/assets/Manrope-OFL.txt",
+      "source_sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "bytes": 4387,
+      "license": "OFL-1.1"
+    },
+    {
+      "source": "apps/video/hyperframes-lane/product-motion/assets/Manrope.ttf",
+      "path": "src/taskfilm/_vendor/video/hyperframes-lane/product-motion/assets/Manrope.ttf",
+      "source_sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "bytes": 164700,
+      "license": "OFL-1.1"
+    },
+    {
+      "source": "apps/video/hyperframes-lane/product-motion/build.py",
+      "path": "src/taskfilm/_vendor/video/hyperframes-lane/product-motion/build.py",
+      "source_sha256": "3feeee3ef7c0e0369feec181ed3024f84a61c73d10a2bd6c8e0cb14ce6005bc8",
+      "sha256": "6519576dc56e1107abec8db0d392f317f57f359609db18479bef7783424f3d3a",
+      "bytes": 56631,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/hyperframes-lane/product-motion/sfx.py",
+      "path": "src/taskfilm/_vendor/video/hyperframes-lane/product-motion/sfx.py",
+      "source_sha256": "34f2a224395a2d4a9eff0d0e63bd076f911f1d9b8561662ff640914105142531",
+      "sha256": "34f2a224395a2d4a9eff0d0e63bd076f911f1d9b8561662ff640914105142531",
+      "bytes": 9607,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/hyperframes-lane/product-motion/template.tpl",
+      "path": "src/taskfilm/_vendor/video/hyperframes-lane/product-motion/template.tpl",
+      "source_sha256": "890380786f01199c144197956cd21357e4a30c98e9920f2c1b5335c62beb6c20",
+      "sha256": "890380786f01199c144197956cd21357e4a30c98e9920f2c1b5335c62beb6c20",
+      "bytes": 38956,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/mix/brand/jarvis-demo.json",
+      "path": "src/taskfilm/_vendor/video/mix/brand/taskfilm-demo.json",
+      "source_sha256": "901ddb45caca9ffbe05c8a00db9038dffc987c3769661149028c746497f35796",
+      "sha256": "01d9886a9e315e7f26f4da5c3247badde3c1d0e6222f952c847f868e6b2fe9ec",
+      "bytes": 668,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/mix/build_mix.py",
+      "path": "src/taskfilm/_vendor/video/mix/build_mix.py",
+      "source_sha256": "4180bad1d5d6c0fab7f8486f9c4ffb1e8a2bad27de934264884475446b95504b",
+      "sha256": "4180bad1d5d6c0fab7f8486f9c4ffb1e8a2bad27de934264884475446b95504b",
+      "bytes": 32699,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/reel-lane/DEMO-PACKAGE.md",
+      "path": "src/taskfilm/_vendor/video/reel-lane/DEMO-PACKAGE.md",
+      "source_sha256": "b43926fa01241b9f91f6e85d3824c0ef9d8391d7f276966ba4fc00cd88871db1",
+      "sha256": "dd4688e89f8898a24182e40a716b84b62eb7ba68c045a2ee987904ff782ad50d",
+      "bytes": 6258,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/reel-lane/beat_routing.py",
+      "path": "src/taskfilm/_vendor/video/reel-lane/beat_routing.py",
+      "source_sha256": "6fd22ebfa42b932128c46f7ab70912d08dd08127adbc00ad1f86d4b636df22f3",
+      "sha256": "6fd22ebfa42b932128c46f7ab70912d08dd08127adbc00ad1f86d4b636df22f3",
+      "bytes": 8995,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/reel-lane/demo_package.py",
+      "path": "src/taskfilm/_vendor/video/reel-lane/demo_package.py",
+      "source_sha256": "8180d82eba486913e937c5a45aff5b6ed5f437cba7debac61bdf2e6582b5ca63",
+      "sha256": "70d3f268182c16a2c4de245cb98a2bfada8574333508488434cd9f8eff72d377",
+      "bytes": 26799,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/reel-lane/formats.py",
+      "path": "src/taskfilm/_vendor/video/reel-lane/formats.py",
+      "source_sha256": "ac51b583c66a6061b18a8601a1d97e45fc72661681431073a002407c983b7e88",
+      "sha256": "ac51b583c66a6061b18a8601a1d97e45fc72661681431073a002407c983b7e88",
+      "bytes": 8941,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/reel-lane/hook.py",
+      "path": "src/taskfilm/_vendor/video/reel-lane/hook.py",
+      "source_sha256": "b14fe1f04c0839e27d7108d5f76e37a45a71e3cea730eefcb4747fe8f90f31a6",
+      "sha256": "e53ebaa4a5061d829ab7b53b316b7e83c3ec5d84b6c30322d7a8ac2f97137c9d",
+      "bytes": 9467,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/reel-lane/validate_reel_script.py",
+      "path": "src/taskfilm/_vendor/video/reel-lane/validate_reel_script.py",
+      "source_sha256": "96c89576385cc34ff69943fe86e9193b07b3bc96ab8a109760ca3f947f04f71c",
+      "sha256": "6a27cf5505fe209d678210c1db843cab18eccf3526ced9b04f27ae52419f064f",
+      "bytes": 14773,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/repo-lane/repo_pack.py",
+      "path": "src/taskfilm/_vendor/video/repo-lane/repo_pack.py",
+      "source_sha256": "8e6884e89703855e69bda2e3ef982681cd5db47ed0ffe95a6799dddf006e35d1",
+      "sha256": "8e6884e89703855e69bda2e3ef982681cd5db47ed0ffe95a6799dddf006e35d1",
+      "bytes": 21700,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/repo-lane/secrets_policy.py",
+      "path": "src/taskfilm/_vendor/video/repo-lane/secrets_policy.py",
+      "source_sha256": "aa50545da813bbf422752c8218693996981ddbb99ee7664317d3390ec8d0df4e",
+      "sha256": "aa50545da813bbf422752c8218693996981ddbb99ee7664317d3390ec8d0df4e",
+      "bytes": 2922,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/videokit/__init__.py",
+      "path": "src/taskfilm/_vendor/video/videokit/__init__.py",
+      "source_sha256": "592747dacd700e20f2aec2f7201b06f92098e8408673352a492f18ec30b6891b",
+      "sha256": "592747dacd700e20f2aec2f7201b06f92098e8408673352a492f18ec30b6891b",
+      "bytes": 3534,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/videokit/_lanes.py",
+      "path": "src/taskfilm/_vendor/video/videokit/_lanes.py",
+      "source_sha256": "86e524d376a8f58f8e06406cfe5b43bbef48e3c0694db0ecfc04abbff72d2f94",
+      "sha256": "86e524d376a8f58f8e06406cfe5b43bbef48e3c0694db0ecfc04abbff72d2f94",
+      "bytes": 1608,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/videokit/_loader.py",
+      "path": "src/taskfilm/_vendor/video/videokit/_loader.py",
+      "source_sha256": "529c875c3125eaf560afebcffae3428d267005832b649e530fcbd303f146a4b2",
+      "sha256": "529c875c3125eaf560afebcffae3428d267005832b649e530fcbd303f146a4b2",
+      "bytes": 6580,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/src/taskfilm/cli.py",
+      "path": "src/taskfilm/cli.py",
+      "source_sha256": "d6e6590c8a782fede57e2a72515a48fa92d86ca023f22fc47abfc3d920bdd7c0",
+      "sha256": "d6e6590c8a782fede57e2a72515a48fa92d86ca023f22fc47abfc3d920bdd7c0",
+      "bytes": 8307,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/capture.json",
+      "path": "src/taskfilm/examples/capture.json",
+      "source_sha256": "28d030d9a83265359c0ad1efe99fe5b34e3f60d43ebe1b50a8707f99f16f121e",
+      "sha256": "28d030d9a83265359c0ad1efe99fe5b34e3f60d43ebe1b50a8707f99f16f121e",
+      "bytes": 1402,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/feature.json",
+      "path": "src/taskfilm/examples/feature.json",
+      "source_sha256": "d129803d1ecadc913ea30c080659844cf7bb8e57112148e1fbe8857f38bf3b06",
+      "sha256": "d129803d1ecadc913ea30c080659844cf7bb8e57112148e1fbe8857f38bf3b06",
+      "bytes": 493,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-capture.json",
+      "path": "src/taskfilm/examples/motion-capture.json",
+      "source_sha256": "6aac13ecd15bf6f107a1bc520856470a1e4bbf87ba228d15125a3923f961d75c",
+      "sha256": "6aac13ecd15bf6f107a1bc520856470a1e4bbf87ba228d15125a3923f961d75c",
+      "bytes": 1445,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/BRIEF.md",
+      "path": "src/taskfilm/examples/motion-lab/BRIEF.md",
+      "source_sha256": "e29d795a5ecc0df0e8caaac51b2ac135439451af0e8db406e13dd22d2f21fb31",
+      "sha256": "e29d795a5ecc0df0e8caaac51b2ac135439451af0e8db406e13dd22d2f21fb31",
+      "bytes": 645,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/DESIGN.md",
+      "path": "src/taskfilm/examples/motion-lab/DESIGN.md",
+      "source_sha256": "45c858d5a229d31b60c78ce291191d73410dad8fa44501ba25d89e04b0d68f78",
+      "sha256": "45c858d5a229d31b60c78ce291191d73410dad8fa44501ba25d89e04b0d68f78",
+      "bytes": 1108,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/README.md",
+      "path": "src/taskfilm/examples/motion-lab/README.md",
+      "source_sha256": "1df5a4b8cdfcfbe86b625f303ea19a2547046ccdb28b5f47b2d10d8f0152535a",
+      "sha256": "1df5a4b8cdfcfbe86b625f303ea19a2547046ccdb28b5f47b2d10d8f0152535a",
+      "bytes": 692,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/STORYBOARD.md",
+      "path": "src/taskfilm/examples/motion-lab/STORYBOARD.md",
+      "source_sha256": "9fd86540fe3844370a7fbe58ade8cedffed8eec912faaddf2d6e991b614beedc",
+      "sha256": "9fd86540fe3844370a7fbe58ade8cedffed8eec912faaddf2d6e991b614beedc",
+      "bytes": 1106,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/compositions/depth.html",
+      "path": "src/taskfilm/examples/motion-lab/compositions/depth.html",
+      "source_sha256": "8a43080323123a49d35630dad39435a163af0bfc0135f46b01404f0537e42b6d",
+      "sha256": "8a43080323123a49d35630dad39435a163af0bfc0135f46b01404f0537e42b6d",
+      "bytes": 3810,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/compositions/end.html",
+      "path": "src/taskfilm/examples/motion-lab/compositions/end.html",
+      "source_sha256": "fe8b6297a0b3220f87a2f0ac952eaa7aa62f320d7f79b100acb8bdf5378bc498",
+      "sha256": "fe8b6297a0b3220f87a2f0ac952eaa7aa62f320d7f79b100acb8bdf5378bc498",
+      "bytes": 1914,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/compositions/type.html",
+      "path": "src/taskfilm/examples/motion-lab/compositions/type.html",
+      "source_sha256": "fae08c0e58a63a7ab725de9bb87642d4dac4dd2bc2c3c4484552c740cad24b25",
+      "sha256": "fae08c0e58a63a7ab725de9bb87642d4dac4dd2bc2c3c4484552c740cad24b25",
+      "bytes": 2809,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/compositions/vector.html",
+      "path": "src/taskfilm/examples/motion-lab/compositions/vector.html",
+      "source_sha256": "4d9afe8f07086ba9ee772b6ae75c10f95798ea16da1abeee889fe5979870ce9d",
+      "sha256": "4d9afe8f07086ba9ee772b6ae75c10f95798ea16da1abeee889fe5979870ce9d",
+      "bytes": 3438,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/hyperframes.json",
+      "path": "src/taskfilm/examples/motion-lab/hyperframes.json",
+      "source_sha256": "b6d70303cf9ee063f87a2ce10ed85ccb22a7daf4dd738f946eb17ad244b1fbc6",
+      "sha256": "b6d70303cf9ee063f87a2ce10ed85ccb22a7daf4dd738f946eb17ad244b1fbc6",
+      "bytes": 174,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/index.html",
+      "path": "src/taskfilm/examples/motion-lab/index.html",
+      "source_sha256": "d1a4ed5119333202590c030816e322ada18f64f4deb25b7c39e1d7bc02fb1aef",
+      "sha256": "d1a4ed5119333202590c030816e322ada18f64f4deb25b7c39e1d7bc02fb1aef",
+      "bytes": 1813,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-lab/package.json",
+      "path": "src/taskfilm/examples/motion-lab/package.json",
+      "source_sha256": "60319d9bb3adcd7b9f0c66d11a4411453c6bd519728963b44ccfa3686abc3136",
+      "sha256": "60319d9bb3adcd7b9f0c66d11a4411453c6bd519728963b44ccfa3686abc3136",
+      "bytes": 200,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/motion-spec.json",
+      "path": "src/taskfilm/examples/motion-spec.json",
+      "source_sha256": "105f69d714ad6ff78dca65afcdd728bc7f266d23c28ef4f7c47d55555b92e192",
+      "sha256": "105f69d714ad6ff78dca65afcdd728bc7f266d23c28ef4f7c47d55555b92e192",
+      "bytes": 4483,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/README.md",
+      "path": "src/taskfilm/examples/oss-showcases/README.md",
+      "source_sha256": "107bc808e5e68c6df1eed816a6a4f6e8effd92ca100cf08894592614757cbfb8",
+      "sha256": "107bc808e5e68c6df1eed816a6a4f6e8effd92ca100cf08894592614757cbfb8",
+      "bytes": 4833,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/build-showcase.py",
+      "path": "src/taskfilm/examples/oss-showcases/build-showcase.py",
+      "source_sha256": "1d91b12e36d68087962622ec95760dc5d6a8c34d3c90e00a12b6004574f99fcd",
+      "sha256": "1d91b12e36d68087962622ec95760dc5d6a8c34d3c90e00a12b6004574f99fcd",
+      "bytes": 18589,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/capture-drawdb.json",
+      "path": "src/taskfilm/examples/oss-showcases/capture-drawdb.json",
+      "source_sha256": "cba91870f72c8c7812d1152e4db29ecf3b34d57089bc9b30b090dd2e7550a474",
+      "sha256": "cba91870f72c8c7812d1152e4db29ecf3b34d57089bc9b30b090dd2e7550a474",
+      "bytes": 3108,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/capture-excalidraw.json",
+      "path": "src/taskfilm/examples/oss-showcases/capture-excalidraw.json",
+      "source_sha256": "33f6965ed070acadba3571fdc7c110143116c1d68d21ce298598eae14d3d73c4",
+      "sha256": "33f6965ed070acadba3571fdc7c110143116c1d68d21ce298598eae14d3d73c4",
+      "bytes": 3993,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/capture-penpot.json",
+      "path": "src/taskfilm/examples/oss-showcases/capture-penpot.json",
+      "source_sha256": "56b793d03297bc9c5b06399ea28e093f64b865f5b50cfe5a61f3d50726ec8e77",
+      "sha256": "56b793d03297bc9c5b06399ea28e093f64b865f5b50cfe5a61f3d50726ec8e77",
+      "bytes": 3089,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/fieldnotes-layouts.svg",
+      "path": "src/taskfilm/examples/oss-showcases/fieldnotes-layouts.svg",
+      "source_sha256": "ad1c482aa54e31d542fbf61c813112d0f40ba56c6b7db622d9a9cdae07db6ab4",
+      "sha256": "ad1c482aa54e31d542fbf61c813112d0f40ba56c6b7db622d9a9cdae07db6ab4",
+      "bytes": 5775,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/prepare-capture.py",
+      "path": "src/taskfilm/examples/oss-showcases/prepare-capture.py",
+      "source_sha256": "fa21cb4e8668a79dec622a8e93a36f3dfebe48a2270cc338f4124a0f61fb5b33",
+      "sha256": "fa21cb4e8668a79dec622a8e93a36f3dfebe48a2270cc338f4124a0f61fb5b33",
+      "bytes": 1794,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/prepare-penpot.py",
+      "path": "src/taskfilm/examples/oss-showcases/prepare-penpot.py",
+      "source_sha256": "59150bbd1d0bb5216640b1c8434bc087eb4918d2091baee014ea690dfc4bc431",
+      "sha256": "59150bbd1d0bb5216640b1c8434bc087eb4918d2091baee014ea690dfc4bc431",
+      "bytes": 7251,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/schema.sql",
+      "path": "src/taskfilm/examples/oss-showcases/schema.sql",
+      "source_sha256": "fd523f2940c31f7b0eafb6b4fbd175a0ce2b4f64c87b5eeb8f50dbf9b25df151",
+      "sha256": "fd523f2940c31f7b0eafb6b4fbd175a0ce2b4f64c87b5eeb8f50dbf9b25df151",
+      "bytes": 258,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/showcase.tpl",
+      "path": "src/taskfilm/examples/oss-showcases/showcase.tpl",
+      "source_sha256": "e1baf458cbbef1f420e8db644c20b9b54aaa44298ce8b53b2fbe3bc7d5bfa21f",
+      "sha256": "e1baf458cbbef1f420e8db644c20b9b54aaa44298ce8b53b2fbe3bc7d5bfa21f",
+      "bytes": 4730,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/source-references.json",
+      "path": "src/taskfilm/examples/oss-showcases/source-references.json",
+      "source_sha256": "f3370b024c5e2eb011018d5ad967867b925b4a3f3d4ea30110ef29ae97e6377a",
+      "sha256": "f3370b024c5e2eb011018d5ad967867b925b4a3f3d4ea30110ef29ae97e6377a",
+      "bytes": 1491,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss.json",
+      "path": "src/taskfilm/examples/oss.json",
+      "source_sha256": "bf9b92389debb3f7250d4d2d99db851268d5c1b6b6426e39558059faf76adbed",
+      "sha256": "bf9b92389debb3f7250d4d2d99db851268d5c1b6b6426e39558059faf76adbed",
+      "bytes": 862,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/prepare-oss-review.py",
+      "path": "src/taskfilm/examples/prepare-oss-review.py",
+      "source_sha256": "8dc8a0881db405faab8f557fecbfed28a3a87168ad342bd01dd5a5d504c40434",
+      "sha256": "8dc8a0881db405faab8f557fecbfed28a3a87168ad342bd01dd5a5d504c40434",
+      "bytes": 3111,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/promo.json",
+      "path": "src/taskfilm/examples/promo.json",
+      "source_sha256": "6f3dd9ff1fe233359c9ec04dcdba44f4ae448480c4381f3d7a63fbf9d06ecd19",
+      "sha256": "6f3dd9ff1fe233359c9ec04dcdba44f4ae448480c4381f3d7a63fbf9d06ecd19",
+      "bytes": 754,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/request.json",
+      "path": "src/taskfilm/examples/request.json",
+      "source_sha256": "e98afabdc5328ad3a224f4c59b712fabbce3943ef38f97a6df68971882d78ab3",
+      "sha256": "e98afabdc5328ad3a224f4c59b712fabbce3943ef38f97a6df68971882d78ab3",
+      "bytes": 1582,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/taskboard/index.html",
+      "path": "src/taskfilm/examples/taskboard/index.html",
+      "source_sha256": "6d21e17f780482a4f9bbbc71fbe761053eaf232004dfe144f801e9323e020990",
+      "sha256": "6d21e17f780482a4f9bbbc71fbe761053eaf232004dfe144f801e9323e020990",
+      "bytes": 4656,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-video/SKILL.md",
+      "path": "src/taskfilm/skill/SKILL.md",
+      "source_sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
+      "sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
+      "bytes": 3930,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/tests/render_audio_smoke.py",
+      "path": "tests/render_audio_smoke.py",
+      "source_sha256": "4203bdc123abbf0d039b103dc9fefd6adc89870acf84074ef585a265e97d05f8",
+      "sha256": "4203bdc123abbf0d039b103dc9fefd6adc89870acf84074ef585a265e97d05f8",
+      "bytes": 6923,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/tests/test_composition_timing.py",
+      "path": "tests/test_composition_timing.py",
+      "source_sha256": "f74e17f4bdbd71741d1ebf65e7c0013aa8f716d7677ecb90aabe8c7e5b571def",
+      "sha256": "9b684ab66046cc8c17f8b9ed1a9f7f47f48bcedfe265f3eba0f3eccf3eb620f1",
+      "bytes": 1847,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/tests/test_distribution.py",
+      "path": "tests/test_distribution.py",
+      "source_sha256": "972647b6e1550263ff11959d16e6d35647f5ecabfbf95602c644afd42149fda1",
+      "sha256": "972647b6e1550263ff11959d16e6d35647f5ecabfbf95602c644afd42149fda1",
+      "bytes": 12093,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/tests/test_preview_archive.py",
+      "path": "tests/test_preview_archive.py",
+      "source_sha256": "d11cdece131db228e648a0bf1b096f217f22033f20c37aaff2eae4801d410886",
+      "sha256": "d11cdece131db228e648a0bf1b096f217f22033f20c37aaff2eae4801d410886",
+      "bytes": 2803,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/reel-lane/tests/test_release_showcase.py",
+      "path": "tests/test_release_showcase.py",
+      "source_sha256": "8840ea6943c94a1377b7b87fbeec74509dd831a2c07688dc1a85ce0f5874c0fb",
+      "sha256": "afbafc51a5b794ffe89d274c4dbecbb6d068c761c28fd99d385bda81b8cdb502",
+      "bytes": 5094,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/tests/test_webrec_readiness.py",
+      "path": "tests/test_webrec_readiness.py",
+      "source_sha256": "2c2957df230dd9dd513a38e0d4fd1415504857546283ba8ec4e6d18a7d2674a9",
+      "sha256": "add1f34d393bd75b4689ec699ea21186e28af38eaedac939dbc7ac5c5bad5eb6",
+      "bytes": 1646,
+      "license": "MIT"
+    }
+  ],
+  "publication": "not_performed",
+  "project_license": "MIT"
+}

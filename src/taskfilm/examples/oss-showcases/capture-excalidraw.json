@@ -1,0 +1,235 @@
+{
+  "name": "Excalidraw \u2014 turn an idea into a diagram",
+  "url": "https://excalidraw.com/",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "until": "domcontentloaded",
+  "ready_selector": "[data-testid=toolbar-rectangle]",
+  "settle_s": 2,
+  "steps": [
+    {
+      "do": "beat",
+      "id": "blank",
+      "explain": "Excalidraw is an open-source whiteboard for hand-drawn diagrams."
+    },
+    {
+      "do": "wait",
+      "s": 1
+    },
+    {
+      "do": "key",
+      "key": "r",
+      "settle": 0.12
+    },
+    {
+      "do": "drag",
+      "selector": "canvas.interactive",
+      "from_at": {
+        "x": 300,
+        "y": 240
+      },
+      "to_at": {
+        "x": 500,
+        "y": 390
+      },
+      "settle": 0.2
+    },
+    {
+      "do": "key",
+      "key": "t",
+      "settle": 0.12
+    },
+    {
+      "do": "click",
+      "at": {
+        "x": 400,
+        "y": 315
+      },
+      "settle": 0.2
+    },
+    {
+      "do": "type",
+      "text": "Idea",
+      "delay": 0.04
+    },
+    {
+      "do": "key",
+      "key": "Escape",
+      "settle": 0.12
+    },
+    {
+      "do": "key",
+      "key": "r",
+      "settle": 0.12
+    },
+    {
+      "do": "drag",
+      "selector": "canvas.interactive",
+      "from_at": {
+        "x": 580,
+        "y": 240
+      },
+      "to_at": {
+        "x": 780,
+        "y": 390
+      },
+      "settle": 0.2
+    },
+    {
+      "do": "key",
+      "key": "t",
+      "settle": 0.12
+    },
+    {
+      "do": "click",
+      "at": {
+        "x": 680,
+        "y": 315
+      },
+      "settle": 0.2
+    },
+    {
+      "do": "type",
+      "text": "Prototype",
+      "delay": 0.04
+    },
+    {
+      "do": "key",
+      "key": "Escape",
+      "settle": 0.12
+    },
+    {
+      "do": "key",
+      "key": "r",
+      "settle": 0.12
+    },
+    {
+      "do": "drag",
+      "selector": "canvas.interactive",
+      "from_at": {
+        "x": 860,
+        "y": 240
+      },
+      "to_at": {
+        "x": 1060,
+        "y": 390
+      },
+      "settle": 0.2
+    },
+    {
+      "do": "key",
+      "key": "t",
+      "settle": 0.12
+    },
+    {
+      "do": "click",
+      "at": {
+        "x": 960,
+        "y": 315
+      },
+      "settle": 0.2
+    },
+    {
+      "do": "type",
+      "text": "Ship",
+      "delay": 0.04
+    },
+    {
+      "do": "key",
+      "key": "Escape",
+      "settle": 0.12
+    },
+    {
+      "do": "beat",
+      "id": "connect",
+      "explain": "Connect the steps so the plan is easy to explain."
+    },
+    {
+      "do": "key",
+      "key": "a",
+      "settle": 0.12
+    },
+    {
+      "do": "drag",
+      "selector": "canvas.interactive",
+      "from_at": {
+        "x": 504,
+        "y": 315
+      },
+      "to_at": {
+        "x": 574,
+        "y": 315
+      },
+      "settle": 0.25
+    },
+    {
+      "do": "key",
+      "key": "a",
+      "settle": 0.12
+    },
+    {
+      "do": "drag",
+      "selector": "canvas.interactive",
+      "from_at": {
+        "x": 784,
+        "y": 315
+      },
+      "to_at": {
+        "x": 854,
+        "y": 315
+      },
+      "settle": 0.25
+    },
+    {
+      "do": "key",
+      "key": "Escape"
+    },
+    {
+      "do": "click",
+      "at": {
+        "x": 1170,
+        "y": 550
+      }
+    },
+    {
+      "do": "wait",
+      "s": 1.5
+    },
+    {
+      "do": "beat",
+      "id": "save",
+      "explain": "Save the editable scene and keep the completed result."
+    },
+    {
+      "do": "click",
+      "selector": "[data-testid=main-menu-trigger]"
+    },
+    {
+      "do": "click",
+      "selector": "button:has-text('Save to...')"
+    },
+    {
+      "do": "download",
+      "id": "diagram",
+      "selector": "button:has-text('Save to file')",
+      "filename": "idea-to-launch.excalidraw",
+      "max_bytes": 1048576,
+      "timeout": 30
+    },
+    {
+      "do": "key",
+      "key": "Escape"
+    },
+    {
+      "do": "wait",
+      "s": 1.5
+    }
+  ],
+  "stage": {
+    "init_scripts": [
+      "delete window.showOpenFilePicker; delete window.showSaveFilePicker; delete window.showDirectoryPicker;"
+    ]
+  }
+}

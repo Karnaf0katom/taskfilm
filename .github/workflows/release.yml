@@ -1,0 +1,59 @@
+name: Draft Taskfilm release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+  release:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Check the release version and licence
+        run: |
+          python - <<'PY'
+          import json, os, tomllib
+          from pathlib import Path
+          project = tomllib.loads(Path('pyproject.toml').read_text())['project']
+          if os.environ['GITHUB_REF_NAME'] != 'v' + project['version']:
+              raise SystemExit('tag must match the package version')
+          licence = project.get('license')
+          if licence not in {'MIT', 'Apache-2.0'} or not Path('LICENSE').is_file():
+              raise SystemExit('select the original-code licence before publishing')
+          if len(Path('LICENSE').read_text().strip()) < 500:
+              raise SystemExit('retain the complete selected licence text')
+          manifest = json.loads(Path('SOURCE-MANIFEST.json').read_text())
+          if manifest['project_license'] != licence:
+              raise SystemExit('source manifest licence must match package metadata')
+          PY
+      - run: python -m pip install build
+      - run: python -m build
+      - name: Test the wheel
+        run: |
+          python -m pip install "$(find dist -name '*.whl')[browser,motion,dev]"
+          cd "$RUNNER_TEMP"
+          python -I -m taskfilm doctor --json
+          python -m pytest -q "$GITHUB_WORKSPACE/tests"
+      - name: Test the source distribution
+        run: |
+          python -m venv "$RUNNER_TEMP/sdist-venv"
+          "$RUNNER_TEMP/sdist-venv/bin/python" -m pip install "$(find dist -name '*.tar.gz')[browser,motion,dev]"
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/sdist-venv/bin/python" -m pytest -q "$GITHUB_WORKSPACE/tests"
+      - name: Create checksum list
+        run: |
+          cd dist
+          sha256sum *.whl *.tar.gz > SHA256SUMS
+      - name: Create a draft GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --draft --prerelease --verify-tag --title "Taskfilm $GITHUB_REF_NAME" --notes-file CHANGELOG.md

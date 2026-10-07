@@ -1,0 +1,23 @@
+{
+  "name": "Taskboard motion source",
+  "url": "http://127.0.0.1:8765/",
+  "viewport": {"width": 3840, "height": 2160},
+  "wait_for": "#task-title",
+  "stage": {"init_scripts": ["document.addEventListener('DOMContentLoaded', () => { if (!document.head || !document.documentElement.style) return; document.documentElement.style.zoom = '3'; const s = document.createElement('style'); s.textContent = '[data-hf-overlay]{display:none!important}'; document.head.appendChild(s); });"]},
+  "steps": [
+    {"do": "wait", "s": 3},
+    {"do": "click", "selector": "#task-title"},
+    {"do": "type", "text": "Ship the demo", "delay": 0.14},
+    {"do": "wait", "s": 2},
+    {"do": "click", "selector": "button[type=submit]", "settle": 3},
+    {"do": "assert", "selector": "#tasks li span", "text": "Ship the demo", "screenshot": "added.png"},
+    {"do": "wait", "s": 4},
+    {"do": "click", "selector": "button[aria-label='Complete Ship the demo']", "settle": 4},
+    {"do": "wait", "s": 3},
+    {"do": "click", "selector": "button[data-filter=done]", "settle": 1.2},
+    {"do": "assert", "selector": "button[data-filter=done][aria-pressed=true]", "text": "Completed", "screenshot": "filtered.png"},
+    {"do": "assert", "selector": "#tasks li[data-done=true] span", "text": "Ship the demo", "screenshot": "completed.png"},
+    {"do": "assert", "selector": "#count", "text": "1 of 1 complete", "screenshot": "count.png"},
+    {"do": "wait", "s": 10}
+  ]
+}

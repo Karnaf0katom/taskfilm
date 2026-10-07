@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>Taskfilm — motion lab</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:Manrope;src:url('assets/Manrope.ttf')}@font-face{font-family:GeistMono;src:url('assets/GeistMono.ttf')}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}#motion-lab{position:relative;width:1920px;height:1080px;background:#11191c;color:#f5efe5;font-family:Manrope,sans-serif}
+.scene{position:absolute;inset:0;width:100%;height:100%}
+</style>
+</head>
+<body>
+<div id="motion-lab" data-composition-id="motion-lab" data-width="1920" data-height="1080" data-duration="24">
+  <div id="lab-type-host" class="clip scene" data-composition-id="lab-type" data-composition-src="compositions/type.html" data-start="0" data-duration="6" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+  <div id="lab-vector-host" class="clip scene" data-composition-id="lab-vector" data-composition-src="compositions/vector.html" data-start="6" data-duration="7" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+  <div id="lab-depth-host" class="clip scene" data-composition-id="lab-depth" data-composition-src="compositions/depth.html" data-start="13" data-duration="7" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+  <div id="lab-end-host" class="clip scene" data-composition-id="lab-end" data-composition-src="compositions/end.html" data-start="20" data-duration="4" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+</div>
+<script>window.__timelines['motion-lab']=gsap.timeline({paused:true});</script>
+</body>
+</html>

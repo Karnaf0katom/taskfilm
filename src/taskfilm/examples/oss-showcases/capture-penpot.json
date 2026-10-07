@@ -1,0 +1,140 @@
+{
+  "name": "Penpot \u2014 inspect original desktop and mobile layouts",
+  "url": "http://localhost:9001/",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "until": "domcontentloaded",
+  "settle_s": 2,
+  "setup": [
+    {
+      "do": "wait_for",
+      "selector": "[data-testid=viewport]",
+      "timeout": 60
+    }
+  ],
+  "stage": {
+    "seed_files": [
+      {
+        "path": "fieldnotes-layouts.svg",
+        "as": "fieldnotes-layouts.svg"
+      }
+    ]
+  },
+  "steps": [
+    {
+      "do": "beat",
+      "id": "intro",
+      "explain": "Penpot is an open-source design workspace. Import original desktop and mobile layouts."
+    },
+    {
+      "do": "wait",
+      "s": 2
+    },
+    {
+      "do": "upload",
+      "id": "layouts",
+      "selector": "#image-upload",
+      "seed": "fieldnotes-layouts.svg",
+      "expected_bytes": 5775,
+      "expected_sha256": "ad1c482aa54e31d542fbf61c813112d0f40ba56c6b7db622d9a9cdae07db6ab4",
+      "max_bytes": 1048576,
+      "timeout": 30
+    },
+    {
+      "do": "wait_for",
+      "selector": "[data-testid=layer-tree] >> text=fieldnotes-layouts",
+      "timeout": 45
+    },
+    {
+      "do": "key",
+      "key": "Shift+1",
+      "settle": 2
+    },
+    {
+      "do": "click",
+      "selector": "[data-testid=layer-tree] [data-testid=toggle-content]",
+      "settle": 1
+    },
+    {
+      "do": "assert",
+      "selector": "[data-testid=layer-tree] :text-is(\"Desktop\")",
+      "text": "Desktop",
+      "screenshot": "desktop.png",
+      "timeout": 30
+    },
+    {
+      "do": "assert",
+      "selector": "[data-testid=layer-tree] :text-is(\"Mobile\")",
+      "text": "Mobile",
+      "screenshot": "layouts.png",
+      "timeout": 30
+    },
+    {
+      "do": "beat",
+      "id": "layers",
+      "explain": "The layout contains editable Desktop and Mobile layer groups."
+    },
+    {
+      "do": "click",
+      "selector": "[data-testid=layer-tree] >> text=Mobile",
+      "settle": 1.5
+    },
+    {
+      "do": "wait",
+      "s": 3
+    },
+    {
+      "do": "assert",
+      "selector": "[data-testid=layer-tree] [role=checkbox][aria-checked=true]",
+      "text": "Mobile",
+      "screenshot": "mobile-inspection.png",
+      "timeout": 30
+    },
+    {
+      "do": "beat",
+      "id": "export",
+      "explain": "Inspect the native layout and retain the actual Penpot file. Responsive application code is a separate build."
+    },
+    {
+      "do": "click",
+      "at": {
+        "x": 289,
+        "y": 29
+      },
+      "settle": 0.5
+    },
+    {
+      "do": "hover",
+      "selector": "#file-menu-file",
+      "settle": 1
+    },
+    {
+      "do": "download",
+      "id": "design",
+      "selector": "#file-menu-binary-file",
+      "filename": "fieldnotes.penpot",
+      "max_bytes": 16777216,
+      "timeout": 90
+    },
+    {
+      "do": "wait_for",
+      "selector": "input[type=button][value=Close]",
+      "timeout": 30
+    },
+    {
+      "do": "click",
+      "selector": "input[type=button][value=Close]",
+      "settle": 1
+    },
+    {
+      "do": "key",
+      "key": "Escape"
+    },
+    {
+      "do": "wait",
+      "s": 3
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "content-production-request/v1",
+  "request_id": "taskboard-local-demo",
+  "workspace_id": "taskfilm-demo",
+  "client": {"id": "taskfilm-demo", "name": "Taskboard sample"},
+  "brief": "Show the included working Taskboard sample: add a task, complete it and filter the result. The planning references must be bound to a real take before delivery.",
+  "recipe": {"id": "product_launch_video", "format": "site_tour"},
+  "brand": {"workspace_id": "taskfilm-demo", "pack": "taskfilm-demo"},
+  "sources": [{"id": "taskboard-take", "workspace_id": "taskfilm-demo", "kind": "url", "uri": "workspace://taskfilm-demo/takes/taskboard", "rights": {"status": "approved", "evidence_ref": "workspace://taskfilm-demo/original-sample"}}],
+  "references": [],
+  "claims": [
+    {"id": "hook", "text": "Turn a task into visible progress", "approved": true, "evidence_ref": "workspace://taskfilm-demo/taskboard-source"},
+    {"id": "add-task", "text": "Add a task to your board", "approved": true, "evidence_ref": "workspace://taskfilm-demo/proof/add-task"},
+    {"id": "complete-task", "text": "Complete a task and filter the result", "approved": true, "evidence_ref": "workspace://taskfilm-demo/proof/complete-task"}
+  ],
+  "language": "en",
+  "outputs": [{"id": "master", "kind": "landscape_video", "aspect_ratio": "16:9", "count": 1}],
+  "cta": {"type": "none"},
+  "limits": {"max_outputs": 1, "max_duration_seconds": 45, "max_revisions": 1, "max_attempts": 1},
+  "approvals": {"content": null, "spend": null},
+  "cost": {"status": "unknown", "currency": null, "cap": null}
+}

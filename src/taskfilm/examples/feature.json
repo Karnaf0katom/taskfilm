@@ -1,0 +1,10 @@
+{
+  "schema_version": "product-story/v1",
+  "mode": "feature_demo",
+  "product_name": "Taskboard sample",
+  "audience": "First-time Taskboard users",
+  "tone": "app-store",
+  "hook_claim_id": "add-task",
+  "durations_seconds": {"master": 25},
+  "moments": [{"id": "add", "claim_id": "add-task", "source_id": "taskboard-take", "capture_kind": "browser", "before": "The board is empty", "action": "Type Ship the demo, then press Add task", "after": "Ship the demo appears as an active task"}]
+}

@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"></head><body><template>
+<style>
+@font-face{font-family:Manrope;src:url('assets/Manrope.ttf')}@font-face{font-family:GeistMono;src:url('assets/GeistMono.ttf')}
+#root{position:absolute;inset:0;width:100%;height:100%;background:#11191c;color:#f5efe5;font-family:Manrope,sans-serif;overflow:hidden}
+.type-top{position:absolute;left:110px;right:110px;top:76px;display:flex;justify-content:space-between;font:26px GeistMono,monospace;letter-spacing:.08em}
+.type-lock{position:absolute;left:108px;top:188px;right:108px}.type-line{font-size:226px;line-height:1.02;letter-spacing:-.07em;font-weight:850;overflow:hidden}.type-line span{display:block}.type-line:last-child{color:#ff6947}
+#type-under{position:absolute;left:118px;bottom:114px;width:1090px;height:12px;background:#ff6947;transform-origin:left center}
+#type-orbit{position:absolute;right:142px;top:265px;width:410px;height:410px;border:4px solid #587070;border-radius:50%;display:grid;place-items:center}
+#type-orbit:before{content:'';position:absolute;inset:42px;border:2px solid #587070;border-radius:50%}#type-dot{position:absolute;right:-18px;top:185px;width:40px;height:40px;border-radius:50%;background:#ff6947}
+.type-note{position:absolute;right:110px;bottom:108px;font:26px/1.65 GeistMono,monospace;text-align:right;color:#a5b7b5}
+</style>
+<div id="root" data-composition-id="lab-type" data-width="1920" data-height="1080" data-duration="6">
+<div class="type-top"><span>Taskfilm / MOTION LAB</span><span>01 — TYPE</span></div>
+<div class="type-lock"><div class="type-line"><span id="type-one">MAKE</span></div><div class="type-line"><span id="type-two">IT</span></div><div class="type-line"><span id="type-three">MOVE.</span></div></div>
+<div id="type-orbit"><div id="type-dot"></div></div><div id="type-under"></div>
+<div class="type-note"><div>MASKS + RHYTHM</div><div>ONE SEEKABLE TIMELINE</div></div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#type-one',{yPercent:110,opacity:0},{yPercent:0,opacity:1,duration:.7,ease:'power4.out'},.15);
+tl.fromTo('#type-two',{x:-760,opacity:0},{x:0,opacity:1,duration:.6,ease:'expo.out'},1.05);
+tl.fromTo('#type-three',{yPercent:115,rotation:8,opacity:0},{yPercent:0,rotation:0,opacity:1,duration:.7,ease:'circ.out'},1.95);
+tl.fromTo('#type-orbit',{scale:.25,opacity:0,rotation:-90},{scale:1,opacity:1,rotation:0,duration:1,ease:'back.out(1.4)'},.6);
+tl.to('#type-orbit',{rotation:180,duration:4.2,ease:'none'},1.6);
+tl.fromTo('#type-under',{scaleX:0},{scaleX:1,duration:.65,ease:'expo.inOut'},2.65);
+tl.fromTo('.type-note',{opacity:0,y:20},{opacity:1,y:0,duration:.5,ease:'power2.out'},3);
+tl.to('.type-lock',{x:30,duration:2.8,ease:'sine.inOut'},3.1);
+window.__timelines['lab-type']=tl;
+</script></template></body></html>
