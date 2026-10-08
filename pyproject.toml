@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "taskfilm"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "Real product films, editable HTML motion graphics and evidence for lessons, promos and OSS demos"
 readme = "PUBLIC-README.md"
 requires-python = ">=3.10"

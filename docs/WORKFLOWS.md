@@ -89,6 +89,31 @@ replace `music.synthesis` with `music.file`, set `music.relative_to` to `film`,
 and supply the measured `period`, `phase` and `offset`. `--no-audio` skips mix
 generation. The kit keeps the original take and exports `EDIT-DECISIONS.json`.
 
+## Make a narrated Excalidraw motion promo
+
+The separate 48-second treatment adds masked type, a perspective browser
+entrance, directed camera moves and animation of the retained native diagram.
+It keeps every browser source interval, with measured playback rates between
+0.5× and 2×. It produces editable HTML/SVG, not an Adobe `.aep` project.
+
+First use the [Excalidraw capture recipe](../src/taskfilm/examples/oss-showcases/README.md)
+or a retained take from the editable-project download. Provide a music file
+covering the full 48 seconds and six narration cues in `narration.json`. Each cue
+contains `path`, `sha256`, `at`, `until` and `text`; paths name audio files beside
+the JSON. The script checks actual voice durations before authoring the film.
+
+```bash
+python demo/oss-showcases/build-excalidraw-promo.py \
+  --take takes/YOUR-EXCALIDRAW-TAKE \
+  --narration audio/narration.json --music audio/music.wav --out excalidraw-promo
+taskfilm render excalidraw-promo --output excalidraw-promo.mp4
+```
+
+Use cue windows 0.6–6.8, 7.7–20.8, 21.5–30.8, 31.4–36.8, 37.4–41.8 and
+42.5–47.8 seconds. The downloadable showcase contains its actual script and
+measured timings. Voice generation happens separately using your own provider
+account. Review the audio mix and encoded frames before sharing a new version.
+
 ## Story planning modes
 
 | Purpose | Story mode | Direction |
@@ -171,4 +196,3 @@ Only the selected owners and original sample are exported. Hosted orchestration,
 provider generation, the production database and the human editor are outside
 this release. `SOURCE-MANIFEST.json` records the source file hashes and notices.
 Generated recordings and renders are excluded from git.
-

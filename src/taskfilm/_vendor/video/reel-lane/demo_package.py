@@ -292,13 +292,19 @@ def showcase_from_manifest(manifest_path, out_dir):
     intro = html.escape(_text(m.get('intro'), 'intro'))
     version = html.escape(_text(m.get('version'), 'version'))
     movies, downloads = m.get('movies'), m.get('downloads')
-    if not isinstance(movies, list) or not 1 <= len(movies) <= 4:
-        raise ValueError('showcase requires one to four movies')
+    if not isinstance(movies, list) or not 1 <= len(movies) <= 8:
+        raise ValueError('showcase requires one to eight movies')
     if not isinstance(downloads, list) or not 1 <= len(downloads) <= 8:
         raise ValueError('showcase requires one to eight downloads')
     budget = [DEFAULT_TAKE_BYTES]
-    files, sections, links, retained = {}, [], [], []
+    files, sections, links, retained, navigation = {}, [], [], [], []
+    kinds = {'product_promo': 'Product film', 'feature_lesson': 'Feature lesson',
+             'motion_graphics': 'Motion graphics', 'oss_walkthrough': 'OSS walkthrough',
+             'recording': 'Screen recording'}
     for i, movie in enumerate(movies):
+        kind = movie.get('kind', 'recording')
+        if not isinstance(kind, str) or kind not in kinds:
+            raise ValueError('movie kind must name a supported production option')
         data = _proof(movie, path.parent, DEFAULT_TAKE_BYTES, budget)
         source = _relative_file(path.parent, movie['path'])
         if source.suffix != '.mp4':
@@ -321,7 +327,7 @@ def showcase_from_manifest(manifest_path, out_dir):
             raise ValueError('movie metadata does not match retained evidence')
         name = f'assets/movie-{i + 1}.mp4'
         files[name] = data
-        retained.append({'path': name, 'sha256': movie['sha256'], 'seconds': duration,
+        retained.append({'path': name, 'sha256': movie['sha256'], 'seconds': duration, 'kind': kind,
                          'width': video['width'], 'height': video['height'], 'fps': movie['fps']})
         poster = ''
         if movie.get('poster'):
@@ -332,6 +338,7 @@ def showcase_from_manifest(manifest_path, out_dir):
             files[poster_name] = image_bytes
             poster = f' poster="{poster_name}"'
         label = html.escape(_text(movie.get('label'), 'movie.label'))
+        navigation.append(f'<a href="#film-{i + 1}">{label}</a>')
         description = html.escape(_text(movie.get('description'), 'movie.description'))
         details = [f'<p>{description}</p>']
         for key, heading in (('app_description', 'About the app'),
@@ -356,7 +363,7 @@ def showcase_from_manifest(manifest_path, out_dir):
                                   f'rel="noreferrer">{resource_label}</a>')
         if resource_links:
             details.append('<p>' + ' · '.join(resource_links) + '</p>')
-        sections.append(f'<section class="movie"><div class="caption"><h2>{label}</h2><span>{expected:g}s · {video["width"]}×{video["height"]} · {movie["fps"]}fps</span></div><video controls playsinline preload="metadata"{poster} aria-label="{label}" src="{name}"></video>{"".join(details)}</section>')
+        sections.append(f'<section class="movie" id="film-{i + 1}" data-kind="{kind}"><div class="caption"><h2>{label}</h2><span>{kinds[kind]} · {expected:g}s · {video["width"]}×{video["height"]} · {movie["fps"]}fps</span></div><video controls playsinline preload="metadata"{poster} aria-label="{label}" src="{name}"></video>{"".join(details)}</section>')
     for i, download in enumerate(downloads):
         data = _proof(download, path.parent, DEFAULT_TAKE_BYTES, budget)
         source = _relative_file(path.parent, download['path'])
@@ -372,15 +379,16 @@ def showcase_from_manifest(manifest_path, out_dir):
     document = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} — release preview</title>
 <style>*{{box-sizing:border-box}}body{{margin:0;background:#f3f2ed;color:#17251f;font:17px/1.6 system-ui,sans-serif}}main{{max-width:1120px;margin:auto;padding:32px 32px 80px}}header{{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #b9c2b8;padding-bottom:20px}}header strong{{letter-spacing:.12em}}header span,.caption span{{font-size:13px;color:#53645b}}.intro{{padding:64px 0 40px;max-width:800px}}h1{{font-size:clamp(36px,6vw,68px);line-height:1.06;letter-spacing:-.045em;margin:0 0 24px}}.intro p{{max-width:650px;font-size:20px}}.caption{{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:24px 0 12px}}h2{{font-size:24px;line-height:1.2;margin:0}}video{{display:block;width:100%;aspect-ratio:16/9;background:#10231d;border-radius:4px}}.movie{{margin-bottom:48px}}.movie p{{max-width:740px}}.modes{{border-collapse:collapse;width:100%;margin:20px 0 40px}}td,th{{padding:16px 8px;text-align:left;border-bottom:1px solid #b9c2b8}}th{{font-size:13px;text-transform:uppercase;letter-spacing:.08em}}td:first-child{{font-weight:600}}.download{{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;padding:14px 0;color:inherit;text-decoration:none;border-bottom:1px solid #b9c2b8}}.download span{{font-size:13px;color:#53645b}}a:hover{{text-decoration:underline}}a:focus-visible{{outline:3px solid #24654f;outline-offset:4px}}pre{{background:#10231d;color:#f3f2ed;padding:20px;overflow:auto;font:14px/1.8 ui-monospace,monospace;border-radius:4px}}footer{{margin-top:48px;font-size:14px;color:#53645b}}@media(max-width:600px){{main{{padding:20px 18px 48px}}.intro{{padding:40px 0 20px}}.intro p{{font-size:17px}}.caption{{display:block}}.caption span{{display:block;margin-top:8px}}td,th{{padding:12px 4px;font-size:14px}}td:first-child{{width:38%}}}}</style></head>
 <body><main><header><strong>{title}</strong><span>Release preview · {version}</span></header>
-<div class="intro"><h1>Real product films.<br>Editable motion.</h1><p>{intro}</p></div>
+<div class="intro"><h1>Real product films.<br>Editable motion.</h1><p>{intro}</p><p><a href="#watch">Watch the films</a> · <a href="#options">Explore the options</a> · <a href="#install">Get Taskfilm</a></p></div>
+<section id="watch"><h2>Pick a preview</h2><p>Compare the finished films, then choose the treatment for your own workflow.</p><nav class="film-nav" aria-label="Film previews">{''.join(navigation)}</nav><div class="filters" role="group" aria-label="Filter films"><button type="button" data-filter="all" aria-pressed="true">All films</button>{''.join(f'<button type="button" data-filter="{key}" aria-pressed="false">{value}</button>' for key, value in kinds.items() if any(movie.get('kind', 'recording') == key for movie in movies))}</div><p id="filter-status" role="status" aria-live="polite">{len(movies)} films</p></section>
 {''.join(sections)}
-<section><h2>Three ways to tell the story</h2><table class="modes"><thead><tr><th scope="col">Mode</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td>Feature lesson</td><td>Teach one real task with readable actions and results.</td></tr><tr><td>Product promo</td><td>Show the problem, workflow, payoff and call to action.</td></tr><tr><td>OSS walkthrough</td><td>Connect a pinned source to a real task, useful fit and limitation.</td></tr></tbody></table></section>
-<section><h2>Try it locally</h2><p>Python 3.10+, FFmpeg/FFprobe and Chromium. Rendering also needs Node.js 22+.</p><pre>python -m pip install '.[browser,motion]'
+<section id="options"><h2>Choose how to make your film</h2><table class="modes"><thead><tr><th scope="col">Option</th><th scope="col">What you can make</th></tr></thead><tbody><tr><td>Recorded feature lesson</td><td>Teach a real task with readable clicks, captions and a retained result. Preview the drawDB lesson.</td></tr><tr><td>Directed product film</td><td>Kinetic titles, perspective reveals, camera moves, a result hold and a scored end card. Preview Excalidraw and the Taskboard film.</td></tr><tr><td>After Effects-style motion</td><td>Editable HTML/SVG animation: masked type, drawn paths, shape interpolation and depth. Preview the motion lab. Native Adobe .aep import is not supported.</td></tr><tr><td>OSS walkthrough</td><td>Bind a pinned repository to an actual task, native export, fit and limitation.</td></tr><tr><td>Portrait reel</td><td>Compose for 9:16 social video, or use the product-film kit's portrait layout. Landscape and portrait recipes are included.</td></tr></tbody></table><p><strong>Voice and music.</strong> Bring narration from ElevenLabs or another provider as an audio file. The product-film kit accepts your licensed WAV score or its original synthesized music. Provider generation runs separately from the local CLI.</p><p><a href="https://github.com/Karnaf0katom/taskfilm/blob/main/docs/WORKFLOWS.md">Read the production recipes</a> · <a href="https://github.com/Karnaf0katom/taskfilm/blob/main/docs/PREVIEWS.md">Compare previews and source projects</a></p></section>
+<section id="install"><h2>Try it locally</h2><p>Python 3.10+, FFmpeg/FFprobe and Chromium. Rendering also needs Node.js 22+.</p><pre>python -m pip install '.[browser,motion]'
 python -m playwright install chromium
 taskfilm doctor
 taskfilm capture check
 taskfilm init demo</pre><p>Run these commands from the extracted source. The README includes the capture, story and render recipes. The sample needs no account or API key.</p>{''.join(links)}</section>
-<footer><p>Local CLI + agent skill · Real browser workflows · Editable HTML/SVG</p><p>This preview plays finished movies. Creating your own film runs locally through the included CLI. Review a new capture and render before sharing it.</p></footer></main></body></html>'''
+<footer><p>Local CLI + agent skill · Real browser workflows · Editable HTML/SVG</p><p>This preview plays finished movies. Creating your own film runs locally through the included CLI. Review a new capture and render before sharing it.</p></footer></main><style>.film-nav{{display:flex;flex-wrap:wrap;gap:8px 24px;margin:20px 0}}.film-nav a{{color:inherit}}.filters{{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px}}.filters button{{min-height:44px;padding:10px 16px;border:1px solid #b9c2b8;border-radius:4px;background:transparent;color:#17251f;font:inherit;cursor:pointer}}.filters button[aria-pressed="true"]{{background:#17251f;color:#f3f2ed;border-color:#17251f}}.filters button:focus-visible{{outline:3px solid #24654f;outline-offset:3px}}.movie[hidden]{{display:none}}#filter-status{{font-size:14px;color:#53645b}}section{{scroll-margin-top:24px}}</style><script>const films=[...document.querySelectorAll('.movie')];const buttons=[...document.querySelectorAll('[data-filter]')];function filterFilms(kind){{let count=0;films.forEach(film=>{{film.hidden=kind!=='all'&&film.dataset.kind!==kind;if(film.hidden)film.querySelector('video').pause();else count++;}});buttons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter===kind)));document.getElementById('filter-status').textContent=count+' '+(count===1?'film':'films');}}buttons.forEach(button=>button.addEventListener('click',()=>filterFilms(button.dataset.filter)));document.querySelectorAll('.film-nav a').forEach(link=>link.addEventListener('click',()=>filterFilms('all')));</script></body></html>'''
     files['index.html'] = document.encode('utf-8')
     report = {'schema': 'showcase-package/v1', 'version': m['version'], 'files': retained,
               'evidence_manifest_sha256': provenance.hash_file(path).sha256,

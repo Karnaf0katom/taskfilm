@@ -12,6 +12,10 @@ from playwright.sync_api import sync_playwright
 
 
 def verify(site: Path, output: Path) -> dict:
+    package = json.loads((site / 'SHOWCASE.json').read_text())
+    movies = [row for row in package['files'] if row['path'].startswith('assets/')
+              and row['path'].endswith('.mp4')]
+    assert 1 <= len(movies) <= 8
     output.mkdir(parents=True, exist_ok=False)
     handler = partial(SimpleHTTPRequestHandler, directory=str(site.resolve()))
     server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
@@ -29,21 +33,32 @@ def verify(site: Path, output: Path) -> dict:
                     assert "Taskfilm" in page.title()
                     assert page.locator("h1").inner_text().strip()
                     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
-                    assert page.locator("video").count() == 3
+                    assert page.locator("video").count() == len(movies)
                     assert "Private release review" not in page.locator("body").inner_text()
-                    for index, seconds in enumerate((45, 72, 24)):
+                    for index, expected in enumerate(movies):
                         movie = page.locator("video").nth(index)
                         movie.evaluate("v => v.load()")
                         page.wait_for_function("i => Number.isFinite(document.querySelectorAll('video')[i].duration)", arg=index)
                         duration = movie.evaluate("v => v.duration")
-                        assert abs(duration - seconds) <= 0.05
-                        movie.evaluate("v => {v.muted = true; v.currentTime = 5;}")
+                        assert abs(duration - expected['seconds']) <= 0.05
+                        assert movie.evaluate('v => v.videoWidth') == expected['width']
+                        assert movie.evaluate('v => v.videoHeight') == expected['height']
+                        seek = min(5, duration / 2)
+                        movie.evaluate("(v, t) => {v.muted = true; v.currentTime = t;}", seek)
                         page.wait_for_function("i => !document.querySelectorAll('video')[i].seeking", arg=index)
                         movie.evaluate("v => v.play()")
-                        page.wait_for_function("i => document.querySelectorAll('video')[i].currentTime > 5.15", arg=index)
+                        page.wait_for_function("([i,t]) => document.querySelectorAll('video')[i].currentTime > t + 0.15", arg=[index, seek])
                         movie.evaluate("v => v.pause()")
                         report["movies"].append({"viewport": label, "index": index + 1,
                                                  "seconds": duration, "playback_and_seek": "passed"})
+                    for button in page.locator('[data-filter]').all():
+                        kind = button.get_attribute('data-filter')
+                        button.click()
+                        expected_count = len(movies) if kind == 'all' else sum(row.get('kind') == kind for row in movies)
+                        assert page.locator('.movie:visible').count() == expected_count
+                        assert button.get_attribute('aria-pressed') == 'true'
+                    if page.locator('[data-filter="all"]').count():
+                        page.locator('[data-filter="all"]').click()
                     if label == "desktop":
                         for link in page.locator("a.download").all():
                             href = link.get_attribute("href")

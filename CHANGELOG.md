@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0a2
+
+- Preview navigation and filters for product films, feature lessons, motion graphics, OSS walkthroughs and recordings.
+- A gallery can retain up to eight hash-verified movies; browser checks use each movie's retained duration and dimensions.
+- A separate 48-second Excalidraw motion-promo recipe with six narration cues, licensed music, perspective, camera moves and animation of the saved native diagram.
+- A preview guide comparing the available production, voice, music and portrait options.
+
+The motion option produces editable HTML/SVG. Native Adobe `.aep` support is not included.
+
 ## 0.1.0a1
 
 First public alpha, published as Taskfilm under the MIT License:

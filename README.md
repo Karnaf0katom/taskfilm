@@ -15,6 +15,11 @@ working product. Run it from a terminal or give its included skill to your agent
 [Download the release](https://github.com/Karnaf0katom/taskfilm/releases) ·
 [Workflow guide](docs/WORKFLOWS.md)
 
+Compare the [preview gallery and production options](docs/PREVIEWS.md): recorded
+feature lessons, directed product films, After Effects-style HTML/SVG motion,
+OSS walkthroughs and portrait reels. The downloadable projects keep the real
+take, native result and editable composition together.
+
 ## What you get
 
 - **Real browser recordings** with timed actions, clicks, DOM assertions and hashed result screenshots.
@@ -80,6 +85,11 @@ you can revise the film without repeating the task.
 
 For a directed product promo or the original 24-second animation study,
 follow the [motion recipes](docs/WORKFLOWS.md).
+
+For a narrated app showcase, use the [Excalidraw motion-promo recipe](docs/WORKFLOWS.md#make-a-narrated-excalidraw-motion-promo).
+It combines a real workflow with masked type, a perspective reveal, camera
+choreography and animation of the saved diagram. Bring narration and a licensed
+score; the CLI does not call ElevenLabs or another provider itself.
 
 ## Plan the story
 

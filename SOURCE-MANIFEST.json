@@ -1,6 +1,6 @@
 {
   "schema": "taskfilm-source-export/v1",
-  "source_revision": "8a02856d9ed275f52479cf2fc8da104a29a01ae0",
+  "source_revision": "65b1e16c4cfcde5a8e563b7cb39832a17552c81a",
   "public_repository": "https://github.com/Karnaf0katom/taskfilm",
   "transform": "project_branding_and_supported_cli_closure/v1",
   "source_state": "working_files_hashed",
@@ -72,9 +72,9 @@
     {
       "source": "apps/video/jarvis/CHANGELOG.md",
       "path": "CHANGELOG.md",
-      "source_sha256": "8713a2597ccd1e43a17862b6bcd5543d665c27769507801f0a7c4bbecd335a57",
-      "sha256": "8713a2597ccd1e43a17862b6bcd5543d665c27769507801f0a7c4bbecd335a57",
-      "bytes": 1142,
+      "source_sha256": "b3e8110831b403af7481aac2d21de99257af1e2c79df37b95e717c91c7f137ef",
+      "sha256": "b3e8110831b403af7481aac2d21de99257af1e2c79df37b95e717c91c7f137ef",
+      "bytes": 1742,
       "license": "MIT"
     },
     {
@@ -104,25 +104,25 @@
     {
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "PUBLIC-README.md",
-      "source_sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
-      "sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
-      "bytes": 6921,
+      "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
+      "sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
+      "bytes": 7567,
       "license": "MIT"
     },
     {
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "README.md",
-      "source_sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
-      "sha256": "ec73eba0423d4ce1bccff03457736cb01904f03f10987c91527a516076004b9c",
-      "bytes": 6921,
+      "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
+      "sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
+      "bytes": 7567,
       "license": "MIT"
     },
     {
       "source": "apps/video/jarvis/RELEASE.md",
       "path": "RELEASE.md",
-      "source_sha256": "af7a5a924031b80dcc5b7d2b2fb227671a61d4b2b6af6302566871b963e7f98a",
-      "sha256": "af7a5a924031b80dcc5b7d2b2fb227671a61d4b2b6af6302566871b963e7f98a",
-      "bytes": 3472,
+      "source_sha256": "b49dd94cccfded7848521b733d522f46657a0f13e5662247570e17b1cdf035c6",
+      "sha256": "b49dd94cccfded7848521b733d522f46657a0f13e5662247570e17b1cdf035c6",
+      "bytes": 3803,
       "license": "MIT"
     },
     {
@@ -142,18 +142,26 @@
       "license": "MIT"
     },
     {
+      "source": "apps/video/jarvis/docs/PREVIEWS.md",
+      "path": "docs/PREVIEWS.md",
+      "source_sha256": "a72dd5d0c67dae6f0bc635799155afc6ac6980c3ad701d70bc069b4488be5097",
+      "sha256": "a72dd5d0c67dae6f0bc635799155afc6ac6980c3ad701d70bc069b4488be5097",
+      "bytes": 4140,
+      "license": "MIT"
+    },
+    {
       "source": "apps/video/jarvis/docs/WORKFLOWS.md",
       "path": "docs/WORKFLOWS.md",
-      "source_sha256": "c00782cfbb272b0d5e66b72458a34e78f03a4e206c63e1583a4c997660a04c84",
-      "sha256": "c00782cfbb272b0d5e66b72458a34e78f03a4e206c63e1583a4c997660a04c84",
-      "bytes": 9147,
+      "source_sha256": "61670e092a2a00de2664ce438caabbe4927da9a09dde52eacf64da8572549a2b",
+      "sha256": "61670e092a2a00de2664ce438caabbe4927da9a09dde52eacf64da8572549a2b",
+      "bytes": 10473,
       "license": "MIT"
     },
     {
       "source": "apps/video/jarvis/pyproject.toml",
       "path": "pyproject.toml",
-      "source_sha256": "da6c700245aab3fffa778eeca13db9ed476d6c14895a9dba31848fb5ca13ead9",
-      "sha256": "da6c700245aab3fffa778eeca13db9ed476d6c14895a9dba31848fb5ca13ead9",
+      "source_sha256": "70c9f809d9c873c5637af7e783621a3e98580c768ff6468df605a9d425f557fb",
+      "sha256": "70c9f809d9c873c5637af7e783621a3e98580c768ff6468df605a9d425f557fb",
       "bytes": 1659,
       "license": "MIT"
     },
@@ -176,9 +184,9 @@
     {
       "source": "apps/video/jarvis/release/verify_preview.py",
       "path": "release/verify_preview.py",
-      "source_sha256": "b5b8be80c5c6bb6142b6b530a0c8f659554e55e1b55c09f7aa78fa4a62db38fa",
-      "sha256": "b5b8be80c5c6bb6142b6b530a0c8f659554e55e1b55c09f7aa78fa4a62db38fa",
-      "bytes": 3975,
+      "source_sha256": "707c394e477c0cd19a9f82d3a0bb8fb7f5c8b18252d058e7f4a047f08b026c9b",
+      "sha256": "707c394e477c0cd19a9f82d3a0bb8fb7f5c8b18252d058e7f4a047f08b026c9b",
+      "bytes": 5079,
       "license": "MIT"
     },
     {
@@ -192,8 +200,8 @@
     {
       "source": "apps/video/jarvis/src/taskfilm/__init__.py",
       "path": "src/taskfilm/__init__.py",
-      "source_sha256": "f11584c739e10cedea886f1428e2ef9764265fda1a72462322a078b0c42f8b31",
-      "sha256": "f11584c739e10cedea886f1428e2ef9764265fda1a72462322a078b0c42f8b31",
+      "source_sha256": "0ffb5535fb88c4f5b8e8ff5a9a65aed68c3d50f1680ff97518db3907f47bcac2",
+      "sha256": "0ffb5535fb88c4f5b8e8ff5a9a65aed68c3d50f1680ff97518db3907f47bcac2",
       "bytes": 95,
       "license": "MIT"
     },
@@ -440,9 +448,9 @@
     {
       "source": "apps/video/reel-lane/demo_package.py",
       "path": "src/taskfilm/_vendor/video/reel-lane/demo_package.py",
-      "source_sha256": "8180d82eba486913e937c5a45aff5b6ed5f437cba7debac61bdf2e6582b5ca63",
-      "sha256": "70d3f268182c16a2c4de245cb98a2bfada8574333508488434cd9f8eff72d377",
-      "bytes": 26799,
+      "source_sha256": "71ff974c83ea269bb7f9b94f2426f15b5fb70a8ee65ab0c6cf73e4c25042326c",
+      "sha256": "afa36efc7e0f5ef01658a6367ad8e98226d7d5c741f3893d1fcacf02ca3ad6b3",
+      "bytes": 30480,
       "license": "MIT"
     },
     {
@@ -646,6 +654,14 @@
       "license": "MIT"
     },
     {
+      "source": "apps/video/jarvis/examples/oss-showcases/build-excalidraw-promo.py",
+      "path": "src/taskfilm/examples/oss-showcases/build-excalidraw-promo.py",
+      "source_sha256": "17a4bc70b5deb4e20a1348828aa31498fd214a2ac9b5eb214a30a67623a93cfe",
+      "sha256": "17a4bc70b5deb4e20a1348828aa31498fd214a2ac9b5eb214a30a67623a93cfe",
+      "bytes": 9101,
+      "license": "MIT"
+    },
+    {
       "source": "apps/video/jarvis/examples/oss-showcases/build-showcase.py",
       "path": "src/taskfilm/examples/oss-showcases/build-showcase.py",
       "source_sha256": "1d91b12e36d68087962622ec95760dc5d6a8c34d3c90e00a12b6004574f99fcd",
@@ -675,6 +691,14 @@
       "source_sha256": "56b793d03297bc9c5b06399ea28e093f64b865f5b50cfe5a61f3d50726ec8e77",
       "sha256": "56b793d03297bc9c5b06399ea28e093f64b865f5b50cfe5a61f3d50726ec8e77",
       "bytes": 3089,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/examples/oss-showcases/excalidraw-promo.tpl",
+      "path": "src/taskfilm/examples/oss-showcases/excalidraw-promo.tpl",
+      "source_sha256": "8e40879efad839a9ebc84b7aeedd83dfe23fd05ace133d822425e3f4c6bd9f7c",
+      "sha256": "8e40879efad839a9ebc84b7aeedd83dfe23fd05ace133d822425e3f4c6bd9f7c",
+      "bytes": 12258,
       "license": "MIT"
     },
     {
@@ -808,9 +832,9 @@
     {
       "source": "apps/video/reel-lane/tests/test_release_showcase.py",
       "path": "tests/test_release_showcase.py",
-      "source_sha256": "8840ea6943c94a1377b7b87fbeec74509dd831a2c07688dc1a85ce0f5874c0fb",
-      "sha256": "afbafc51a5b794ffe89d274c4dbecbb6d068c761c28fd99d385bda81b8cdb502",
-      "bytes": 5094,
+      "source_sha256": "7b56702c9c6341de8c6e8e5038d118459631d186ddc24d8846445137d9fb6e8e",
+      "sha256": "b0846a3f947d2c7b6e4decf5ee80e63f591a6ec6d13b16304525ca3aa5ebee97",
+      "bytes": 6345,
       "license": "MIT"
     },
     {

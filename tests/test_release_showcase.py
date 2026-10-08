@@ -112,3 +112,28 @@ def test_showcase_refuses_unsafe_resource_links(showcase, url):
     with pytest.raises(ValueError, match='public HTTPS'):
         owner().showcase_from_manifest(manifest, output)
     assert not output.exists()
+
+
+def test_showcase_supports_more_than_four_films_and_distinct_options(showcase):
+    manifest, m = showcase
+    kinds = ['product_promo', 'feature_lesson', 'motion_graphics', 'oss_walkthrough', 'recording']
+    m['movies'] = [dict(m['movies'][0], kind=kind, label=f'Fixture {kind}') for kind in kinds]
+    manifest.write_text(json.dumps(m))
+    output = manifest.parent / 'options-preview'
+    result = owner().showcase_from_manifest(manifest, output)
+    document = (output / 'index.html').read_text()
+    assert document.count('<video controls playsinline') == 5
+    assert [row['kind'] for row in result['files'][:5]] == kinds
+    for i, kind in enumerate(kinds, 1):
+        assert f'id="film-{i}" data-kind="{kind}"' in document
+        assert f'data-filter="{kind}"' in document
+    assert 'After Effects-style motion' in document
+    assert 'Native Adobe .aep import is not supported.' in document
+
+
+def test_showcase_refuses_unknown_production_option(showcase):
+    manifest, m = showcase
+    m['movies'][0]['kind'] = 'native_adobe_project'
+    manifest.write_text(json.dumps(m))
+    with pytest.raises(ValueError, match='supported production option'):
+        owner().showcase_from_manifest(manifest, manifest.parent / 'unsupported-preview')
