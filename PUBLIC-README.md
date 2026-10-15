@@ -31,6 +31,14 @@ Give your agent one checked task and ask for its walkthrough:
 > Make the watchlist easier to scan. Use `$taskfilm-feature-explainer` to show
 > the upgrade once it works and its checks pass.
 
+[Watch the short CCC workflow demo](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-ccc-demo-20261015.mp4) ·
+[Watch the resulting feature walkthrough](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-watchlist-upgrade-20261015.mp4)
+
+The edited demo shows a UI upgrade request in CCC with Codex, a time skip,
+and the actual feature video playing inside the same conversation.
+Prompt entry is re-recorded; the feature change and inline playback are real.
+The Trading Terminal uses labeled sample quotes.
+
 Your agent uses the same capture, composition and render commands as you. A
 recorded lesson can accompany the feature handoff, release notes or an onboarding
 guide. Follow the [workflow guide](docs/WORKFLOWS.md) and install the

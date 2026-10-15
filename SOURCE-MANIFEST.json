@@ -105,19 +105,19 @@
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "PUBLIC-README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775",
-      "bytes": 9005,
+      "sha256": "cc71acb0799487463251fb7749f4b67b26c11ddf0ab09737b03cea3bf80f0f2b",
+      "bytes": 9566,
       "license": "MIT",
-      "documentation_base_sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67"
+      "documentation_base_sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775"
     },
     {
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775",
-      "bytes": 9005,
+      "sha256": "cc71acb0799487463251fb7749f4b67b26c11ddf0ab09737b03cea3bf80f0f2b",
+      "bytes": 9566,
       "license": "MIT",
-      "documentation_base_sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67"
+      "documentation_base_sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775"
     },
     {
       "source": "apps/video/jarvis/RELEASE.md",
@@ -904,6 +904,19 @@
         "README.md",
         "PUBLIC-README.md"
       ]
+    },
+    {
+      "kind": "link-checked-feature-workflow-demo",
+      "based_on": "6f3998b61dd8e38b1e9984b3e1abe63c30ca35cf",
+      "prepared_at": "2026-10-15T12:14:06.951380+00:00",
+      "scope": [
+        "README.md",
+        "PUBLIC-README.md"
+      ],
+      "demo_sha256": {
+        "taskfilm-ccc-demo-20261015.mp4": "baaea9b406da80cfe0e11a08355d237faf08ee6e027d399e44720521ebba568f",
+        "taskfilm-watchlist-upgrade-20261015.mp4": "3f67f854f5dc63e9b4f211adceaa1f8cfa803df2e07c7accf0ece87b322dd772"
+      }
     }
   ]
 }
