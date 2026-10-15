@@ -1,24 +1,42 @@
 # Taskfilm
 
-**Turn real workflows into editable product films.**
+**Make short videos that teach people how to use your software.**
 
 [![CI](https://github.com/Karnaf0katom/taskfilm/actions/workflows/ci.yml/badge.svg)](https://github.com/Karnaf0katom/taskfilm/actions/workflows/ci.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 
-Taskfilm records a browser task, retains its actions and result evidence, and
-turns the footage into editable HTML motion graphics with HyperFrames. Make
-a feature lesson, a product promo, or an open-source walkthrough from a real
-working product. Run it from a terminal or give its included skill to your agent.
+Build a feature, then show people how to use it. Taskfilm records a real browser
+workflow and turns it into a short, editable video with HyperFrames. Use it for
+feature handoffs, onboarding, release notes and tool walkthroughs. Run the local
+CLI yourself or give its included skill to your coding agent.
 
 [Watch the examples](https://karnaf0katom.github.io/taskfilm/) ·
 [Download the release](https://github.com/Karnaf0katom/taskfilm/releases) ·
 [Workflow guide](docs/WORKFLOWS.md)
 
+Start with a real task: where to find the feature, the actions to take, and the
+visible result. Captures retain timed actions and result screenshots so the
+explanation stays tied to the app it shows.
+
 Compare the [preview gallery and production options](docs/PREVIEWS.md): recorded
 feature lessons, directed product films, After Effects-style HTML/SVG motion,
 OSS walkthroughs and portrait reels. The downloadable projects keep the real
 take, native result and editable composition together.
+
+## Build a feature. Explain it.
+
+Give your agent one checked task and ask for its walkthrough:
+
+> Add daily-change sorting to the watchlist. Once it works and its checks pass,
+> use Taskfilm to record a short video showing where to find it, how to use it,
+> and the result. Keep the original take and editable project.
+
+Your agent uses the same capture, composition and render commands as you. A
+recorded lesson can accompany the feature handoff, release notes or an onboarding
+guide. Follow the [workflow guide](docs/WORKFLOWS.md) and install the
+[included agent skill](skills/taskfilm-video/SKILL.md) to adapt it to your app.
+Installing a skill does not install a background watcher.
 
 ## What you get
 

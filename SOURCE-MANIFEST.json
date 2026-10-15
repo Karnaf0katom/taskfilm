@@ -105,17 +105,19 @@
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "PUBLIC-README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "bytes": 7567,
-      "license": "MIT"
+      "sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67",
+      "bytes": 8459,
+      "license": "MIT",
+      "documentation_base_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3"
     },
     {
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "bytes": 7567,
-      "license": "MIT"
+      "sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67",
+      "bytes": 8459,
+      "license": "MIT",
+      "documentation_base_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3"
     },
     {
       "source": "apps/video/jarvis/RELEASE.md",
@@ -847,5 +849,16 @@
     }
   ],
   "publication": "not_performed",
-  "project_license": "MIT"
+  "project_license": "MIT",
+  "documentation_updates": [
+    {
+      "kind": "feature-explainer-focus",
+      "based_on": "fecafcb6e1e5a52c61caa5dc93ca2d20aba40005",
+      "prepared_at": "2026-10-15T07:45:30.803578+00:00",
+      "scope": [
+        "README.md",
+        "PUBLIC-README.md"
+      ]
+    }
+  ]
 }
