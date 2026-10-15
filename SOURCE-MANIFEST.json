@@ -105,19 +105,19 @@
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "PUBLIC-README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67",
-      "bytes": 8459,
+      "sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775",
+      "bytes": 9005,
       "license": "MIT",
-      "documentation_base_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3"
+      "documentation_base_sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67"
     },
     {
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67",
-      "bytes": 8459,
+      "sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775",
+      "bytes": 9005,
       "license": "MIT",
-      "documentation_base_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3"
+      "documentation_base_sha256": "e299991bbca2f386b36f991163170775ec98ab581921183c9ff2321d4f15af67"
     },
     {
       "source": "apps/video/jarvis/RELEASE.md",
@@ -846,6 +846,38 @@
       "sha256": "add1f34d393bd75b4689ec699ea21186e28af38eaedac939dbc7ac5c5bad5eb6",
       "bytes": 1646,
       "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/SKILL.md",
+      "path": "skills/taskfilm-feature-explainer/SKILL.md",
+      "source_sha256": "b4bba1dfb30d8dc8ff86fd470b6e141b3e30e1554e064d9033959ce1064e0330",
+      "sha256": "b4bba1dfb30d8dc8ff86fd470b6e141b3e30e1554e064d9033959ce1064e0330",
+      "bytes": 6149,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/references/workflow.md",
+      "path": "skills/taskfilm-feature-explainer/references/workflow.md",
+      "source_sha256": "2dc7db8e1ba284c1358f30cc942f3fe97525fad2e60d2bf81bc6c2c16b0cb241",
+      "sha256": "2dc7db8e1ba284c1358f30cc942f3fe97525fad2e60d2bf81bc6c2c16b0cb241",
+      "bytes": 5586,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/references/in-chat.md",
+      "path": "skills/taskfilm-feature-explainer/references/in-chat.md",
+      "source_sha256": "73b909ea19631abde444eefca49238aadec2f8173fc2322bb3e480755fcdd394",
+      "sha256": "73b909ea19631abde444eefca49238aadec2f8173fc2322bb3e480755fcdd394",
+      "bytes": 8163,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/agents/openai.yaml",
+      "path": "skills/taskfilm-feature-explainer/agents/openai.yaml",
+      "source_sha256": "a46b3fd326568e051125863c89a8e7b679db14623a1f7f2d845529cf3ee79dfc",
+      "sha256": "a46b3fd326568e051125863c89a8e7b679db14623a1f7f2d845529cf3ee79dfc",
+      "bytes": 325,
+      "license": "MIT"
     }
   ],
   "publication": "not_performed",
@@ -856,6 +888,19 @@
       "based_on": "fecafcb6e1e5a52c61caa5dc93ca2d20aba40005",
       "prepared_at": "2026-10-15T07:45:30.803578+00:00",
       "scope": [
+        "README.md",
+        "PUBLIC-README.md"
+      ]
+    },
+    {
+      "kind": "publish-existing-feature-explainer-skill",
+      "based_on": "b08d285d46eb7ef4559e562edcb1e5205f33f5e7",
+      "prepared_at": "2026-10-15T07:57:59.387094+00:00",
+      "scope": [
+        "skills/taskfilm-feature-explainer/SKILL.md",
+        "skills/taskfilm-feature-explainer/references/workflow.md",
+        "skills/taskfilm-feature-explainer/references/in-chat.md",
+        "skills/taskfilm-feature-explainer/agents/openai.yaml",
         "README.md",
         "PUBLIC-README.md"
       ]

@@ -28,15 +28,25 @@ take, native result and editable composition together.
 
 Give your agent one checked task and ask for its walkthrough:
 
-> Add daily-change sorting to the watchlist. Once it works and its checks pass,
-> use Taskfilm to record a short video showing where to find it, how to use it,
-> and the result. Keep the original take and editable project.
+> Make the watchlist easier to scan. Use `$taskfilm-feature-explainer` to show
+> the upgrade once it works and its checks pass.
 
 Your agent uses the same capture, composition and render commands as you. A
 recorded lesson can accompany the feature handoff, release notes or an onboarding
 guide. Follow the [workflow guide](docs/WORKFLOWS.md) and install the
 [included agent skill](skills/taskfilm-video/SKILL.md) to adapt it to your app.
 Installing a skill does not install a background watcher.
+
+The [feature-explainer skill](skills/taskfilm-feature-explainer/SKILL.md) is available
+in this source checkout. After installing Taskfilm, copy it to a new skill folder:
+
+```bash
+python3 -c 'from pathlib import Path; from shutil import copytree; copytree("skills/taskfilm-feature-explainer", Path.home()/".codex/skills/taskfilm-feature-explainer")'
+```
+
+The copy refuses an existing destination. This source skill uses the published
+capture, edit, compose and render commands; a new wheel release is not required.
+It adds no watcher, hook or service. See its [production workflow](skills/taskfilm-feature-explainer/references/workflow.md).
 
 ## What you get
 
