@@ -72,7 +72,7 @@ def capabilities() -> dict[str, dict[str, Any]]:
     """Every capability we already own, keyed by id. Read from CAPABILITY-MAP.yaml."""
     import yaml  # imported lazily: the loader must work without PyYAML installed
 
-    data = yaml.safe_load(CAPABILITY_MAP.read_text()) or {}
+    data = yaml.safe_load(CAPABILITY_MAP.read_text(encoding="utf-8")) or {}
     return {row["id"]: row for row in data.get("capabilities", [])}
 
 

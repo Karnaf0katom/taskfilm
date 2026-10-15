@@ -582,7 +582,7 @@ def main() -> int:
     print(f"  written : {r['out']}/index.html")
     if args.check:
         proc = subprocess.run(["npx", "--yes", f"hyperframes@{HYPERFRAMES_VERSION}", "check"],
-                              cwd=r["out"], capture_output=True, text=True)
+                              cwd=r["out"], capture_output=True, text=True, encoding="utf-8")
         print("\n".join(f"    {line}" for line in
                         (proc.stdout or proc.stderr).strip().splitlines()[-16:]))
         return proc.returncode

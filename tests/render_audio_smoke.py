@@ -19,7 +19,7 @@ def loudness(path: Path) -> dict:
     result = subprocess.run(
         ["ffmpeg", "-hide_banner", "-threads", "1", "-i", str(path), "-vn", "-af",
          "loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
-        check=True, capture_output=True, text=True, timeout=120)
+        check=True, capture_output=True, text=True, encoding="utf-8", timeout=120)
     values = re.findall(r'\{\s*"input_i".*?\}', result.stderr, re.S)
     if not values:
         raise ValueError("FFmpeg did not report the encoded audio level")
@@ -58,10 +58,10 @@ def smoke(out: Path, version: str, mix: Path | None = None) -> dict:
     shutil.copy2(VIDEO / "hyperframes-lane/product-motion/assets/Manrope.ttf", assets / "Manrope.ttf")
     (out / "hyperframes.json").write_text(json.dumps({
         "$schema": "https://hyperframes.heygen.com/schema/hyperframes.json",
-        "name": "taskfilm-audio-regression", "entry": "index.html"}, indent=2) + "\n")
+        "name": "taskfilm-audio-regression", "entry": "index.html"}, indent=2) + "\n", encoding="utf-8")
     (out / "package.json").write_text(json.dumps({"private": True, "scripts": {
         "check": f"npx --yes hyperframes@{version} check",
-        "render": f"npx --yes hyperframes@{version} render"}}, indent=2) + "\n")
+        "render": f"npx --yes hyperframes@{version} render"}}, indent=2) + "\n", encoding="utf-8")
     (out / "index.html").write_text('''<!doctype html>
 <html><head><meta charset="utf-8"><style>
 @font-face{font-family:Manrope;src:url(assets/Manrope.ttf)}
@@ -80,17 +80,17 @@ const tl=gsap.timeline({paused:true});
 tl.fromTo('.word',{y:24,opacity:0},{y:0,opacity:1,duration:0.6,ease:'power3.out'},0);
 tl.fromTo('.line',{scaleX:0},{scaleX:1,duration:3.2,ease:'none'},0.4);
 window.__timelines['audio-proof']=tl;
-</script></body></html>''')
-    with (out / "check.log").open("w") as log:
+</script></body></html>''', encoding="utf-8")
+    with (out / "check.log").open("w", encoding="utf-8") as log:
         subprocess.run(["npm", "run", "check", "--", "--timeout", "30000", "--json"],
                        cwd=out, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=180)
-    with (out / "render.log").open("w") as log:
+    with (out / "render.log").open("w", encoding="utf-8") as log:
         subprocess.run(["npm", "run", "render", "--", "--quality", "looks", "--fps", "30",
                         "--workers", "1", "--output", str(out / "out.mp4")],
                        cwd=out, stdout=log, stderr=subprocess.STDOUT, check=True, timeout=600)
     movie = out / "out.mp4"
     probe = json.loads(subprocess.check_output(
-        ["ffprobe", "-v", "error", "-show_streams", "-of", "json", str(movie)], text=True))
+        ["ffprobe", "-v", "error", "-show_streams", "-of", "json", str(movie)], text=True, encoding="utf-8"))
     video = next(s for s in probe["streams"] if s["codec_type"] == "video")
     audio = next(s for s in probe["streams"] if s["codec_type"] == "audio")
     source_level, encoded_level = loudness(assets / "mix.wav"), loudness(movie)
@@ -109,7 +109,7 @@ window.__timelines['audio-proof']=tl;
               "complete_render": True, "separate_audio_assembly": False,
               "source": source_level, "encoded": encoded_level, "failures": failures,
               "full_decode": "passed", "movie_sha256": hashlib.sha256(movie.read_bytes()).hexdigest()}
-    (out / "verification.json").write_text(json.dumps(report, indent=2) + "\n")
+    (out / "verification.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     if failures:
         raise ValueError("; ".join(failures))
     return report

@@ -18,7 +18,7 @@ def prepare(inputs: Path, tag: str) -> dict:
     if not re.fullmatch(r"v\d+\.\d+\.\d+(?:a\d+|b\d+|rc\d+)?", tag):
         raise ValueError("use a Taskfilm release tag")
     root = Path(__file__).resolve().parents[1]
-    source_manifest = json.loads((root / "SOURCE-MANIFEST.json").read_text())
+    source_manifest = json.loads((root / "SOURCE-MANIFEST.json").read_text(encoding="utf-8"))
     source_zip = inputs / f"taskfilm-source-{tag}.zip"
     with zipfile.ZipFile(source_zip, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=3) as archive:
         for row in source_manifest["files"]:
@@ -82,15 +82,15 @@ fonts, runtime dependencies and model notices retain their own terms.
         archive.writestr("taskfilm-demo-projects/PRESERVED-FILES.json", json.dumps({
             "historical_input_sha256": digest(original), "files": preserved}, indent=2) + "\n")
     showcase_path = inputs / "showcase.json"
-    showcase = json.loads(showcase_path.read_text())
+    showcase = json.loads(showcase_path.read_text(encoding="utf-8"))
     for path, label in ((source_zip, "Standalone source and recipes"),
                         (projects_zip, "Editable OSS films, takes and native results")):
         showcase["downloads"].append({"path": path.name, "sha256": digest(path), "label": label})
-    showcase_path.write_text(json.dumps(showcase, indent=2) + "\n")
+    showcase_path.write_text(json.dumps(showcase, indent=2) + "\n", encoding="utf-8")
     checksums = inputs / "SHA256SUMS"
     files = [path for path in sorted(inputs.iterdir())
              if path.is_file() and path.name not in {"SHA256SUMS", "historical-demo-inputs.zip"}]
-    checksums.write_text("".join(f"{digest(path)}  {path.name}\n" for path in files))
+    checksums.write_text("".join(f"{digest(path)}  {path.name}\n" for path in files), encoding="utf-8")
     return {"source": source_zip.name, "projects": projects_zip.name,
             "preserved_original_files": len(preserved)}
 

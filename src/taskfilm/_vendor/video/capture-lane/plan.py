@@ -561,7 +561,7 @@ def spoken_seconds(session_dir: Path, beat_id: str) -> float:
             continue
         proc = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
                                "-of", "default=nw=1:nk=1", str(path)],
-                              capture_output=True, text=True)
+                              capture_output=True, text=True, encoding="utf-8")
         try:
             return round(float(proc.stdout.strip()), 3)
         except ValueError:

@@ -598,7 +598,7 @@ class Screencast:
                "-fps_mode", "cfr", "-r", str(OUTPUT_FPS),
                "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
                "-pix_fmt", "yuv420p", str(out)]
-        proc = subprocess.run(cmd, capture_output=True, text=True)
+        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
         if proc.returncode != 0:
             return False, (proc.stderr or "ffmpeg failed").strip().splitlines()[-1]
         return True, str(out)

@@ -144,13 +144,13 @@ def accent_marks(text: str) -> str:
 # ------------------------------------------------------------------ take analysis
 def load_take(film: Path, spec: dict) -> dict:
     take = film / spec["take"]
-    session = json.loads((take / "session.json").read_text())
+    session = json.loads((take / "session.json").read_text(encoding="utf-8"))
     assert session["session_id"] == take.name, "Review and retime a replacement take explicitly"
     assert session["screen"] == {"width": SRC_W, "height": SRC_H}
     assert session["streams"]["screen"]["dropped"] == 0
     assert session["steps"]["ok"] == session["steps"]["total"], session["steps"]
     t0 = session["t0_wallclock"]
-    events = [json.loads(line) for line in (take / "input.jsonl").read_text().splitlines() if line.strip()]
+    events = [json.loads(line) for line in (take / "input.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
     for e in events:
         e["t"] = e["ts"] - t0
     clicks = [e for e in events if e["type"] == "click" and e.get("pressed")]
@@ -548,7 +548,7 @@ def recap_cards(edit: dict, spec: dict, lay: dict, B: Grid, assets: Path | None 
                    f'data-playback-rate="0.25" data-track-index="{4 + i}" style="left:{-x * k:.1f}px;top:{-y * k:.1f}px;'
                    f'width:{SRC_W * k:.1f}px;height:{SRC_H * k:.1f}px"></video></div>')
     if receipts:
-        (assets / "recap.json").write_text(json.dumps(receipts, indent=2) + "\n")
+        (assets / "recap.json").write_text(json.dumps(receipts, indent=2) + "\n", encoding="utf-8")
     return "\n".join(out)
 
 
@@ -684,7 +684,7 @@ def loudnorm(src: Path, out: Path, target: float = -16.0):
     """Two-pass EBU R128 through FFmpeg; true peak below -1.5 dBTP."""
     first = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(src), "-af",
                             f"loudnorm=I={target}:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"],
-                           capture_output=True, text=True, check=True).stderr
+                           capture_output=True, text=True, encoding="utf-8", check=True).stderr
     m = json.loads(first[first.rindex("{"):first.rindex("}") + 1])
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-af",
                     f"loudnorm=I={target}:TP=-1.5:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
@@ -819,7 +819,7 @@ def prepare_take(source: Path, destination: Path) -> dict:
     source_hash = digest(source)
     receipt_path = destination.with_suffix(".json")
     if destination.is_file() and receipt_path.is_file():
-        previous = json.loads(receipt_path.read_text())
+        previous = json.loads(receipt_path.read_text(encoding="utf-8"))
         if (previous.get("source_sha256") == source_hash and previous.get("recipe") == recipe
                 and previous.get("render_sha256") == digest(destination)):
             return previous
@@ -834,12 +834,12 @@ def prepare_take(source: Path, destination: Path) -> dict:
     finally:
         temporary.unlink(missing_ok=True)
     receipt = {"source_sha256": source_hash, "render_sha256": digest(destination), "recipe": recipe}
-    receipt_path.write_text(json.dumps(receipt, indent=2) + "\n")
+    receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     return receipt
 
 
 def build(film: Path, fmt: str, audio: bool = True, take_override: Path | None = None) -> Path:
-    spec = json.loads((film / "spec.json").read_text())
+    spec = json.loads((film / "spec.json").read_text(encoding="utf-8"))
     if take_override is not None:
         spec["take"] = os.path.relpath(take_override.resolve(), film.resolve())
     lay = fmt_geometry(fmt)
@@ -957,26 +957,26 @@ def build(film: Path, fmt: str, audio: bool = True, take_override: Path | None =
         "__PLAN__": json.dumps(plan_json, separators=(",", ":")),
         "</style></head>": overlay_css + "\n</style></head>",
     }
-    html = (KIT / "template.tpl").read_text()
+    html = (KIT / "template.tpl").read_text(encoding="utf-8")
     for k, v in tokens.items():
         assert k in html, k
         html = html.replace(k, v)
     assert "__" not in html.split("<script>")[0].replace("__timelines", ""), "unfilled token"
-    (out / "index.html").write_text(html)
+    (out / "index.html").write_text(html, encoding="utf-8")
     (out / "index.motion.json").write_text(json.dumps({"duration": dur, "assertions": [
         {"kind": "appearsBy", "selector": "#k1", "bySec": 0.6},
         {"kind": "appearsBy", "selector": "#slab1", "bySec": round(B(12) + 0.6, 2)},
         {"kind": "appearsBy", "selector": "#stamp", "bySec": round(edit["T"]["save"] + 0.6, 2)},
         {"kind": "appearsBy", "selector": "#tlabel", "bySec": round(edit["T"]["track"] + 0.8, 2)},
         {"kind": "appearsBy", "selector": "#ewm .dot", "bySec": round(edit["T"]["end"] + 1.6, 2)},
-    ]}, indent=2) + "\n")
+    ]}, indent=2) + "\n", encoding="utf-8")
     (out / "hyperframes.json").write_text(json.dumps({
         "$schema": "https://hyperframes.heygen.com/schema/hyperframes.json",
         "paths": {"blocks": "compositions", "components": "compositions/components", "assets": "assets"},
-        "media": {"autoProxy": True}}, indent=2) + "\n")
+        "media": {"autoProxy": True}}, indent=2) + "\n", encoding="utf-8")
     (out / "package.json").write_text(json.dumps({
         "name": f"{spec['id']}-motion-{fmt}", "private": True, "type": "module",
-        "scripts": {"check": f"npx --yes {HF} check", "render": f"npx --yes {HF} render"}}, indent=2) + "\n")
+        "scripts": {"check": f"npx --yes {HF} check", "render": f"npx --yes {HF} render"}}, indent=2) + "\n", encoding="utf-8")
     if audio:
         mix(spec, edit, B, dur, assets / "mix.wav", film)
     decisions = {
@@ -997,8 +997,8 @@ def build(film: Path, fmt: str, audio: bool = True, take_override: Path | None =
     if render_source:
         decisions["capture"]["render_source"] = render_source
     if spec["edit"].get("recap_stills"):
-        decisions["recap_frames"] = json.loads((assets / "recap.json").read_text())
-    (out / "EDIT-DECISIONS.json").write_text(json.dumps(decisions, indent=2) + "\n")
+        decisions["recap_frames"] = json.loads((assets / "recap.json").read_text(encoding="utf-8"))
+    (out / "EDIT-DECISIONS.json").write_text(json.dumps(decisions, indent=2) + "\n", encoding="utf-8")
     digest = hashlib.sha256((out / "index.html").read_bytes()).hexdigest()[:12]
     print(f"{fmt}: index.html {digest} · {len(edit['seg'])} segments · {len(edit['clicks'])} clicks · "
           f"{len(edit['keys'])} key sounds · fit {fit}")

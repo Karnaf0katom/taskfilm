@@ -22,7 +22,7 @@ def digest(path):
 
 def probe_seconds(path):
     return float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries',
-        'format=duration', '-of', 'default=nw=1:nk=1', str(path)], text=True))
+        'format=duration', '-of', 'default=nw=1:nk=1', str(path)], text=True, encoding="utf-8"))
 
 
 def author(take: Path, narration: Path, music: Path, out: Path):
@@ -37,7 +37,7 @@ def author(take: Path, narration: Path, music: Path, out: Path):
     proof = owner.result_proof(take, 'excalidraw')
     source = take / 'screen.mp4'
     raw = probe_seconds(source)
-    beats = [json.loads(line) for line in (take / 'beats.jsonl').read_text().splitlines()]
+    beats = [json.loads(line) for line in (take / 'beats.jsonl').read_text(encoding="utf-8").splitlines()]
     if len(beats) != 3:
         raise ValueError('The complete three-beat native capture is required.')
     bounds = [0, float(beats[1]['video_t']), float(beats[2]['video_t']), raw]
@@ -49,7 +49,7 @@ def author(take: Path, narration: Path, music: Path, out: Path):
             raise ValueError('Capture pacing needs adjustment; retain every source interval.')
         segments.append({'start': timeline[i], 'duration': timeline[i + 1] - timeline[i],
             'source_start': bounds[i], 'source_end': bounds[i + 1], 'playback_rate': rate})
-    cues = json.loads(narration.read_text())
+    cues = json.loads(narration.read_text(encoding="utf-8"))
     if not isinstance(cues, list) or len(cues) != 6:
         raise ValueError('Supply the six narrated storyboard cues.')
     for cue in cues:
@@ -80,7 +80,7 @@ def author(take: Path, narration: Path, music: Path, out: Path):
     subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-threads', '1', '-i', str(music),
         '-t', '48', '-af', 'loudnorm=I=-18:TP=-2:LRA=9,afade=t=in:d=0.08,afade=t=out:st=46.7:d=1.3',
         '-ar', '48000', '-ac', '2', str(assets / 'music.wav')], check=True)
-    scene = json.loads(native.read_text())
+    scene = json.loads(native.read_text(encoding="utf-8"))
     vectors = []
     for element in scene['elements']:
         if element.get('isDeleted'):
@@ -98,17 +98,17 @@ def author(take: Path, narration: Path, music: Path, out: Path):
     svg = '<svg id="native-diagram" viewBox="260 190 850 260" aria-label="Motion treatment of the saved Idea, Prototype, Ship diagram"><defs><marker id="arrow-head" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6" fill="none" stroke="#d7ff58" stroke-width="1.2"/></marker></defs>' + ''.join(vectors) + '</svg>'
     videos = ''.join(f'<video id="browser-take-{i}" class="clip take" src="assets/take.mp4" muted playsinline data-start="{s["start"]}" data-duration="{s["duration"]}" data-media-start="{s["source_start"]:.8f}" data-playback-rate="{s["playback_rate"]:.8f}" data-track-index="2"></video>' for i, s in enumerate(segments))
     voices = ''.join(f'<audio id="narration-{i + 1}" src="assets/voice-{i + 1}.wav" data-start="{cue["at"]}" data-duration="{cue["seconds"]:.6f}" data-volume="1" data-track-index="10"></audio>' for i, cue in enumerate(cues))
-    markup = Path(__file__).with_name('excalidraw-promo.tpl').read_text()
+    markup = Path(__file__).with_name('excalidraw-promo.tpl').read_text(encoding="utf-8")
     for key, value in {'__VIDEOS__': videos, '__DIAGRAM__': svg, '__VOICES__': voices}.items():
         markup = markup.replace(key, value)
-    (out / 'index.html').write_text(markup)
-    (out / 'hyperframes.json').write_text(json.dumps({'name': 'excalidraw-motion-promo', 'entry': 'index.html'}, indent=2) + '\n')
+    (out / 'index.html').write_text(markup, encoding="utf-8")
+    (out / 'hyperframes.json').write_text(json.dumps({'name': 'excalidraw-motion-promo', 'entry': 'index.html'}, indent=2) + '\n', encoding="utf-8")
     (out / 'package.json').write_text(json.dumps({'private': True, 'scripts': {
         'check': 'npx --yes hyperframes@0.8.134 check',
-        'render': 'npx --yes hyperframes@0.8.134 render'}}, indent=2) + '\n')
-    (out / 'SCRIPT.json').write_text(json.dumps(cues, indent=2) + '\n')
-    (out / 'BRIEF.md').write_text('---\nworkflow: product-launch-video\nflow: autonomous\nstoryboard: no\n---\n\n# Excalidraw: less explaining, more clarity\n\n48 seconds, 1920×1080, 30fps. A public Taskfilm showcase requested by the operator, with George narration from ElevenLabs and an original instrumental score. Show the complete retained browser workflow with disclosed bounded speed adjustments. Animate the actual native diagram as a clearly identified motion treatment. Deliver the editable composition, encoded film and evidence. HTML/SVG motion graphics; no native Adobe project.\n')
-    (out / 'STORYBOARD.md').write_text('# Excalidraw motion promo\n\n0–7: masked oversized type and three idea cards resolve into a clear plan.\n7–21: browser window settles from perspective; show all native drawing actions.\n21–31: connect the real native diagram; a directed camera gives the result space.\n31–37: return to the full UI and save the native editable scene.\n37–42: draw the exact retained diagram as an explicitly labeled motion treatment.\n42–48: Taskfilm wordmark and a readable repository call to action; resolve the score.\n\nNarration uses measured cue durations in SCRIPT.json. All browser source intervals are present. The score is dynamically carved against narration before rendering.\n')
+        'render': 'npx --yes hyperframes@0.8.134 render'}}, indent=2) + '\n', encoding="utf-8")
+    (out / 'SCRIPT.json').write_text(json.dumps(cues, indent=2) + '\n', encoding="utf-8")
+    (out / 'BRIEF.md').write_text('---\nworkflow: product-launch-video\nflow: autonomous\nstoryboard: no\n---\n\n# Excalidraw: less explaining, more clarity\n\n48 seconds, 1920×1080, 30fps. A public Taskfilm showcase requested by the operator, with George narration from ElevenLabs and an original instrumental score. Show the complete retained browser workflow with disclosed bounded speed adjustments. Animate the actual native diagram as a clearly identified motion treatment. Deliver the editable composition, encoded film and evidence. HTML/SVG motion graphics; no native Adobe project.\n', encoding="utf-8")
+    (out / 'STORYBOARD.md').write_text('# Excalidraw motion promo\n\n0–7: masked oversized type and three idea cards resolve into a clear plan.\n7–21: browser window settles from perspective; show all native drawing actions.\n21–31: connect the real native diagram; a directed camera gives the result space.\n31–37: return to the full UI and save the native editable scene.\n37–42: draw the exact retained diagram as an explicitly labeled motion treatment.\n42–48: Taskfilm wordmark and a readable repository call to action; resolve the score.\n\nNarration uses measured cue durations in SCRIPT.json. All browser source intervals are present. The score is dynamically carved against narration before rendering.\n', encoding="utf-8")
     receipt = {'schema': 'taskfilm-excalidraw-promo/v1', 'seconds': 48, 'width': 1920,
         'height': 1080, 'fps': 30, 'hyperframes': '0.8.134', 'capture': proof,
         'source_seconds': raw, 'source_segments': segments,
@@ -118,7 +118,7 @@ def author(take: Path, narration: Path, music: Path, out: Path):
         'rendered': False, 'encoded_visual_review': 'not_performed',
         'diagram_treatment': 'Native element geometry and text; styling and choreography are presentation.',
         'audio_rights': 'Generated on the supplied paid ElevenLabs account. See MEDIA-PROVENANCE.json and ElevenLabs terms; generated audio is not MIT-licensed code.'}
-    (out / 'EVIDENCE.json').write_text(json.dumps(receipt, indent=2) + '\n')
+    (out / 'EVIDENCE.json').write_text(json.dumps(receipt, indent=2) + '\n', encoding="utf-8")
     return receipt
 
 

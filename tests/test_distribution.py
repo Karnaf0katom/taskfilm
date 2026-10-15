@@ -16,7 +16,7 @@ import pytest
 
 def invoke(cwd, *args, timeout=60):
     result = subprocess.run([sys.executable, "-I", "-m", "taskfilm", *map(str, args)],
-                            cwd=cwd, capture_output=True, text=True, timeout=timeout)
+                            cwd=cwd, capture_output=True, text=True, encoding="utf-8", timeout=timeout)
     assert result.returncode == 0, result.stdout + result.stderr
     return result
 
@@ -32,11 +32,11 @@ def test_installed_planner_from_unrelated_directory(example, tmp_path):
         bundle = tmp_path / mode
         invoke(tmp_path, "story", "--request", example / "request.json", "--story", example / story,
                "--out", bundle)
-        plan = json.loads((bundle / "product-story-plan.json").read_text())
+        plan = json.loads((bundle / "product-story-plan.json").read_text(encoding="utf-8"))
         assert plan["mode"] == mode
         assert plan["claims"] and plan["capture_requirements"]
         assert len(list(bundle.iterdir())) == 6
-        assert "PREPRODUCTION ONLY" in (bundle / "capture-brief.md").read_text()
+        assert "PREPRODUCTION ONLY" in (bundle / "capture-brief.md").read_text(encoding="utf-8")
 
 
 def test_oss_sample_binds_actual_pinned_document_and_preserves_review_scope(example, tmp_path):
@@ -46,16 +46,16 @@ def test_oss_sample_binds_actual_pinned_document_and_preserves_review_scope(exam
             "resolved_commit": "a" * 40, "license_spdx": "UNKNOWN",
             "documents": [{"path": "README.md", "sha256": hashlib.sha256(readme.read_bytes()).hexdigest()}]}
     pack_path = tmp_path / "repo-pack.json"
-    pack_path.write_text(json.dumps(pack))
+    pack_path.write_text(json.dumps(pack), encoding="utf-8")
     request = tmp_path / "oss-request.json"
     prepared = subprocess.run([sys.executable, str(example / "prepare-oss-review.py"),
         "--repo-pack", str(pack_path), "--readme", str(readme), "--out", str(request)],
-        cwd=tmp_path, capture_output=True, text=True)
+        cwd=tmp_path, capture_output=True, text=True, encoding="utf-8")
     assert prepared.returncode == 0, prepared.stderr
     bundle = tmp_path / "oss-plan"
     invoke(tmp_path, "story", "--request", request, "--story", example / "oss.json",
            "--repo-pack", pack_path, "--out", bundle)
-    plan = json.loads((bundle / "product-story-plan.json").read_text())
+    plan = json.loads((bundle / "product-story-plan.json").read_text(encoding="utf-8"))
     assert plan["mode"] == "github_review"
     assert plan["repository"]["commit"] == pack["resolved_commit"]
     assert plan["repository"]["runtime_review"] == "not_performed"
@@ -63,10 +63,10 @@ def test_oss_sample_binds_actual_pinned_document_and_preserves_review_scope(exam
     assert plan["execution"] == "planned_only" and plan["ready_to_render"] is False
     assert {row["id"] for row in plan["claims"]} >= {"fit", "limitation"}
     wrong_readme = tmp_path / "changed-readme.md"
-    wrong_readme.write_text(readme.read_text() + "\nChanged after pinning.\n")
+    wrong_readme.write_text(readme.read_text(encoding="utf-8") + "\nChanged after pinning.\n", encoding="utf-8")
     refused = subprocess.run([sys.executable, str(example / "prepare-oss-review.py"),
         "--repo-pack", str(pack_path), "--readme", str(wrong_readme), "--out", str(tmp_path / "refused.json")],
-        cwd=tmp_path, capture_output=True, text=True)
+        cwd=tmp_path, capture_output=True, text=True, encoding="utf-8")
     assert refused.returncode == 2
     assert "do not match" in refused.stderr
     assert not (tmp_path / "refused.json").exists()
@@ -90,19 +90,19 @@ def test_original_capture_script_validates(example, tmp_path):
 def test_init_refuses_to_overwrite(example, tmp_path):
     before = hashlib.sha256((example / "request.json").read_bytes()).hexdigest()
     result = subprocess.run([sys.executable, "-I", "-m", "taskfilm", "init", str(example)],
-                            cwd=tmp_path, capture_output=True, text=True)
+                            cwd=tmp_path, capture_output=True, text=True, encoding="utf-8")
     assert result.returncode == 2
     assert hashlib.sha256((example / "request.json").read_bytes()).hexdigest() == before
 
 
 def test_custom_brand_uses_supplied_files(example, tmp_path):
-    request = json.loads((example / "request.json").read_text())
+    request = json.loads((example / "request.json").read_text(encoding="utf-8"))
     request["brand"]["pack"] = "my-product"
-    (example / "request.json").write_text(json.dumps(request))
-    brand = json.loads((example / "brand/taskfilm-demo.json").read_text())
+    (example / "request.json").write_text(json.dumps(request), encoding="utf-8")
+    brand = json.loads((example / "brand/taskfilm-demo.json").read_text(encoding="utf-8"))
     brand.update(name="my-product", wordmark="MY PRODUCT")
     brand["palette"]["accent"] = "#A34B30"
-    (example / "brand/my-product.json").write_text(json.dumps(brand))
+    (example / "brand/my-product.json").write_text(json.dumps(brand), encoding="utf-8")
     result = invoke(tmp_path, "story", "--request", example / "request.json", "--story",
                     example / "feature.json", "--brand-dir", example / "brand")
     plan = json.loads(result.stdout)
@@ -111,14 +111,14 @@ def test_custom_brand_uses_supplied_files(example, tmp_path):
     (example / "brand/fonts/Manrope.ttf").unlink()
     failed = subprocess.run([sys.executable, "-I", "-m", "taskfilm", "story", "--request",
         str(example / "request.json"), "--story", str(example / "feature.json"), "--brand-dir",
-        str(example / "brand")], cwd=tmp_path, capture_output=True, text=True)
+        str(example / "brand")], cwd=tmp_path, capture_output=True, text=True, encoding="utf-8")
     assert failed.returncode == 2
     assert "weight files" in failed.stderr
 
 
 def test_agent_skill_can_be_installed_without_private_tools(tmp_path):
     invoke(tmp_path, "skill", tmp_path / "skills/taskfilm-video")
-    skill = (tmp_path / "skills/taskfilm-video/SKILL.md").read_text()
+    skill = (tmp_path / "skills/taskfilm-video/SKILL.md").read_text(encoding="utf-8")
     assert skill.startswith("---\nname: taskfilm-video\n")
 
 
@@ -137,10 +137,10 @@ def test_public_entrypoint_license_and_installed_source_hashes(tmp_path):
             if point.group == "console_scripts"} == {"taskfilm"}
     command = Path(sys.executable).parent / ("taskfilm.exe" if os.name == "nt" else "taskfilm")
     result = subprocess.run([str(command), "--version"], cwd=tmp_path,
-                            capture_output=True, text=True, timeout=10)
+                            capture_output=True, text=True, encoding="utf-8", timeout=10)
     assert result.returncode == 0
     assert result.stdout.strip() == taskfilm.__version__
-    manifest = json.loads((Path(__file__).parents[1] / "SOURCE-MANIFEST.json").read_text())
+    manifest = json.loads((Path(__file__).parents[1] / "SOURCE-MANIFEST.json").read_text(encoding="utf-8"))
     assert manifest["project_license"] == "MIT"
     package = Path(taskfilm.__file__).parent
     for row in manifest["files"]:
@@ -167,14 +167,14 @@ def test_real_original_browser_task(example, tmp_path):
     server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
     thread = Thread(target=server.serve_forever, daemon=True)
     thread.start()
-    script = json.loads((example / "capture.json").read_text())
+    script = json.loads((example / "capture.json").read_text(encoding="utf-8"))
     script["url"] = f"http://127.0.0.1:{server.server_port}/"
     # Keep the real interaction/typing sequence; shorten only labelled waits.
     for step in script["steps"]:
         if step["do"] == "wait":
             step["s"] = 0.15
     source = tmp_path / "capture.json"
-    source.write_text(json.dumps(script))
+    source.write_text(json.dumps(script), encoding="utf-8")
     try:
         invoke(tmp_path, "capture", "check")
         invoke(tmp_path, "capture", "rec", source, "--out-dir", tmp_path / "takes",
@@ -183,12 +183,12 @@ def test_real_original_browser_task(example, tmp_path):
                    "steps": [{"do": "assert", "selector": "#count", "text": "not the result",
                               "screenshot": "failed.png", "timeout": 0.2}]}
         rejected = tmp_path / "invalid-capture.json"
-        rejected.write_text(json.dumps(invalid))
+        rejected.write_text(json.dumps(invalid), encoding="utf-8")
         failure = subprocess.run([sys.executable, "-I", "-m", "taskfilm", "capture", "rec",
             str(rejected), "--out-dir", str(tmp_path / "rejected")], cwd=tmp_path,
-            capture_output=True, text=True, timeout=capture_timeout)
+            capture_output=True, text=True, encoding="utf-8", timeout=capture_timeout)
         assert failure.returncode != 0
-        rejected_manifest = json.loads(next((tmp_path / "rejected").glob("*/session.json")).read_text())
+        rejected_manifest = json.loads(next((tmp_path / "rejected").glob("*/session.json")).read_text(encoding="utf-8"))
         assert rejected_manifest["steps"]["ok"] == 0
         assert rejected_manifest["assertions"][0]["status"] == "failed"
     finally:
@@ -198,7 +198,7 @@ def test_real_original_browser_task(example, tmp_path):
     takes = list((tmp_path / "takes").glob("*/session.json"))
     assert len(takes) == 1
     take = takes[0].parent
-    manifest = json.loads(takes[0].read_text())
+    manifest = json.loads(takes[0].read_text(encoding="utf-8"))
     assert manifest["steps"]["ok"] == manifest["steps"]["total"]
     assert manifest["streams"]["screen"]["status"] == "ok"
     assert (take / "screen.mp4").stat().st_size > 1000
@@ -210,7 +210,7 @@ def test_real_original_browser_task(example, tmp_path):
     invoke(tmp_path, "edit", take, "--no-retime", "--no-aim")
     assert (take / "plan.json").is_file()
     invoke(tmp_path, "compose", take, "--out", tmp_path / "composition", "--no-title")
-    package = json.loads((tmp_path / "composition/package.json").read_text())
+    package = json.loads((tmp_path / "composition/package.json").read_text(encoding="utf-8"))
     assert "hyperframes@0.8.134" in package["scripts"]["render"]
     assert (tmp_path / "composition/assets/capture-font.ttf").is_file()
     assert (tmp_path / "composition/assets/FONT-LICENSE.txt").is_file()
@@ -233,13 +233,13 @@ def test_motion_lab_is_portable_and_complete(example, tmp_path):
                 self.rows.append(row)
 
     parser = Hosts()
-    parser.feed((lab / "index.html").read_text())
+    parser.feed((lab / "index.html").read_text(encoding="utf-8"))
     assert len(parser.rows) == 4
     assert [(float(row["data-start"]), float(row["data-duration"])) for row in parser.rows] == [
         (0, 6), (6, 7), (13, 7), (20, 4)]
     for row in parser.rows:
         scene = lab / row["data-composition-src"]
-        html = scene.read_text()
+        html = scene.read_text(encoding="utf-8")
         assert f"data-composition-id=\"{row['data-composition-id']}\"" in html
         assert f"window.__timelines['{row['data-composition-id']}']" in html
         assert "<template>" in html

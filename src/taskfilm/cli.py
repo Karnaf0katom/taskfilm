@@ -46,13 +46,16 @@ def run_owner(command: str, args: list[str]) -> int:
     if not owner.is_file():
         raise ValueError("owner files are absent; install the exported Taskfilm distribution")
     env = os.environ.copy()
+    # Owners inherit our terminal or pipe. Keep their bytes consistent with the
+    # public CLI even when Windows or PYTHONIOENCODING selects a legacy codec.
+    env["PYTHONIOENCODING"] = "utf-8"
     env.setdefault("CAPTURE_HYPERFRAMES_VERSION", HYPERFRAMES_VERSION)
     custom_font = any(arg == "--font-file" or arg.startswith("--font-file=") for arg in args)
     if command in {"compose", "reel"} and not custom_font and not env.get("CAPTURE_COMPOSITION_FONT"):
         assets = VIDEO / "hyperframes-lane/product-motion/assets"
         env["CAPTURE_COMPOSITION_FONT"] = str(assets / "Manrope.ttf")
         env["CAPTURE_COMPOSITION_FONT_NOTICE"] = str(assets / "Manrope-OFL.txt")
-    return subprocess.run([sys.executable, str(owner), *args], env=env).returncode
+    return subprocess.run([sys.executable, "-X", "utf8", str(owner), *args], env=env).returncode
 
 
 def doctor(as_json: bool) -> int:
@@ -92,14 +95,14 @@ def initialize(destination: Path, kind: str = "examples") -> int:
         return 0
     # Make the bundled identity editable beside the sample. The original font
     # bytes and licence still come from their selected asset owner.
-    brand = json.loads((VIDEO / "mix/brand/taskfilm-demo.json").read_text())
+    brand = json.loads((VIDEO / "mix/brand/taskfilm-demo.json").read_text(encoding="utf-8"))
     fonts = destination / "brand/fonts"
     fonts.mkdir(parents=True)
     for filename in ("Manrope.ttf", "Manrope-OFL.txt"):
         shutil.copy2(VIDEO / f"hyperframes-lane/product-motion/assets/{filename}", fonts / filename)
     brand["type"]["weights"] = {weight: "fonts/Manrope.ttf" for weight in brand["type"]["weights"]}
     brand["type"]["licence"]["file"] = "fonts/Manrope-OFL.txt"
-    (destination / "brand/taskfilm-demo.json").write_text(json.dumps(brand, indent=2) + "\n")
+    (destination / "brand/taskfilm-demo.json").write_text(json.dumps(brand, indent=2) + "\n", encoding="utf-8")
     lab_assets = destination / "motion-lab/assets"
     lab_assets.mkdir(parents=True)
     for filename in ("Manrope.ttf", "Manrope-OFL.txt", "GeistMono.ttf", "GeistMono-OFL.txt"):
@@ -110,6 +113,11 @@ def initialize(destination: Path, kind: str = "examples") -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    # Windows consoles use Python's Unicode console writer; redirected output
+    # must use the same UTF-8 contract. Embedded callers may supply StringIO.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="backslashreplace")
     argv = list(sys.argv[1:] if argv is None else argv)
     # Forward the owner's --help as well as its flags without interpreting them.
     if argv and argv[0] in OWNERS:

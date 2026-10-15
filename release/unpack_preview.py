@@ -12,7 +12,7 @@ import zipfile
 
 def unpack(archive: Path, checksums: Path, output: Path) -> None:
     matches = []
-    for line in checksums.read_text().splitlines():
+    for line in checksums.read_text(encoding="utf-8").splitlines():
         parts = line.split(maxsplit=1)
         if len(parts) == 2 and parts[1].lstrip(" *") == archive.name:
             matches.append(parts[0])
@@ -34,7 +34,9 @@ def unpack(archive: Path, checksums: Path, output: Path) -> None:
         names = set()
         for item in members:
             path = PurePosixPath(item.filename)
-            if path.is_absolute() or ".." in path.parts or "\\" in item.filename or not path.parts:
+            # ZipInfo normalizes separators on Windows, but retains the raw
+            # archive name in orig_filename. Reject it before extraction.
+            if path.is_absolute() or ".." in path.parts or "\\" in item.orig_filename or not path.parts:
                 raise ValueError("the preview contains an escaping path")
             if str(path) in names:
                 raise ValueError("the preview contains duplicate paths")

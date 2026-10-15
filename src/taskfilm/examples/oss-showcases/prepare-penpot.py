@@ -57,9 +57,9 @@ def prepare(base: str, recipe: Path, output: Path, auth: Path, proof: Path) -> d
             page.locator("#image-upload").wait_for(state="attached", timeout=30000)
             page.wait_for_timeout(3000)
             controls = page.locator("button,input").evaluate_all("els => els.map(e => ({tag:e.tagName, id:e.id, aria:e.getAttribute('aria-label'), test:e.getAttribute('data-testid'), text:e.innerText}))")
-            (proof / "editor-controls.json").write_text(json.dumps(controls, indent=2) + "\n")
+            (proof / "editor-controls.json").write_text(json.dumps(controls, indent=2) + "\n", encoding="utf-8")
             page.screenshot(path=str(proof / "editor.png"))
-            data = json.loads(recipe.read_text())
+            data = json.loads(recipe.read_text(encoding="utf-8"))
             data["url"] = page.url
             data["stage"]["storage_state"] = str(auth.resolve())
             data["stage"]["chrome_args"] = options["args"]
@@ -72,7 +72,7 @@ def prepare(base: str, recipe: Path, output: Path, auth: Path, proof: Path) -> d
                     raise ValueError("the original layout differs from the checked upload proof")
                 seed["path"] = str(source.resolve())
             auth.parent.mkdir(parents=True, exist_ok=True)
-            with os.fdopen(os.open(auth, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w") as stream:
+            with os.fdopen(os.open(auth, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), "w", encoding="utf-8") as stream:
                 json.dump(context.storage_state(), stream)
             # Verify the same fresh-context boundary the recorder will cross.
             # Keep cookie values in the private state file, never in evidence.
@@ -87,10 +87,10 @@ def prepare(base: str, recipe: Path, output: Path, auth: Path, proof: Path) -> d
                 raise ValueError("native upload staging requires a secure browser context")
             (proof / "capture-readiness.json").write_text(json.dumps({
                 "fresh_context_editor": True, "secure_upload_context": secure,
-                "cookie_count": len(restored.cookies()), "private_auth_mode": "0600"}, indent=2) + "\n")
+                "cookie_count": len(restored.cookies()), "private_auth_mode": "0600"}, indent=2) + "\n", encoding="utf-8")
             page.screenshot(path=str(proof / "restored-editor.png"))
             restored.close()
-            with output.open("x") as stream:
+            with output.open("x", encoding="utf-8") as stream:
                 stream.write(json.dumps(data, indent=2) + "\n")
             return {"execution_recipe": str(output.resolve()), "native_demo_account": True,
                 "onboarding": "native UI with declared synthetic sample answers",
@@ -98,8 +98,8 @@ def prepare(base: str, recipe: Path, output: Path, auth: Path, proof: Path) -> d
                 "execution_sha256": hashlib.sha256(output.read_bytes()).hexdigest(),
                 "auth": "private 0600 file; must not be copied into release or take archives"}
         except Exception:
-            (proof / "setup-body.log").write_text(page.locator("body").inner_text())
-            (proof / "setup.html").write_text(page.content())
+            (proof / "setup-body.log").write_text(page.locator("body").inner_text(), encoding="utf-8")
+            (proof / "setup.html").write_text(page.content(), encoding="utf-8")
             page.screenshot(path=str(proof / "setup.png"))
             raise
         finally:
