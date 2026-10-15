@@ -17,7 +17,7 @@ from urllib.parse import quote
 def prepare(pack_path: Path, readme: Path, destination: Path) -> None:
     if destination.exists():
         raise ValueError("output must be a new file")
-    pack = json.loads(pack_path.read_text())
+    pack = json.loads(pack_path.read_text(encoding="utf-8"))
     url, commit = pack["repository_url"].removesuffix(".git").rstrip("/"), pack["resolved_commit"]
     if not re.fullmatch(r"https://github\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", url):
         raise ValueError("use the public Taskfilm GitHub repository URL")
@@ -32,7 +32,7 @@ def prepare(pack_path: Path, readme: Path, destination: Path) -> None:
     if not all(term in data.decode("utf-8") for term in ("Taskfilm", "Taskboard", "local storage")):
         raise ValueError("this recipe is for Taskfilm's original Taskboard sample")
     reference = f"{url}/blob/{commit}/{quote(document['path'])}"
-    request = json.loads((Path(__file__).parent / "request.json").read_text())
+    request = json.loads((Path(__file__).parent / "request.json").read_text(encoding="utf-8"))
     request["request_id"] = "taskfilm-pinned-source-review"
     request["brief"] = "Show the original Taskfilm Taskboard sample and its pinned source, useful fit and limitation. Retain real capture evidence before rendering."
     request["claims"] = [
@@ -45,7 +45,7 @@ def prepare(pack_path: Path, readme: Path, destination: Path) -> None:
     for claim in request["claims"]:
         claim.update(approved=True, evidence_ref=reference)
     request["cta"] = {"type": "link", "label": "Get Taskfilm", "target": url}
-    destination.write_text(json.dumps(request, indent=2) + "\n")
+    destination.write_text(json.dumps(request, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:

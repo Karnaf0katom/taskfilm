@@ -12,7 +12,7 @@ from playwright.sync_api import sync_playwright
 
 
 def verify(site: Path, output: Path) -> dict:
-    package = json.loads((site / 'SHOWCASE.json').read_text())
+    package = json.loads((site / 'SHOWCASE.json').read_text(encoding="utf-8"))
     movies = [row for row in package['files'] if row['path'].startswith('assets/')
               and row['path'].endswith('.mp4')]
     assert 1 <= len(movies) <= 8
@@ -76,7 +76,7 @@ def verify(site: Path, output: Path) -> dict:
         server.shutdown()
         server.server_close()
         thread.join(timeout=3)
-    (output / "verification.json").write_text(json.dumps(report, indent=2) + "\n")
+    (output / "verification.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     return report
 
 

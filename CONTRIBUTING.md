@@ -5,6 +5,13 @@ Use Python 3.10+; install `.[browser,motion,dev]` in a virtual environment. Run
 original local Taskboard sample and a fresh browser context. It needs FFmpeg
 and Chromium; unit tests need no signed-in browser or provider account.
 
+Taskfilm-owned text files and CLI output use UTF-8. Specify `encoding="utf-8"`
+for file I/O and decoded subprocess output. The public CLI configures its
+output streams and launches Python owners in UTF-8 mode so Windows locales
+and redirected pipes follow the same contract. Encoding regressions emulate
+GBK file defaults and GBK, cp1252 and ASCII streams on every platform; these
+checks do not establish full Windows browser/render support.
+
 Preserve the separation between story planning, capture, edit decisions and
 rendering. Put behaviour with its existing owner; the CLI dispatches to those
 owners. In the source monorepo, the release exporter copies an exact allowlist

@@ -175,7 +175,7 @@ def build_package(take_dir, evidence_manifest_path, out_dir, *, proof_limit=DEFA
     screen_name = session['streams']['screen']['path']
     if not screen_name.endswith('.mp4'):
         raise ValueError('companion requires an MP4 screen take')
-    probe = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=codec_name:format=duration', '-of', 'json', str(take_dir / screen_name)], capture_output=True, text=True, timeout=30)
+    probe = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=codec_name:format=duration', '-of', 'json', str(take_dir / screen_name)], capture_output=True, text=True, encoding="utf-8", timeout=30)
     try:
         media = json.loads(probe.stdout)
         playable = probe.returncode == 0 and bool(media['streams'][0]['codec_name']) and float(media['format']['duration']) > 0
@@ -263,7 +263,7 @@ def build_package(take_dir, evidence_manifest_path, out_dir, *, proof_limit=DEFA
         staging.mkdir()
         (staging / 'walkthrough.html').write_text(document, encoding='utf-8')
         package['companion'] = {'path': 'walkthrough.html', 'sha256': provenance.hash_file(staging / 'walkthrough.html').sha256}
-        (staging / 'PACKAGE.json').write_text(json.dumps(package, indent=2) + '\n')
+        (staging / 'PACKAGE.json').write_text(json.dumps(package, indent=2) + '\n', encoding="utf-8")
         staging.rename(out)
     return package
 
@@ -311,7 +311,7 @@ def showcase_from_manifest(manifest_path, out_dir):
             raise ValueError('showcase movies must be MP4')
         probed = subprocess.run(['ffprobe', '-v', 'error', '-show_entries',
             'format=duration:stream=codec_type,width,height,r_frame_rate', '-of', 'json', str(source)],
-            capture_output=True, text=True, timeout=30)
+            capture_output=True, text=True, encoding="utf-8", timeout=30)
         try:
             probe = json.loads(probed.stdout)
             video = next(s for s in probe['streams'] if s['codec_type'] == 'video')
@@ -402,7 +402,7 @@ taskfilm init demo</pre><p>Run these commands from the extracted source. The REA
             target = stage / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(data)
-        (stage / 'SHOWCASE.json').write_text(json.dumps(report, indent=2) + '\n')
+        (stage / 'SHOWCASE.json').write_text(json.dumps(report, indent=2) + '\n', encoding="utf-8")
         stage.rename(out)
     return report
 

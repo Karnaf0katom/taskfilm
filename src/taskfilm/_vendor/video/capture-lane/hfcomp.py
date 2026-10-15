@@ -168,7 +168,7 @@ def tighten(video: Path, out_path: Path, segments: list) -> bool:
          "-filter_complex", ";".join(filters), "-map", "[out]",
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p",
          str(out_path)],
-        capture_output=True, text=True)
+        capture_output=True, text=True, encoding="utf-8")
     return proc.returncode == 0 and out_path.exists()
 
 
@@ -507,7 +507,7 @@ VO_EXTS = (".mp3", ".m4a", ".wav", ".aac", ".opus")
 def audio_seconds(path: Path) -> float:
     proc = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
                            "-of", "default=nw=1:nk=1", str(path)],
-                          capture_output=True, text=True)
+                          capture_output=True, text=True, encoding="utf-8")
     try:
         return round(float(proc.stdout.strip()), 3)
     except ValueError:
@@ -696,7 +696,7 @@ def main() -> int:
     if args.check:
         print("  check   : running hyperframes check…")
         proc = subprocess.run(["npx", "--yes", f"hyperframes@{HYPERFRAMES_VERSION}", "check"],
-                              cwd=result["out"], capture_output=True, text=True)
+                              cwd=result["out"], capture_output=True, text=True, encoding="utf-8")
         print("\n".join(f"    {line}" for line in
                         (proc.stdout or proc.stderr).strip().splitlines()[-14:]))
         return proc.returncode

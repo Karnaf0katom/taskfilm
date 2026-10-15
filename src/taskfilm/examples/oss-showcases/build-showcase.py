@@ -45,11 +45,11 @@ def digest(path: Path) -> str:
 
 def duration(path: Path) -> float:
     return float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries",
-        "format=duration", "-of", "default=nw=1:nk=1", str(path)], text=True))
+        "format=duration", "-of", "default=nw=1:nk=1", str(path)], text=True, encoding="utf-8"))
 
 
 def result_proof(take: Path, app: str) -> dict:
-    session = json.loads((take / "session.json").read_text())
+    session = json.loads((take / "session.json").read_text(encoding="utf-8"))
     if session["steps"]["ok"] != session["steps"]["total"]:
         raise ValueError("the original capture contains failed steps")
     if session["streams"]["screen"]["status"] != "ok":
@@ -62,7 +62,7 @@ def result_proof(take: Path, app: str) -> dict:
         stream = session["streams"].get("downloads", {})
         if stream.get("status") != "ok":
             raise ValueError("the original native download stream did not complete")
-        for line in (take / stream["path"]).read_text().splitlines():
+        for line in (take / stream["path"]).read_text(encoding="utf-8").splitlines():
             row = json.loads(line)
             artifact = row.get("artifact")
             if row.get("status") == "retained" and artifact:
@@ -81,7 +81,7 @@ def result_proof(take: Path, app: str) -> dict:
         retained.append({"path": assertion["screenshot"], "sha256": digest(path)})
     if app == "excalidraw":
         path = take / "downloads/diagram/idea-to-launch.excalidraw"
-        scene = json.loads(path.read_text())
+        scene = json.loads(path.read_text(encoding="utf-8"))
         live = [e for e in scene["elements"] if not e.get("isDeleted")]
         if not {"Idea", "Prototype", "Ship"} <= {e.get("text") for e in live}:
             raise ValueError("the downloaded diagram is missing its task labels")
@@ -90,7 +90,7 @@ def result_proof(take: Path, app: str) -> dict:
         retain_download(path)
     elif app == "drawdb":
         path = take / "downloads/sql/project-tracker.sql"
-        sql = path.read_text()
+        sql = path.read_text(encoding="utf-8")
         if not all(re.search(pattern, sql, re.I | re.S) for pattern in (
             r'CREATE\s+TABLE.*?"users"', r'CREATE\s+TABLE.*?"projects"',
             r'FOREIGN\s+KEY\s*\("owner_id"\)\s+REFERENCES\s+"users"\s*\("id"\)')):
@@ -126,7 +126,7 @@ def author(app: str, take: Path, out: Path, voice: Path | None, seconds: float |
     intro, end = (6.0, 7.0)
     task_start = intro
     if app == "drawdb" and words:
-        timestamps = json.loads(words.read_text())
+        timestamps = json.loads(words.read_text(encoding="utf-8"))
         choose = next((w for w in timestamps if str(w.get("text", "")).strip(".,").lower() == "choose"), None)
         if choose is None:
             raise ValueError("narration timestamps must include the lesson's Choose PostgreSQL cue")
@@ -180,7 +180,7 @@ def author(app: str, take: Path, out: Path, voice: Path | None, seconds: float |
         audio_rights = "Original deterministic pulse synthesis from the included Taskfilm SFX owner."
     e = html.escape
     title = ''.join(f'<div class="line"><span class="word word-{i}">{e(line)}</span></div>' for i, line in enumerate(cfg["headline"]))
-    beats = [json.loads(line) for line in (take / "beats.jsonl").read_text().splitlines()]
+    beats = [json.loads(line) for line in (take / "beats.jsonl").read_text(encoding="utf-8").splitlines()]
     if len(beats) != 3:
         raise ValueError("the showcase needs three retained instruction beats")
     source_boundaries = [0.0] + [float(row["video_t"]) for row in beats[1:]] + [raw]
@@ -225,7 +225,7 @@ def author(app: str, take: Path, out: Path, voice: Path | None, seconds: float |
         labels += f'<div id="proof-label" class="clip step" data-start="{freeze_start:g}" data-duration="{total-end-freeze_start:g}" data-track-index="16"><span class="number">PROOF</span><span>Retained SQL. An editable lesson.</span></div>'
     elif app == "excalidraw" and freeze_start < total-end:
         labels += f'<div id="proof-label" class="clip step" data-start="{freeze_start:g}" data-duration="{total-end-freeze_start:g}" data-track-index="16"><span class="number">RESULT</span><span>Idea. Prototype. Ship.</span></div>'
-    markup = (Path(__file__).parent / "showcase.tpl").read_text()
+    markup = (Path(__file__).parent / "showcase.tpl").read_text(encoding="utf-8")
     replacements = {"__APP__": e(cfg["name"]), "__MODE__": e(cfg["mode"]), "__ID__": app + "-showcase",
         "__ACCENT__": cfg["accent"], "__DURATION__": f"{total:g}", "__TITLE__": title,
         "__ABOUT__": e(cfg["about"]), "__RESULT__": e(cfg["result"]), "__SOURCE__": e(cfg["repo"]),
@@ -240,13 +240,13 @@ def author(app: str, take: Path, out: Path, voice: Path | None, seconds: float |
         "__DETAIL_MOTION__": f"tl.to('#task-2',{{scale:1.20,duration:.6,ease:'power2.inOut'}},{boundaries[2]+.8:g});" if len(segments)==3 else ""}
     for key, value in replacements.items():
         markup = markup.replace(key, value)
-    (out / "index.html").write_text(markup)
-    (out / "hyperframes.json").write_text(json.dumps({"name": app + "-showcase", "entry": "index.html"}, indent=2) + "\n")
+    (out / "index.html").write_text(markup, encoding="utf-8")
+    (out / "hyperframes.json").write_text(json.dumps({"name": app + "-showcase", "entry": "index.html"}, indent=2) + "\n", encoding="utf-8")
     (out / "package.json").write_text(json.dumps({"private": True, "scripts": {
-        "check": "npx --yes hyperframes@0.8.134 check", "render": "npx --yes hyperframes@0.8.134 render"}}, indent=2) + "\n")
-    (out / "frame.md").write_text(f"# {cfg['name']} showcase\n\nConcept: {cfg['headline'][0]} {cfg['headline'][1]}\n\nWarm paper #f3f2ed, ink #17251f, accent {cfg['accent']}. Manrope display and Geist Mono metadata. Anchor the app and mode to the upper corners. Feature actual browser footage, followed by the retained result. A single expanding rule follows the finite timeline. Large type reveals and a bounded perspective entrance dress the recording. No synthetic app interface.\n")
-    (out / "BRIEF.md").write_text(f"---\nworkflow: general-video\nflow: autonomous\nstoryboard: no\n---\n\n# {cfg['name']} — {cfg['mode']}\n\nCreate the approved OSS showcase in 1920×1080 / 30fps. Explain the app, show one real useful task, and state Taskfilm's contribution. The user approved all proposed films in the release continuation. Keep the original take and semantic result proof. Deliver editable HTML plus reviewed MP4. {audio_rights}\n")
-    (out / "STORYBOARD.md").write_text(f"# {cfg['name']}\n\n0–{intro:g}s: explain what the app does; discrete text assembly.\n{intro:g}–{task_start:g}s: preview the retained schema during the narration, when present.\n{task_start:g}–{freeze_start:g}s: actual browser task; bounded perspective entrance and three instruction labels.\n{freeze_start:g}–{total-end:g}s: hold the actual final result, when the lesson needs reading time.\n{total-end:g}–{total:g}s: show the checked result and Taskfilm's contribution; keep source attribution readable.\n")
+        "check": "npx --yes hyperframes@0.8.134 check", "render": "npx --yes hyperframes@0.8.134 render"}}, indent=2) + "\n", encoding="utf-8")
+    (out / "frame.md").write_text(f"# {cfg['name']} showcase\n\nConcept: {cfg['headline'][0]} {cfg['headline'][1]}\n\nWarm paper #f3f2ed, ink #17251f, accent {cfg['accent']}. Manrope display and Geist Mono metadata. Anchor the app and mode to the upper corners. Feature actual browser footage, followed by the retained result. A single expanding rule follows the finite timeline. Large type reveals and a bounded perspective entrance dress the recording. No synthetic app interface.\n", encoding="utf-8")
+    (out / "BRIEF.md").write_text(f"---\nworkflow: general-video\nflow: autonomous\nstoryboard: no\n---\n\n# {cfg['name']} — {cfg['mode']}\n\nCreate the approved OSS showcase in 1920×1080 / 30fps. Explain the app, show one real useful task, and state Taskfilm's contribution. The user approved all proposed films in the release continuation. Keep the original take and semantic result proof. Deliver editable HTML plus reviewed MP4. {audio_rights}\n", encoding="utf-8")
+    (out / "STORYBOARD.md").write_text(f"# {cfg['name']}\n\n0–{intro:g}s: explain what the app does; discrete text assembly.\n{intro:g}–{task_start:g}s: preview the retained schema during the narration, when present.\n{task_start:g}–{freeze_start:g}s: actual browser task; bounded perspective entrance and three instruction labels.\n{freeze_start:g}–{total-end:g}s: hold the actual final result, when the lesson needs reading time.\n{total-end:g}–{total:g}s: show the checked result and Taskfilm's contribution; keep source attribution readable.\n", encoding="utf-8")
     receipt = {"schema": "taskfilm-oss-showcase/v1", "app": app, "mode": cfg["mode"], "seconds": total,
         "hyperframes": "0.8.134", "capture": proof, "take_sha256": digest(assets / "take.mp4"),
         "source_seconds": raw, "source_playback_rate": rate, "task_start": task_start,
@@ -255,7 +255,7 @@ def author(app: str, take: Path, out: Path, voice: Path | None, seconds: float |
         "result_image_sha256": digest(assets / "result.png"),
         "schema_preview_sha256": digest(assets / "schema-preview.png") if app == "drawdb" else None,
         "audio_rights": audio_rights, "rendered": False, "encoded_visual_review": "not_performed"}
-    (out / "EVIDENCE.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    (out / "EVIDENCE.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     return receipt
 
 

@@ -98,7 +98,7 @@ def run_git(
         ["git", *args],
         cwd=cwd,
         capture_output=True,
-        text=True,
+        text=True, encoding="utf-8",
         timeout=timeout,
     )
     if proc.returncode != 0:

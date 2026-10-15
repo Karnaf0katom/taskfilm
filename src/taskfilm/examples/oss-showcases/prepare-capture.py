@@ -13,7 +13,7 @@ from pathlib import Path
 
 def prepare(recipe: Path, output: Path) -> dict:
     recipe = recipe.resolve()
-    data = json.loads(recipe.read_text())
+    data = json.loads(recipe.read_text(encoding="utf-8"))
     for seed in data.get("stage", {}).get("seed_files", []):
         path = Path(seed["path"])
         if not path.is_absolute():
@@ -26,7 +26,7 @@ def prepare(recipe: Path, output: Path) -> dict:
         if path.stat().st_size != proof["expected_bytes"] or hashlib.sha256(path.read_bytes()).hexdigest() != proof["expected_sha256"]:
             raise ValueError("the upload seed differs from the recipe's checked bytes")
         seed["path"] = str(path)
-    with output.open("x") as stream:
+    with output.open("x", encoding="utf-8") as stream:
         stream.write(json.dumps(data, indent=2) + "\n")
     return {"execution_recipe": str(output.resolve()),
             "template_sha256": hashlib.sha256(recipe.read_bytes()).hexdigest(),

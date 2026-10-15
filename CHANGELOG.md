@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Read and write Taskfilm text files as UTF-8 regardless of the system locale.
+- Emit UTF-8 CLI output, including delegated capture commands, with regression
+  coverage for GBK, cp1252 and ASCII streams.
+- Reject raw backslash ZIP members even when Windows normalizes their names.
+
 ## 0.1.0a2
 
 - Preview navigation and filters for product films, feature lessons, motion graphics, OSS walkthroughs and recordings.

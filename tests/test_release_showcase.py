@@ -38,7 +38,7 @@ def showcase(tmp_path):
          'downloads': [{'path': archive.name, 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
                         'label': 'Test archive'}]}
     manifest = tmp_path / 'showcase.json'
-    manifest.write_text(json.dumps(m))
+    manifest.write_text(json.dumps(m), encoding="utf-8")
     return manifest, m
 
 
@@ -48,7 +48,7 @@ def test_showcase_retains_movie_and_download_and_escapes_text(showcase):
     result = owner().showcase_from_manifest(manifest, output)
     assert (output / 'assets/movie-1.mp4').read_bytes() == (manifest.parent / 'fixture.mp4').read_bytes()
     assert (output / 'downloads/fixture.zip').read_bytes() == (manifest.parent / 'fixture.zip').read_bytes()
-    document = (output / 'index.html').read_text()
+    document = (output / 'index.html').read_text(encoding="utf-8")
     assert '<preview>' not in document and '&lt;preview&gt;' in document
     assert 'controls playsinline' in document
     assert 'OSS walkthrough' in document
@@ -79,7 +79,7 @@ def test_showcase_refuses_bad_evidence_atomically(showcase, fault):
         movie['sha256'] = hashlib.sha256(b'not an MP4').hexdigest()
     else:
         m['downloads'].append(dict(m['downloads'][0]))
-    manifest.write_text(json.dumps(m))
+    manifest.write_text(json.dumps(m), encoding="utf-8")
     output = manifest.parent / 'rejected-preview'
     with pytest.raises(ValueError):
         owner().showcase_from_manifest(manifest, output)
@@ -92,10 +92,10 @@ def test_showcase_explains_app_and_taskfilm_with_source_links(showcase):
                          taskfilm_description='Real footage & editable motion',
                          links=[{'label': 'Source & licence',
                                  'url': 'https://github.com/drawdb-io/drawdb'}])
-    manifest.write_text(json.dumps(m))
+    manifest.write_text(json.dumps(m), encoding="utf-8")
     output = manifest.parent / 'explained-preview'
     owner().showcase_from_manifest(manifest, output)
-    document = (output / 'index.html').read_text()
+    document = (output / 'index.html').read_text(encoding="utf-8")
     assert 'About the app.</strong> Diagrams &lt;and&gt; SQL' in document
     assert 'Made with Taskfilm.</strong> Real footage &amp; editable motion' in document
     assert 'href="https://github.com/drawdb-io/drawdb"' in document
@@ -107,7 +107,7 @@ def test_showcase_explains_app_and_taskfilm_with_source_links(showcase):
 def test_showcase_refuses_unsafe_resource_links(showcase, url):
     manifest, m = showcase
     m['movies'][0]['links'] = [{'label': 'Source', 'url': url}]
-    manifest.write_text(json.dumps(m))
+    manifest.write_text(json.dumps(m), encoding="utf-8")
     output = manifest.parent / 'unsafe-preview'
     with pytest.raises(ValueError, match='public HTTPS'):
         owner().showcase_from_manifest(manifest, output)
@@ -118,10 +118,10 @@ def test_showcase_supports_more_than_four_films_and_distinct_options(showcase):
     manifest, m = showcase
     kinds = ['product_promo', 'feature_lesson', 'motion_graphics', 'oss_walkthrough', 'recording']
     m['movies'] = [dict(m['movies'][0], kind=kind, label=f'Fixture {kind}') for kind in kinds]
-    manifest.write_text(json.dumps(m))
+    manifest.write_text(json.dumps(m), encoding="utf-8")
     output = manifest.parent / 'options-preview'
     result = owner().showcase_from_manifest(manifest, output)
-    document = (output / 'index.html').read_text()
+    document = (output / 'index.html').read_text(encoding="utf-8")
     assert document.count('<video controls playsinline') == 5
     assert [row['kind'] for row in result['files'][:5]] == kinds
     for i, kind in enumerate(kinds, 1):
@@ -134,6 +134,6 @@ def test_showcase_supports_more_than_four_films_and_distinct_options(showcase):
 def test_showcase_refuses_unknown_production_option(showcase):
     manifest, m = showcase
     m['movies'][0]['kind'] = 'native_adobe_project'
-    manifest.write_text(json.dumps(m))
+    manifest.write_text(json.dumps(m), encoding="utf-8")
     with pytest.raises(ValueError, match='supported production option'):
         owner().showcase_from_manifest(manifest, manifest.parent / 'unsupported-preview')

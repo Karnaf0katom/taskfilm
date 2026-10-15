@@ -74,7 +74,7 @@ def _json(value: Any) -> str:
 
 
 def _upstream() -> dict:
-    manifest = json.loads((UPSTREAM / "UPSTREAM.json").read_text())
+    manifest = json.loads((UPSTREAM / "UPSTREAM.json").read_text(encoding="utf-8"))
     for row in manifest["files"]:
         if hashlib.sha256((UPSTREAM / row["path"]).read_bytes()).hexdigest() != row["sha256"]:
             raise ProductStoryError("pinned brag source hash mismatch")
