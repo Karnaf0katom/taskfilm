@@ -11,6 +11,13 @@ workflow and turns it into a short, editable video with HyperFrames. Use it for
 feature handoffs, onboarding, release notes and tool walkthroughs. Run the local
 CLI yourself or give its included skill to your coding agent.
 
+**Watch Taskfilm in action (43 seconds)**
+
+[![Watch the demo: the agent builds a feature, creates an explainer video, and delivers it in chat](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-ccc-demo-v4-preview.png)](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-ccc-demo-v4.mp4)
+
+[▶ Watch the video](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-ccc-demo-v4.mp4) — See the agent build an update,
+make a video explaining what changed, and deliver it in the same chat.
+
 [Watch the examples](https://karnaf0katom.github.io/taskfilm/) ·
 [Download the release](https://github.com/Karnaf0katom/taskfilm/releases) ·
 [Workflow guide](docs/WORKFLOWS.md)
@@ -31,7 +38,7 @@ Give your agent one checked task and ask for its walkthrough:
 > Make the watchlist easier to scan. Use `$taskfilm-feature-explainer` to show
 > the upgrade once it works and its checks pass.
 
-[Watch the short CCC workflow demo](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-ccc-demo-20261015.mp4) ·
+[Watch the short CCC workflow demo](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-ccc-demo-v4.mp4) ·
 [Watch the resulting feature walkthrough](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a2/taskfilm-watchlist-upgrade-20261015.mp4)
 
 The edited demo shows a UI upgrade request in CCC with Codex, a time skip,
