@@ -122,6 +122,12 @@ def test_agent_skill_can_be_installed_without_private_tools(tmp_path):
     assert skill.startswith("---\nname: taskfilm-video\n")
 
 
+@pytest.mark.parametrize("command,flag", [("run", "--resume"), ("skill", "--name")])
+def test_builtin_help_reaches_the_command_parser(tmp_path, command, flag):
+    result = invoke(tmp_path, command, "--help")
+    assert flag in result.stdout
+
+
 def test_doctor_reports_actual_install(tmp_path):
     report = json.loads(invoke(tmp_path, "doctor", "--json").stdout)
     assert report["planning_ready"] is True
@@ -214,6 +220,20 @@ def test_real_original_browser_task(example, tmp_path):
     assert "hyperframes@0.8.134" in package["scripts"]["render"]
     assert (tmp_path / "composition/assets/capture-font.ttf").is_file()
     assert (tmp_path / "composition/assets/FONT-LICENSE.txt").is_file()
+    # The app server is already stopped: a verified take must produce the fast
+    # handoff and an unchanged resume without replaying the product task.
+    film = tmp_path / "agent-film"
+    handoff = json.loads(invoke(tmp_path, "run", source, "--take", take,
+                               "--out", film, "--json", timeout=capture_timeout).stdout)
+    assert handoff["render_mode"] == "capture"
+    assert handoff["capture_verified"] and handoff["video_verified"]
+    probe = subprocess.run(["ffprobe", "-v", "error", "-show_streams", "-of", "json",
+                            handoff["artifacts"]["movie"]], capture_output=True, text=True, check=True, timeout=30)
+    assert any(row["codec_type"] == "subtitle" for row in json.loads(probe.stdout)["streams"])
+    resumed = json.loads(invoke(tmp_path, "run", source, "--take", take,
+                                "--out", film, "--json", "--resume").stdout)
+    assert resumed["reused"] == ["validate", "capture", "edit", "compose", "render", "verify"]
+    assert resumed["artifacts"] == handoff["artifacts"]
 
 
 def test_motion_lab_is_portable_and_complete(example, tmp_path):

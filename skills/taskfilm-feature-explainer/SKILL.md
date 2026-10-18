@@ -1,106 +1,85 @@
 ---
 name: taskfilm-feature-explainer
-description: Work on UI or features with Taskfilm walkthroughs at checked milestones, optional background filming, and progress, previews and stop/change controls in the same chat. Use when the user wants to see and steer working changes through a demo during implementation or at handoff.
+description: Deliver backend and UI changes with a real Taskfilm video in the same agent run and final response. Use when a user requests a feature walkthrough with implementation, including optional authorized background filming.
 ---
 
-Turn a checked feature into a lesson the user can follow: what changed, why it
-helps, how to use it, and the visible result. Load this skill at the start of a
-feature request when the user wants demos as they work, or after a finished change.
-Keep the implementation, filming and review in the owning conversation. Group
-related changes into one useful task; follow the user's language and delivery format.
+Finish the requested backend/UI change, check it, and deliver a readable video
+of one useful workflow before ending the same conversation. A requested film
+is part of the feature handoff; do not stop at offering to make it later.
+Use the user's language and the real product's labels and appearance.
 
-Use the installed Taskfilm CLI and its existing capture, story, composition and
-render owners. Read [the production reference](references/workflow.md) when
-making the film. Read [the in-chat workflow](references/in-chat.md) for readiness,
-background delegation, revision handling and user controls.
+## One implementation, one capture, one render
 
-## Choose the filming moment
+Use the project's existing build/start and acceptance commands. Keep their
+results with the feature record; passing browser assertions alone do not prove
+backend tests passed. Coalesce related edits into one stable milestone. Prepare
+the capture while building, then keep its running target unchanged during filming.
 
-Carry the user's request for walkthroughs through the current feature task. At a
-meaningful milestone, check whether one useful user task works in the actual app,
-its relevant acceptance checks pass, and the controls and data to be filmed are
-stable. A commit alone does not establish readiness; uncommitted checked work can
-be ready. A missing app or failing task stays in implementation with a specific
-reason. Do not film every edit or wait for unrelated backlog to finish.
+Write a capture JSON for the actual app: short `beat` explanations around real
+actions, an `assert` with a screenshot for the useful result, and a readable final
+hold. Use `taskfilm init` only when the capture schema is unknown; its Taskboard
+is a tool fixture, never evidence for the changed product.
 
-Once the milestone is ready, start the already requested walkthrough without
-another confirmation. If the user requested background filming, use at most one
-temporary helper through the current harness when available and authorized.
-Give it only the checked task, target, acceptance evidence, current revision and
-an owned output folder. It films; the parent continues work that will not change
-the captured target. Otherwise make the walkthrough in this conversation.
+```bash
+taskfilm run feature-film/capture.json --out feature-film/run-1 \
+  --revision FEATURE-REVISION --source path/to/backend.py --source path/to/ui.tsx --json
+```
 
-Report readiness and capture/render progress here. Show the verified task result
-as soon as it is available, then the reviewed movie. Attach a playable file or
-preview when the chat supports it; otherwise give a direct artifact link and a
-readable result screenshot. Keep one owner and return the helper's result here.
+Substitute real relevant files. Track relevant uncommitted sources, capture
+inputs and running build identity; HEAD alone is insufficient. The CLI checks
+tracked file hashes between stages; it cannot detect every live server/data change.
+The fast default keeps the recorded pixels, cursor and click feedback, adds
+editable subtitle captions, and prepares MP4 playback without another encode
+or browser render. The preview shows the timed explanations. The clean take
+and editable HyperFrames project stay available. Use `--render-mode hyperframes`
+for motion or burned-in explanations; `--quality looks` or `delivery` also
+selects that renderer. Choose the requested treatment up front, without a
+routine draft-plus-final cycle. If a checked take already exists, `--take TAKE`
+imports its verified inputs without recapturing; confirm its running revision.
 
-## Keep the walkthrough steerable
+The command writes stage logs to disk and returns compact JSON with the exact
+take, editable project, MP4, result image, review frames and playable preview.
+Read that result instead of loading logs or composition source into context.
+On failure inspect only the reported log's relevant tail. Repeat the same command
+with `--resume` after fixing the cause: completed unchanged stages are reused.
+Changed product/capture inputs require a new output folder. A render failure
+does not require repeating the product task. Do not start a polling service.
 
-Treat new messages as steering for the active feature and demo. “Stop filming”
-stops the demo; “stop everything” stops both. “Continue filming” resumes from the
-last valid stage. A requested feature change returns to implementation and new
-checks before recording the changed behavior. A copy, pacing or narration change
-can reuse a still-valid capture. Plain “stop” stops active work first; clarify
-scope only if needed before resuming. Never interpret silence as permission to
-resume a stopped task.
+Inspect the result screenshot and full-size review frames, and check audio when
+present. `status: rendered` means assertions, encoding and decoding passed;
+`visual_review: not_performed` still requires the agent's review. The preview is
+local HTML with native playback; it does not publish the files.
 
-Retain takes and track which feature revision each shows. If edits affect the
-captured task, invalidate the old result and stop the helper before starting a
-replacement. Show old versions only with their version clearly identified.
-Report what is checked, what the user can review, and the next authorized step
-so they can decide to stop, continue or change direction in this chat.
+Read [the production reference](references/workflow.md) for capture authoring,
+custom films or backend-only tasks. Read [the in-chat workflow](references/in-chat.md)
+only for background delegation, revisions during filming, or stop/change controls.
 
-## Ground the lesson in the finished change
+## Optional background filming
 
-Inspect the actual diff, current product and acceptance results. Choose one task
-that becomes possible or easier because of the change. Write down its starting
-state, actions and success condition. Distinguish a checked local feature from
-a deployed feature. For an existing feature walkthrough, describe its present
-behavior without inventing a recent upgrade.
+When the user authorized delegation and independent implementation/checks remain,
+use at most one temporary worker with `fork_turns: none`. Give it only the checked
+capture, actual target/reset recipe, passing checks, source/build revision, owned
+output folder and this skill. One deliverable: run the CLI and review the film.
+One acceptance check: the scripted task and reviewed movie match that revision.
+Request a final report of status, artifact paths, checks and concrete blocker;
+no source edits, publishing, grandchildren or transcript streaming. The parent
+collects that result before its final answer and rechecks the target revision.
+If no independent work remains, run in the owning conversation; delegation
+has a context/startup cost. Installing this skill does not authorize helpers.
 
-Explain the user benefit in one sentence, then plan a compact sequence:
+A feature change during filming stops the affected job and invalidates its
+result. Copy or pacing changes can reuse a valid take. Stop/pause requests stop
+the requested work and its known processes; do not automatically restart them.
+After two attempts hit the same unchanged blocker, retain partial files and
+report the concrete resume condition.
 
-- What changed and the situation where it helps.
-- Where to find it and any prerequisite the user needs.
-- The actual actions, with short instructions beside the real product.
-- The verified result, held long enough to read.
-- A specific task the viewer can try next.
+## Same-response handoff
 
-A 30–60 second lesson is a useful default, not a fixed template. Show the
-workflow at natural speed; remove idle setup without hiding required actions.
-Use the changed product's own labels, data and appearance. Keep motion modest
-enough to leave the controls and result readable.
-
-## Make and check the walkthrough
-
-For a browser feature, record the running product and assert the expected result.
-For a CLI or backend feature, execute the real commands and retain their output;
-present verified excerpts or a diagram when there is no meaningful screen task.
-Label diagrams as explanation. Source excerpts establish what the code says;
-only executed checks establish runtime behavior.
-
-Author the copy and choreography for this change. Taskfilm's story command
-produces a plan; the composition command does not automatically execute that
-plan. Apply the explanation to the beat labels or editable composition and
-review it. Use supplied narration when available, or a captioned silent lesson.
-Voice generation is a separate step using the user's authorized provider.
-
-Inspect the real result, the rendered controls and text, the opening, every
-action, and the final hold. Check timing and decoding. If audio is supplied,
-listen to the complete encoded track. Correct an observed problem, then repeat
-the affected check. An unavailable app or failed check is a concrete blocker;
-retain the partial files and report the missing input without declaring a film
-finished.
-
-## Finish the feature handoff
-
-Deliver the movie, editable project, a few written usage steps and the check
-that confirmed the result. State any prerequisite or product limitation needed
-to use the feature. Record which capture, render and review steps actually
-finished. Link the walkthrough in the final feature response and include the
-current revision and any remaining work so the user can steer the next change.
-
-Keep local artifacts local unless the user authorized a sharing destination.
-This skill runs within an active agent conversation. Installation makes it
-discoverable; it does not create an always-on watcher, Git hook or render service.
+Include the movie or playable attachment, local preview, readable result image,
+editable project and the feature's acceptance result in the final feature reply.
+Use the chat's attachment capability when available; otherwise link the exact
+files. Do not promise inline local MP4 playback in every client. Give the minimum
+usage steps and state which revision was filmed. Keep implementation checks,
+capture assertions, video decoding and human/agent visual review distinct.
+For backend-only changes, execute the real command and retain its result; label
+any explanatory diagram or transcript as such instead of fabricating a GUI.

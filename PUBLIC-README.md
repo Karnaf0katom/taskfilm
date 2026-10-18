@@ -150,6 +150,34 @@ The 45-second Excalidraw film and 72-second drawDB lesson retain checked native
 exports. **Penpot's complete capture, native export and film remain unverified.**
 The showcase films were recorded before the public rename and retain the earlier wordmark.
 
+## One run: checked feature to video
+
+After your agent finishes and checks a backend/UI change, it can make the
+walkthrough before its final response:
+
+```bash
+taskfilm run capture.json --out feature-film --revision feature-v2 --json
+```
+
+The command records the real app, verifies result assertions, and returns a
+checked MP4, playable local preview, result image and review frames. The fast
+default preserves recorded pixels and adds editable subtitle captions without
+another encode or browser render. It also retains an editable HyperFrames
+project. Choose `--render-mode hyperframes` for motion or burned-in explanations;
+`--quality looks` or `delivery` selects that renderer too. Logs stay on disk,
+and `--resume` reuses unchanged completed stages. The agent still inspects the
+result and movie before delivery.
+
+Install the implementation-and-video workflow with:
+
+```bash
+taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-feature-explainer
+```
+
+It keeps backend/UI checks and the film in the same final handoff, with one
+optional temporary filming worker when authorized and useful. See the
+[one-run guide](docs/AGENT-RUN.md) for source tracking, resume and output details.
+
 ## Use with an agent
 
 ```bash
@@ -164,6 +192,7 @@ capture, composition, motion and evidence workflow; it requires no private check
 
 | Command | Purpose |
 | --- | --- |
+| `run` | Capture, compose, render and return a resumable feature-video handoff |
 | `doctor`, `init`, `skill` | Check tools, copy samples and install the skill |
 | `story` | Plan a feature lesson, promo or OSS walkthrough |
 | `capture` | Validate, discover and record a browser workflow |

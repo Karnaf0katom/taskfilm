@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Add `taskfilm run`: one capture-to-video command with compact agent output,
+  checked result screenshots, playable preview and full-size review frames.
+- Keep recorded pixels and editable subtitle captions in the fast default;
+  retain an optional full HyperFrames render and import verified existing takes.
+- Reuse hash-checked completed stages with `--resume`, track relevant source
+  revisions, and retain partial work on failure or interruption.
+- Package the feature-explainer skill for same-response backend/UI and video
+  delivery with optional bounded background filming.
+
 ## 0.1.0a2
 
 - Preview navigation and filters for product films, feature lessons, motion graphics, OSS walkthroughs and recordings.

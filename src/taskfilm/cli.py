@@ -87,7 +87,7 @@ def initialize(destination: Path, kind: str = "examples") -> int:
     if destination.exists():
         raise ValueError("example destination must be a new directory")
     shutil.copytree(source, destination)
-    if kind == "skill":
+    if kind in {"skill", "feature_skill"}:
         print(json.dumps({"skill": str(destination / "SKILL.md")}))
         return 0
     # Make the bundled identity editable beside the sample. The original font
@@ -121,8 +121,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="taskfilm", description=
         "Turn real product workflows into feature lessons, product promos and OSS demos.")
     parser.add_argument("--version", action="version", version=__version__)
-    parser.add_argument("command", nargs="?", choices=[*OWNERS, "doctor", "init", "skill", "render"])
-    args, rest = parser.parse_known_args(argv)
+    parser.add_argument("command", nargs="?", choices=[*OWNERS, "doctor", "init", "skill", "render", "run"])
+    if argv and argv[0] in {"doctor", "init", "skill", "render", "run"}:
+        args, rest = parser.parse_args(argv[:1]), argv[1:]
+    else:
+        args, rest = parser.parse_known_args(argv)
     try:
         if args.command in OWNERS:
             return run_owner(args.command, rest)
@@ -130,10 +133,19 @@ def main(argv: list[str] | None = None) -> int:
             sub = argparse.ArgumentParser(prog="taskfilm doctor")
             sub.add_argument("--json", action="store_true")
             return doctor(sub.parse_args(rest).json)
+        if args.command == "run":
+            from .pipeline import main as run_pipeline
+            return run_pipeline(rest)
         if args.command in {"init", "skill"}:
             sub = argparse.ArgumentParser(prog=f"taskfilm {args.command}")
             sub.add_argument("destination", type=Path)
-            return initialize(sub.parse_args(rest).destination, "skill" if args.command == "skill" else "examples")
+            if args.command == "skill":
+                sub.add_argument("--name", choices=["taskfilm-video", "taskfilm-feature-explainer"],
+                                 default="taskfilm-video")
+            options = sub.parse_args(rest)
+            kind = "examples" if args.command == "init" else (
+                "feature_skill" if options.name == "taskfilm-feature-explainer" else "skill")
+            return initialize(options.destination, kind)
         if args.command == "render":
             sub = argparse.ArgumentParser(prog="taskfilm render")
             sub.add_argument("project", type=Path)

@@ -4,6 +4,13 @@ For demos during feature work or background filming, also use
 [the in-chat workflow](in-chat.md). It defines readiness, revisions and controls;
 the commands below remain the production path.
 
+For the default browser feature lesson, use `taskfilm run SCRIPT --out FILM --json`
+after the feature's acceptance checks pass. It prepares a captioned MP4 from the
+real recording without a second encode, plus the editable HyperFrames project,
+exact artifact paths, technical receipts and review frames. Use `--resume`
+with unchanged inputs after a failed render. The manual stages below are for
+custom direction, narration or debugging; they are not an additional required pass.
+
 ## Inputs and output folder
 
 Use the finished diff or commit, passing acceptance evidence, the actual app

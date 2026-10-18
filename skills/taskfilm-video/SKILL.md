@@ -7,6 +7,22 @@ Use the installed `taskfilm` CLI. Read its README for installation and run
 `taskfilm doctor` and `taskfilm capture check` before browser capture. This skill
 is self-contained and does not require the private monorepo or fleet tools.
 
+For a checked browser feature, prefer one command:
+`taskfilm run SCRIPT --out FILM --json`. It validates, records with result
+assertions, edits, composes, prepares a captioned MP4 and decodes it. Read its compact
+result for artifact paths; inspect the retained result image and review frames,
+then include the movie and playable preview in the same final response.
+Use `--resume` with the same inputs after a failed render to reuse the take.
+The default preserves recorded pixels without another encode or browser render.
+The preview shows timed captions; the clean take and editable HyperFrames project
+are retained. Use `--render-mode hyperframes` for motion or burned-in explanations.
+Select a requested higher quality up front. A `rendered` receipt is not visual
+review. Full logs stay in FILM/logs; load only a relevant failure tail.
+
+For implementation plus a film, install the dedicated workflow with
+`taskfilm skill DEST --name taskfilm-feature-explainer`. It supports backend/UI
+acceptance checks and optional authorized background filming in one conversation.
+
 Choose the story treatment from the user's goal: `feature_demo` for one
 repeatable task, `saas_launch` for problem/workflow/payoff and a supplied CTA,
 `github_review` for a pinned OSS source with fit, limitation and attribution.
