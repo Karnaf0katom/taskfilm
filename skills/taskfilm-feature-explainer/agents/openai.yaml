@@ -1,4 +1,4 @@
 interface:
   display_name: "Feature walkthrough"
-  short_description: "Film checked features and steer them in this chat"
-  default_prompt: "Use $taskfilm-feature-explainer while building this feature; film checked milestones in the background and show progress and previews here so I can stop, continue or request changes."
+  short_description: "Ship checked backend/UI changes with a video"
+  default_prompt: "Use $taskfilm-feature-explainer to complete this backend/UI change, run its checks, and include a reviewed Taskfilm walkthrough in your final response."

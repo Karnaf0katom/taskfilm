@@ -73,8 +73,8 @@
       "source": "apps/video/jarvis/CHANGELOG.md",
       "path": "CHANGELOG.md",
       "source_sha256": "b3e8110831b403af7481aac2d21de99257af1e2c79df37b95e717c91c7f137ef",
-      "sha256": "b3e8110831b403af7481aac2d21de99257af1e2c79df37b95e717c91c7f137ef",
-      "bytes": 1742,
+      "sha256": "a3bd5d0fd2911a17e92273e023235afc8da27a10e6b598163f34c926d0bb69e7",
+      "bytes": 2411,
       "license": "MIT"
     },
     {
@@ -97,16 +97,16 @@
       "source": "apps/video/jarvis/MANIFEST.in",
       "path": "MANIFEST.in",
       "source_sha256": "7b7d0a6f020c2c2b1e3fdbe2ba9b865de191d0f0a58801d626802d1f33434630",
-      "sha256": "7b7d0a6f020c2c2b1e3fdbe2ba9b865de191d0f0a58801d626802d1f33434630",
-      "bytes": 509,
+      "sha256": "8d4fa0a39c83584b0d075c952e89b8fff4fb7535fe034392428f2018cb378fb3",
+      "bytes": 611,
       "license": "MIT"
     },
     {
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "PUBLIC-README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "cc71acb0799487463251fb7749f4b67b26c11ddf0ab09737b03cea3bf80f0f2b",
-      "bytes": 9566,
+      "sha256": "186b0df08941f56382aefcd32991e85aab1130b0e3325ad7276ec6751179aafc",
+      "bytes": 10879,
       "license": "MIT",
       "documentation_base_sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775"
     },
@@ -114,8 +114,8 @@
       "source": "apps/video/jarvis/PUBLIC-README.md",
       "path": "README.md",
       "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "cc71acb0799487463251fb7749f4b67b26c11ddf0ab09737b03cea3bf80f0f2b",
-      "bytes": 9566,
+      "sha256": "8eb627e7d76c318c9e685f04a36a5a9dacb99a3fa539978b213217a3470b2102",
+      "bytes": 11319,
       "license": "MIT",
       "documentation_base_sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775"
     },
@@ -123,8 +123,8 @@
       "source": "apps/video/jarvis/RELEASE.md",
       "path": "RELEASE.md",
       "source_sha256": "b49dd94cccfded7848521b733d522f46657a0f13e5662247570e17b1cdf035c6",
-      "sha256": "b49dd94cccfded7848521b733d522f46657a0f13e5662247570e17b1cdf035c6",
-      "bytes": 3803,
+      "sha256": "0b52ca44deaa616aff4c2b611785f452905ab44290360524dfcb159a0fd77463",
+      "bytes": 4668,
       "license": "MIT"
     },
     {
@@ -142,6 +142,14 @@
       "sha256": "83efb7b69f5e6a88f76a3a89501d2f20d5e4d2bf53ec5654483644b2c38ac37c",
       "bytes": 2455,
       "license": "MIT"
+    },
+    {
+      "source": "public-repository/docs/AGENT-RUN.md",
+      "path": "docs/AGENT-RUN.md",
+      "license": "MIT",
+      "sha256": "da817afc649d91fcbc86428dac1bfc1c0a52359fd4df38af61d944ddec6a3446",
+      "bytes": 6476,
+      "source_sha256": "966664fa08957abcd608fcf671ff28a99d0280928e3b94bdbf7f440b358db906"
     },
     {
       "source": "apps/video/jarvis/docs/PREVIEWS.md",
@@ -163,8 +171,8 @@
       "source": "apps/video/jarvis/pyproject.toml",
       "path": "pyproject.toml",
       "source_sha256": "70c9f809d9c873c5637af7e783621a3e98580c768ff6468df605a9d425f557fb",
-      "sha256": "70c9f809d9c873c5637af7e783621a3e98580c768ff6468df605a9d425f557fb",
-      "bytes": 1659,
+      "sha256": "76d8bb629fc4635ce8fc3caa206695a6250b53453d50050d04367d6830200b84",
+      "bytes": 1701,
       "license": "MIT"
     },
     {
@@ -192,18 +200,50 @@
       "license": "MIT"
     },
     {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/SKILL.md",
+      "path": "skills/taskfilm-feature-explainer/SKILL.md",
+      "source_sha256": "b4bba1dfb30d8dc8ff86fd470b6e141b3e30e1554e064d9033959ce1064e0330",
+      "sha256": "f8f95a2368fcb5615c8a351a8b181fbdfcb68729cb5b798348b8ffb2f2375d9c",
+      "bytes": 5204,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/agents/openai.yaml",
+      "path": "skills/taskfilm-feature-explainer/agents/openai.yaml",
+      "source_sha256": "a46b3fd326568e051125863c89a8e7b679db14623a1f7f2d845529cf3ee79dfc",
+      "sha256": "10827b1b57814afb2b257a59709d3bdcbf6549fc5902973af88d0c50d0e72e01",
+      "bytes": 289,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/references/in-chat.md",
+      "path": "skills/taskfilm-feature-explainer/references/in-chat.md",
+      "source_sha256": "73b909ea19631abde444eefca49238aadec2f8173fc2322bb3e480755fcdd394",
+      "sha256": "cd7940571812cc4f80970ed99480d55b2155690d48fc138c7cf73c79c72fd06d",
+      "bytes": 4958,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/references/workflow.md",
+      "path": "skills/taskfilm-feature-explainer/references/workflow.md",
+      "source_sha256": "2dc7db8e1ba284c1358f30cc942f3fe97525fad2e60d2bf81bc6c2c16b0cb241",
+      "sha256": "7d059e8889734eddbec8bb9802893dccc8b90c5125095e0ed0177512c3f67c7c",
+      "bytes": 6067,
+      "license": "MIT"
+    },
+    {
       "source": "apps/video/jarvis/skills/taskfilm-video/SKILL.md",
       "path": "skills/taskfilm-video/SKILL.md",
       "source_sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
-      "sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
-      "bytes": 3930,
+      "sha256": "53aee539e391727e2ef8646b4f8559a70ada4b8b92e8cdac4c2ed65057157b28",
+      "bytes": 5001,
       "license": "MIT"
     },
     {
       "source": "apps/video/jarvis/src/taskfilm/__init__.py",
       "path": "src/taskfilm/__init__.py",
       "source_sha256": "0ffb5535fb88c4f5b8e8ff5a9a65aed68c3d50f1680ff97518db3907f47bcac2",
-      "sha256": "0ffb5535fb88c4f5b8e8ff5a9a65aed68c3d50f1680ff97518db3907f47bcac2",
+      "sha256": "15109654f256b519e52ccd2d06e53481cc364d67aaf46316c04f955a41d0c633",
       "bytes": 95,
       "license": "MIT"
     },
@@ -523,8 +563,8 @@
       "source": "apps/video/jarvis/src/taskfilm/cli.py",
       "path": "src/taskfilm/cli.py",
       "source_sha256": "d6e6590c8a782fede57e2a72515a48fa92d86ca023f22fc47abfc3d920bdd7c0",
-      "sha256": "d6e6590c8a782fede57e2a72515a48fa92d86ca023f22fc47abfc3d920bdd7c0",
-      "bytes": 8307,
+      "sha256": "2ba633767edf0167fd988afa9f1c5d6dc1135fe8100ae23bd2deffb920eef4ad",
+      "bytes": 8947,
       "license": "MIT"
     },
     {
@@ -792,12 +832,60 @@
       "license": "MIT"
     },
     {
+      "source": "public-repository/src/taskfilm/feature_skill/SKILL.md",
+      "path": "src/taskfilm/feature_skill/SKILL.md",
+      "license": "MIT",
+      "sha256": "f8f95a2368fcb5615c8a351a8b181fbdfcb68729cb5b798348b8ffb2f2375d9c",
+      "bytes": 5204,
+      "source_sha256": "02f40381d4b8c1cc2e51d879b037067acd034a691ed1375290b3e79f18671faf"
+    },
+    {
+      "source": "public-repository/src/taskfilm/feature_skill/agents/openai.yaml",
+      "path": "src/taskfilm/feature_skill/agents/openai.yaml",
+      "license": "MIT",
+      "sha256": "10827b1b57814afb2b257a59709d3bdcbf6549fc5902973af88d0c50d0e72e01",
+      "bytes": 289,
+      "source_sha256": "a46b3fd326568e051125863c89a8e7b679db14623a1f7f2d845529cf3ee79dfc"
+    },
+    {
+      "source": "public-repository/src/taskfilm/feature_skill/references/in-chat.md",
+      "path": "src/taskfilm/feature_skill/references/in-chat.md",
+      "license": "MIT",
+      "sha256": "cd7940571812cc4f80970ed99480d55b2155690d48fc138c7cf73c79c72fd06d",
+      "bytes": 4958,
+      "source_sha256": "73b909ea19631abde444eefca49238aadec2f8173fc2322bb3e480755fcdd394"
+    },
+    {
+      "source": "public-repository/src/taskfilm/feature_skill/references/workflow.md",
+      "path": "src/taskfilm/feature_skill/references/workflow.md",
+      "license": "MIT",
+      "sha256": "7d059e8889734eddbec8bb9802893dccc8b90c5125095e0ed0177512c3f67c7c",
+      "bytes": 6067,
+      "source_sha256": "62dd9a406a6f5d5fa4bf95adb40242b6b9203ec79ffdf7d95da3a0fe5de35497"
+    },
+    {
+      "source": "public-repository/src/taskfilm/pipeline.py",
+      "path": "src/taskfilm/pipeline.py",
+      "license": "MIT",
+      "sha256": "af1caa999099097f1239647fe518db2bbab33f2220914f2b79a60e9a2d202b64",
+      "bytes": 22905,
+      "source_sha256": "c50de35cd0f190e0ac36944a974f22cad0731bd900e48b1cf85242ce3bc7d9e0"
+    },
+    {
       "source": "apps/video/jarvis/skills/taskfilm-video/SKILL.md",
       "path": "src/taskfilm/skill/SKILL.md",
       "source_sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
-      "sha256": "d6f9ea7481f89df9c8c3974187945f928f6a23388b39d6d36579492f810a6d5a",
-      "bytes": 3930,
+      "sha256": "53aee539e391727e2ef8646b4f8559a70ada4b8b92e8cdac4c2ed65057157b28",
+      "bytes": 5001,
       "license": "MIT"
+    },
+    {
+      "source": "public-repository/src/taskfilm/templates/preview.html",
+      "path": "src/taskfilm/templates/preview.html",
+      "license": "MIT",
+      "sha256": "af9668f61115e61ff46b1829be8d8bfcec5ba4ad2347daf23dc3109103c47f3f",
+      "bytes": 2822,
+      "source_sha256": "33421f81318eb95e4e490326042066bb25b528e74ac920cdd51c4ed160384ab3"
     },
     {
       "source": "apps/video/jarvis/tests/render_audio_smoke.py",
@@ -806,6 +894,14 @@
       "sha256": "4203bdc123abbf0d039b103dc9fefd6adc89870acf84074ef585a265e97d05f8",
       "bytes": 6923,
       "license": "MIT"
+    },
+    {
+      "source": "public-repository/tests/test_agent_run.py",
+      "path": "tests/test_agent_run.py",
+      "license": "MIT",
+      "sha256": "e45598e3efca58ec6c89807eb3b3eddab7ac96b95bc719920ae4548e57597d5b",
+      "bytes": 12290,
+      "source_sha256": "251c30916aaf062c59729bb043b27f32f8534de08bba3761275c76cb2d9ead9e"
     },
     {
       "source": "apps/video/capture-lane/tests/test_composition_timing.py",
@@ -819,8 +915,8 @@
       "source": "apps/video/jarvis/tests/test_distribution.py",
       "path": "tests/test_distribution.py",
       "source_sha256": "972647b6e1550263ff11959d16e6d35647f5ecabfbf95602c644afd42149fda1",
-      "sha256": "972647b6e1550263ff11959d16e6d35647f5ecabfbf95602c644afd42149fda1",
-      "bytes": 12093,
+      "sha256": "11a95e58463029f4ca97caf83b88a2c7e58cca4aadbfa25b6215fd32335581ee",
+      "bytes": 13401,
       "license": "MIT"
     },
     {
@@ -845,38 +941,6 @@
       "source_sha256": "2c2957df230dd9dd513a38e0d4fd1415504857546283ba8ec4e6d18a7d2674a9",
       "sha256": "add1f34d393bd75b4689ec699ea21186e28af38eaedac939dbc7ac5c5bad5eb6",
       "bytes": 1646,
-      "license": "MIT"
-    },
-    {
-      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/SKILL.md",
-      "path": "skills/taskfilm-feature-explainer/SKILL.md",
-      "source_sha256": "b4bba1dfb30d8dc8ff86fd470b6e141b3e30e1554e064d9033959ce1064e0330",
-      "sha256": "b4bba1dfb30d8dc8ff86fd470b6e141b3e30e1554e064d9033959ce1064e0330",
-      "bytes": 6149,
-      "license": "MIT"
-    },
-    {
-      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/references/workflow.md",
-      "path": "skills/taskfilm-feature-explainer/references/workflow.md",
-      "source_sha256": "2dc7db8e1ba284c1358f30cc942f3fe97525fad2e60d2bf81bc6c2c16b0cb241",
-      "sha256": "2dc7db8e1ba284c1358f30cc942f3fe97525fad2e60d2bf81bc6c2c16b0cb241",
-      "bytes": 5586,
-      "license": "MIT"
-    },
-    {
-      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/references/in-chat.md",
-      "path": "skills/taskfilm-feature-explainer/references/in-chat.md",
-      "source_sha256": "73b909ea19631abde444eefca49238aadec2f8173fc2322bb3e480755fcdd394",
-      "sha256": "73b909ea19631abde444eefca49238aadec2f8173fc2322bb3e480755fcdd394",
-      "bytes": 8163,
-      "license": "MIT"
-    },
-    {
-      "source": "apps/video/jarvis/skills/taskfilm-feature-explainer/agents/openai.yaml",
-      "path": "skills/taskfilm-feature-explainer/agents/openai.yaml",
-      "source_sha256": "a46b3fd326568e051125863c89a8e7b679db14623a1f7f2d845529cf3ee79dfc",
-      "sha256": "a46b3fd326568e051125863c89a8e7b679db14623a1f7f2d845529cf3ee79dfc",
-      "bytes": 325,
       "license": "MIT"
     }
   ],
@@ -918,5 +982,6 @@
         "taskfilm-watchlist-upgrade-20261015.mp4": "3f67f854f5dc63e9b4f211adceaa1f8cfa803df2e07c7accf0ece87b322dd772"
       }
     }
-  ]
+  ],
+  "public_revision_base": "46104dfd231f292c14c21ad4a178f8992ad489cd"
 }

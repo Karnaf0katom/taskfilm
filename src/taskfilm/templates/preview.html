@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="$language">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$title · Taskfilm</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f2ed;color:#17251f;font:18px/1.55 system-ui,sans-serif}
+main{max-width:1160px;margin:0 auto;padding:36px 28px 64px}
+header{display:flex;justify-content:space-between;gap:24px;border-bottom:1px solid #cad1c8;padding-bottom:18px}
+header a{font-weight:650}a{color:#193d36;text-underline-offset:4px}a:hover{text-decoration-thickness:2px}
+a:focus-visible,video:focus-visible{outline:3px solid #193d36;outline-offset:5px}
+::selection{background:#c8dfd0;color:#17251f}
+h1{font-size:clamp(30px,4vw,48px);line-height:1.15;letter-spacing:-.025em;margin:32px 0 14px;overflow-wrap:anywhere}
+h2{font-size:24px;line-height:1.3;margin:36px 0 12px}
+p{max-width:70ch;margin:0 0 20px;color:#53645b}
+video{display:block;width:100%;max-height:76vh;background:#17251f;color:#f3f2ed;margin-top:24px}
+video p{padding:16px;color:inherit}video a{color:inherit}
+video::cue{color:#fff;background-color:rgba(0,0,0,.85);text-shadow:none}
+nav{display:flex;flex-wrap:wrap;gap:12px 28px;margin:20px 0 32px}
+nav a{min-height:44px;display:inline-flex;align-items:center}
+li{padding:4px 0}ol{padding-left:24px;max-width:70ch}
+img{display:block;max-width:100%;height:auto}summary{cursor:pointer;padding:12px 0;min-height:44px}
+summary:focus-visible{outline:3px solid #193d36;outline-offset:3px}
+footer{border-top:1px solid #cad1c8;margin-top:36px;padding-top:18px;color:#53645b;font-size:15px}
+@media(max-width:600px){main{padding:24px 18px 40px}header{flex-wrap:wrap;gap:8px}nav{gap:0 20px}h1{margin-top:24px}}
+</style>
+</head>
+<body><main>
+<header><strong>Taskfilm</strong><span>Revision $revision · ${duration}s</span></header>
+<h1>$title</h1>
+<p>$assertions result checks passed. The movie decoded successfully.</p>
+<video controls playsinline preload="metadata" poster="$poster" aria-label="$title walkthrough">
+<source src="$movie" type="video/mp4">
+<track kind="captions" src="data:text/vtt;base64,$captions_data" srclang="$language" label="Workflow explanations" default>
+<p><a href="$movie">Download the walkthrough</a> to watch it in your video player.</p>
+</video>
+<nav aria-label="Walkthrough files"><a href="$movie" download>Download video</a><a href="$result">View checked result</a><a href="run.json">Execution report</a></nav>
+<h2>Follow the workflow</h2><ol>$instructions</ol>
+<details><summary>Review the movie frames</summary><a href="$contact"><img src="$contact" alt="Movie frames showing the opening, workflow actions, and final result" loading="lazy"></a></details>
+<footer>The original take and editable composition are retained beside this preview. Files stay local.</footer>
+</main></body></html>

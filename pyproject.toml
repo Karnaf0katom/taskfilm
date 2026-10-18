@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "taskfilm"
-version = "0.1.0a2"
+version = "0.1.0a3"
 description = "Real product films, editable HTML motion graphics and evidence for lessons, promos and OSS demos"
 readme = "PUBLIC-README.md"
 requires-python = ">=3.10"
@@ -45,7 +45,7 @@ packages = ["taskfilm"]
 include-package-data = false
 
 [tool.setuptools.package-data]
-taskfilm = ["_vendor/**/*", "examples/**/*", "skill/**/*"]
+taskfilm = ["_vendor/**/*", "examples/**/*", "skill/**/*", "feature_skill/**/*", "templates/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
