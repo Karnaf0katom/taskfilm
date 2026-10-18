@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.1.0a3
 
 - Add `taskfilm run`: one capture-to-video command with compact agent output,
   checked result screenshots, playable preview and full-size review frames.
@@ -10,6 +10,7 @@
   revisions, and retain partial work on failure or interruption.
 - Package the feature-explainer skill for same-response backend/UI and video
   delivery with optional bounded background filming.
+- Keep mocked media unit tests independent of a host FFmpeg installation.
 
 ## 0.1.0a2
 

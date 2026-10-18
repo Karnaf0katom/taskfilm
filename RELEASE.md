@@ -1,6 +1,6 @@
 # Taskfilm releases
 
-The current public version is **0.1.0a2**, an alpha for Linux, Python 3.10+ and
+The current public version is **0.1.0a3**, an alpha for Linux, Python 3.10+ and
 Chromium. The first public version was 0.1.0a1. Original code is MIT licensed.
 Install from the standalone repository or its GitHub release wheel; PyPI
 publication is not configured.
@@ -14,20 +14,37 @@ the wheel against its named checksum before installing it.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install './taskfilm-0.1.0a2-py3-none-any.whl[browser,motion]'
+python -m pip install './taskfilm-0.1.0a3-py3-none-any.whl[browser,motion]'
 python -m playwright install chromium
 taskfilm doctor
 taskfilm capture check
 taskfilm init demo
 ```
 
-FFmpeg/FFprobe and Node.js 22+ are installed separately.
+FFmpeg/FFprobe are installed separately. Node.js 22+ and npm are needed for
+optional HyperFrames motion rendering; the fast handoff preserves captured pixels.
+
+## Upgrade to 0.1.0a3
+
+Install the new release wheel with `python -m pip install --upgrade` and run
+`taskfilm --version`. Existing CLI capture/edit/compose commands are retained.
+For an implementation-and-video handoff, install the new feature skill into a
+new skill directory:
+
+```bash
+taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-feature-explainer
+taskfilm run capture.json --out feature-film --json
+```
+
+Skill installation preserves existing destinations. Replace an older installed
+skill only after retaining local customizations. See the
+[one-run guide](docs/AGENT-RUN.md) for resume and existing-take support.
 
 ## Maintainer publication
 
 1. Review `LICENSE`, package metadata, third-party notices and `SOURCE-MANIFEST.json`.
 2. Run CI against the wheel and source distribution, including real browser capture and the complete-render audio check.
-3. Tag the reviewed commit `v` followed by its package version, such as `v0.1.0a2`.
+3. Tag the reviewed commit `v` followed by its package version, such as `v0.1.0a3`.
 4. The release workflow repeats CI and creates a draft prerelease with the wheel, source distribution and `SHA256SUMS`.
 5. Add checked demo assets with their exact SHA-256 values, review the draft, then publish it.
 
@@ -36,7 +53,9 @@ the assets and notes before making a release public.
 
 ## Checked static demo
 
-Attach `taskfilm-preview-v0.1.0a2.zip` and `DEMO-SHA256SUMS` to the matching
+The existing showcase is attached as `taskfilm-preview-v0.1.0a2.zip` and
+`DEMO-SHA256SUMS` to v0.1.0a2. For a new checked preview, attach its versioned
+archive and checksum list to the matching
 release. The archive must contain a nonempty `index.html` and relative local
 assets at its root or inside one common wrapper directory. Use GitHub Actions
 as the Pages source, then run **Deploy verified release preview** with that tag.

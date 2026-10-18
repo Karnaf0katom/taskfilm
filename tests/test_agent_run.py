@@ -40,6 +40,10 @@ def retain_take(root, script):
 @pytest.fixture
 def owners(monkeypatch):
     calls, behavior = [], {}
+    find_tool = pipeline.shutil.which
+    # Media owners are fixtures here; unit tests need no host FFmpeg install.
+    monkeypatch.setattr(pipeline.shutil, "which", lambda name:
+        f"/unit-fixture/{name}" if name in {"ffmpeg", "ffprobe"} else find_tool(name))
 
     def owner(self, name, *args):
         calls.append(name)
@@ -91,7 +95,7 @@ def run(root, capsys, *extra):
 def test_compact_handoff_and_identical_resume(tmp_path, capsys, owners):
     script_at(tmp_path)
     code, result = run(tmp_path, capsys)
-    assert code == 0 and result["status"] == "rendered"
+    assert code == 0 and result["status"] == "rendered", result
     assert result["capture_verified"] and result["video_verified"]
     assert result["visual_review"] == "not_performed"
     assert result["audio_review"] == "not_applicable"

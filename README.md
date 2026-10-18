@@ -7,9 +7,9 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 
 Build a feature, then show people how to use it. Taskfilm records a real browser
-workflow and turns it into a short, editable video with HyperFrames. Use it for
-feature handoffs, onboarding, release notes and tool walkthroughs. Run the local
-CLI yourself or give its included skill to your coding agent.
+workflow, prepares a captioned video and keeps an editable HyperFrames project.
+Use it for feature handoffs, onboarding, release notes and tool walkthroughs.
+Run the local CLI yourself or give its included skill to your coding agent.
 
 **Watch Taskfilm in action (43 seconds)**
 
@@ -53,16 +53,17 @@ guide. Follow the [workflow guide](docs/WORKFLOWS.md) and install the
 [included agent skill](skills/taskfilm-video/SKILL.md) to adapt it to your app.
 Installing a skill does not install a background watcher.
 
-The [feature-explainer skill](skills/taskfilm-feature-explainer/SKILL.md) is available
-in this source checkout. After installing Taskfilm, copy it to a new skill folder:
+Install the packaged [feature-explainer skill](skills/taskfilm-feature-explainer/SKILL.md)
+from Taskfilm **0.1.0a3** to include implementation, checks and the walkthrough in
+one agent run:
 
 ```bash
-python3 -c 'from pathlib import Path; from shutil import copytree; copytree("skills/taskfilm-feature-explainer", Path.home()/".codex/skills/taskfilm-feature-explainer")'
+taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-feature-explainer
 ```
 
-The copy refuses an existing destination. This source skill uses the published
-capture, edit, compose and render commands; a new wheel release is not required.
-It adds no watcher, hook or service. See its [production workflow](skills/taskfilm-feature-explainer/references/workflow.md).
+The destination must be new; retain local customizations before replacing an
+older installed skill. See the [one-run guide](docs/AGENT-RUN.md) for optional
+background filming, reusable takes and the final video handoff.
 
 ## What you get
 
@@ -72,13 +73,14 @@ It adds no watcher, hook or service. See its [production workflow](skills/taskfi
 - **Your source files:** the original take, edit decisions, HTML/SVG composition and rendered MP4 stay local.
 - **An agent skill** that uses the same CLI commands as you.
 
-The sample needs no account, API key, GPU or model download. Rendering downloads
-the pinned HyperFrames runtime and GSAP; an offline render is not promised.
+The sample needs no account, API key, GPU or model download. The fast handoff
+prepares the recorded video locally. Optional motion rendering downloads the
+pinned HyperFrames runtime and GSAP; an offline motion render is not promised.
 
 ## Install
 
 Requires **Python 3.10+**. Capture needs **FFmpeg/FFprobe** and **Chromium**;
-rendering needs **Node.js 22+** and **npm**. Linux is the checked platform for
+optional motion rendering needs **Node.js 22+** and **npm**. Linux is the checked platform for
 this first alpha; macOS and Windows have not been verified.
 
 ```bash
@@ -97,9 +99,10 @@ with your system package manager; on Ubuntu use `sudo apt-get install ffmpeg`.
 If Chromium needs Linux system libraries, use
 `python -m playwright install --with-deps chromium`.
 
-You can also install the wheel from the
-[GitHub release](https://github.com/Karnaf0katom/taskfilm/releases). There is no
-PyPI release yet.
+Install or upgrade to the wheel from [Taskfilm 0.1.0a3](https://github.com/Karnaf0katom/taskfilm/releases/tag/v0.1.0a3).
+Use `python -m pip install --upgrade` with the downloaded wheel, then check
+`taskfilm --version`. Distribution is through GitHub Releases; PyPI publication
+is not configured.
 
 ## Make your first film
 
@@ -114,18 +117,14 @@ python -m http.server 8765 --bind 127.0.0.1 --directory demo/taskboard
 Keep the server running. In another terminal with the same environment:
 
 ```bash
-taskfilm capture validate demo/capture.json
-taskfilm capture rec demo/capture.json --out-dir takes --no-burn-captions
-
-# Replace YOUR-TAKE with the timestamped directory printed by the recorder.
-taskfilm edit takes/YOUR-TAKE --no-retime
-taskfilm compose takes/YOUR-TAKE --out lesson --no-title \
-  --width 1280 --height 720 --max-scale 1 --note-top 4
-taskfilm render lesson --output lesson.mp4
+taskfilm run demo/capture.json --out lesson --json
 ```
 
-Edit `lesson/index.html` to change the composition. Keep the original take so
-you can revise the film without repeating the task.
+Open the reported `artifacts.preview` to watch the captioned movie. The JSON
+also links the checked result, review frames, original take and editable
+HyperFrames project. Use that project path to change the composition, and
+`--render-mode hyperframes` when you want a motion render. Keep the original
+take so you can revise the film without repeating the task.
 
 For a directed product promo or the original 24-second animation study,
 follow the [motion recipes](docs/WORKFLOWS.md).
