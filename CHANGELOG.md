@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0a4
+
+- Optional `capture gcua` records trusted Python workflows through OpenGCUA 0.1.2, combining accessibility, visual and Playwright controls with Taskfilm's existing take and edit format.
+- Narration beats, exact visible-text assertions and hashed result screenshots stay with each take. Failed assertions, recorder failures and program deadlines retain a failed report and available footage.
+- The original Taskboard example and a real SDK check cover conditional actions, three result assertions, MP4 decoding and downstream edit planning. CI checks the optional driver separately from ordinary installs.
+
+This preview supports one fresh browser tab and sampled screenshots. The optional SDK needs Python 3.11+ and Node.js 22+; ordinary Taskfilm retains Python 3.10+ support. No model, account or API key is needed for the example.
+
 ## 0.1.0a3
 
 - Add `taskfilm run`: one capture-to-video command with compact agent output,

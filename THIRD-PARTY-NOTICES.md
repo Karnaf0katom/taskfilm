@@ -22,6 +22,11 @@ the separate licenses and notices listed below.
 
 - PyYAML (MIT), Pillow (HPND), Playwright (Apache-2.0); installed by pip, not
   copied into the source export.
+- OpenGCUA's `qwen-intelligence-sdk` **0.1.2** (Apache-2.0) is an optional,
+  separately installed browser driver. The original MIT adapter imports its
+  public API; no upstream code or wheel is bundled. Source and installation:
+  <https://github.com/Tongyi-MAI/OpenGCUA/releases/tag/v0.1.2> and
+  [the integration guide](docs/OPENGCUA.md).
 - Chromium and FFmpeg are installed separately. Their distribution and codec
   terms depend on the chosen build; retain the notices supplied with that build.
 - NumPy (BSD-3-Clause) and SciPy (BSD-3-Clause) are optional, separately installed

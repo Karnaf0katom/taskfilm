@@ -99,7 +99,7 @@ with your system package manager; on Ubuntu use `sudo apt-get install ffmpeg`.
 If Chromium needs Linux system libraries, use
 `python -m playwright install --with-deps chromium`.
 
-Install or upgrade to the wheel from [Taskfilm 0.1.0a3](https://github.com/Karnaf0katom/taskfilm/releases/tag/v0.1.0a3).
+Install or upgrade to the wheel from [Taskfilm 0.1.0a4](https://github.com/Karnaf0katom/taskfilm/releases/tag/v0.1.0a4).
 Use `python -m pip install --upgrade` with the downloaded wheel, then check
 `taskfilm --version`. Distribution is through GitHub Releases; PyPI publication
 is not configured.
@@ -184,6 +184,25 @@ taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-featur
 It keeps backend/UI checks and the film in the same final handoff, with one
 optional temporary filming worker when authorized and useful. See the
 [one-run guide](docs/AGENT-RUN.md) for source tracking, resume and output details.
+
+## Adaptive workflows with OpenGCUA
+
+Use the optional [OpenGCUA capture mode](docs/OPENGCUA.md) when a browser task
+needs branches, loops, accessibility targets or visual interaction. A trusted
+Python program uses the real SDK while Taskfilm records its tab, narration beats
+and checked result screenshots into the existing editable take format.
+
+```bash
+taskfilm capture gcua demo/opengcua-taskboard.py \
+  --url http://127.0.0.1:8765/ --out takes/adaptive-taskboard
+taskfilm edit takes/adaptive-taskboard --no-retime
+```
+
+This preview integration needs Python 3.11+, the separately installed
+OpenGCUA 0.1.2 wheel and its browser setup. It uses sampled screenshots;
+`capture rec` remains the smooth recording route for known scripts.
+The [guide](docs/OPENGCUA.md) includes setup, the local example and evidence limits.
+No model, account or API key is needed for the example.
 
 ## Use with an agent
 

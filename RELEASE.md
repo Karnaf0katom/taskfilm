@@ -1,6 +1,6 @@
 # Taskfilm releases
 
-The current public version is **0.1.0a3**, an alpha for Linux, Python 3.10+ and
+This source tree prepares **0.1.0a4**, an alpha for Linux, Python 3.10+ and
 Chromium. The first public version was 0.1.0a1. Original code is MIT licensed.
 Install from the standalone repository or its GitHub release wheel; PyPI
 publication is not configured.
@@ -79,6 +79,14 @@ narration and an original instrumental score under separate provider terms.
 See [the preview guide](docs/PREVIEWS.md) for production options and editable
 projects. Penpot remains a prepared recipe; a completed Penpot film or native
 export is not included or claimed.
+
+## Optional OpenGCUA capture
+
+The alpha adds `capture gcua` with the separately installed OpenGCUA 0.1.2 SDK.
+The setup guide documents Python 3.11+, Node.js 22+, one fresh tab and sampled
+recording. A dedicated CI job verifies the checksum-pinned SDK against the
+original Taskboard; normal installs remain independent of this driver.
+Existing `taskfilm run` commands and release examples remain available.
 
 ## Verification boundaries
 

@@ -2691,7 +2691,21 @@ def main() -> int:
                             "picks a window for you, and never closes the one you name")
     p_rec.add_argument("--quiet", action="store_true")
 
+    # Optional SDK import stays behind its command. Normal capture and --help
+    # keep working without OpenGCUA's native runtime or its Python 3.11+ floor.
+    if len(sys.argv) > 1 and sys.argv[1] == "gcua":
+        from opengcua_capture import add_parser, record_program
+        add_parser(sub)
+    else:
+        sub.add_parser("gcua", help="record Python workflows through the optional OpenGCUA SDK")
+
     args = parser.parse_args()
+    if args.cmd == "gcua":
+        try:
+            return asyncio.run(record_program(args))
+        except (ValueError, OSError, SyntaxError, TypeError) as exc:
+            print(f"OpenGCUA capture: {exc}", file=sys.stderr)
+            return 2
     if args.cmd == "check":
         return cmd_check(args)
     if args.cmd == "validate":

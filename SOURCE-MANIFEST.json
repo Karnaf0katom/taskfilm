@@ -2,8 +2,8 @@
   "schema": "taskfilm-source-export/v1",
   "source_revision": "65b1e16c4cfcde5a8e563b7cb39832a17552c81a",
   "public_repository": "https://github.com/Karnaf0katom/taskfilm",
-  "transform": "project_branding_and_supported_cli_closure/v1",
-  "source_state": "working_files_hashed",
+  "transform": "public_base_with_reviewed_opengcua_overlay/v1",
+  "source_state": "public_baseline_and_hashed_capture_overlay",
   "files": [
     {
       "source": "apps/video/jarvis/.github/ISSUE_TEMPLATE/bug_report.yml",
@@ -38,12 +38,17 @@
       "license": "MIT"
     },
     {
-      "source": "apps/video/jarvis/.github/workflows/ci.yml",
-      "path": ".github/workflows/ci.yml",
+      "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/.github/workflows/ci.yml",
       "source_sha256": "d694f6685e28b62d2be5e4522f2e95fb64bf99d713ba2147a1bc86d48c62e15a",
-      "sha256": "d694f6685e28b62d2be5e4522f2e95fb64bf99d713ba2147a1bc86d48c62e15a",
-      "bytes": 3332,
-      "license": "MIT"
+      "license": "MIT",
+      "overlay_source": {
+        "source": "apps/video/jarvis/.github/workflows/ci.yml",
+        "source_sha256": "b51aa39752d158ed30008beb7a8e20436e04545668d67c120ce1b51ccd9c5133",
+        "license": "MIT"
+      },
+      "path": ".github/workflows/ci.yml",
+      "sha256": "0a64a4717497706c067f387c27248db9453d2e7844eac3c9744ea189f4c0dff7",
+      "bytes": 5126
     },
     {
       "source": "apps/video/jarvis/.github/workflows/preview.yml",
@@ -70,12 +75,17 @@
       "license": "MIT"
     },
     {
-      "source": "apps/video/jarvis/CHANGELOG.md",
+      "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/CHANGELOG.md",
+      "source_sha256": "a3bd5d0fd2911a17e92273e023235afc8da27a10e6b598163f34c926d0bb69e7",
+      "license": "MIT",
+      "overlay_source": {
+        "source": "apps/video/jarvis/CHANGELOG.md",
+        "source_sha256": "e78b36152cb8de183b2913abef5fcb8103755befe9a08749c8050652773ee445",
+        "license": "MIT"
+      },
       "path": "CHANGELOG.md",
-      "source_sha256": "b3e8110831b403af7481aac2d21de99257af1e2c79df37b95e717c91c7f137ef",
-      "sha256": "a3bd5d0fd2911a17e92273e023235afc8da27a10e6b598163f34c926d0bb69e7",
-      "bytes": 2411,
-      "license": "MIT"
+      "sha256": "f6a52de4a2df1cd99b16de4950457cb7128ab68427fd6122db167208fd32ef37",
+      "bytes": 3256
     },
     {
       "source": "apps/video/jarvis/CONTRIBUTING.md",
@@ -102,30 +112,43 @@
       "license": "MIT"
     },
     {
-      "source": "apps/video/jarvis/PUBLIC-README.md",
+      "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/PUBLIC-README.md",
+      "source_sha256": "186b0df08941f56382aefcd32991e85aab1130b0e3325ad7276ec6751179aafc",
+      "license": "MIT",
+      "overlay_source": {
+        "source": "apps/video/jarvis/PUBLIC-README.md",
+        "source_sha256": "0a140472c9884193a79117a097743f05d9f07a1dc7e46dff0a55851c7076ff3e",
+        "license": "MIT"
+      },
       "path": "PUBLIC-README.md",
-      "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "186b0df08941f56382aefcd32991e85aab1130b0e3325ad7276ec6751179aafc",
-      "bytes": 10879,
-      "license": "MIT",
-      "documentation_base_sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775"
+      "sha256": "5c545c9e9684b90ddec0bbbcf506a1a7223e289a036975f90b0f4b279b2d3f97",
+      "bytes": 11756
     },
     {
-      "source": "apps/video/jarvis/PUBLIC-README.md",
+      "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/README.md",
+      "source_sha256": "8eb627e7d76c318c9e685f04a36a5a9dacb99a3fa539978b213217a3470b2102",
+      "license": "MIT",
+      "overlay_source": {
+        "source": "apps/video/jarvis/PUBLIC-README.md",
+        "source_sha256": "0a140472c9884193a79117a097743f05d9f07a1dc7e46dff0a55851c7076ff3e",
+        "license": "MIT"
+      },
       "path": "README.md",
-      "source_sha256": "0f7f4be28731f54bb8f76533649562de415ab98d89efc83162df2e466ee339b3",
-      "sha256": "8eb627e7d76c318c9e685f04a36a5a9dacb99a3fa539978b213217a3470b2102",
-      "bytes": 11319,
-      "license": "MIT",
-      "documentation_base_sha256": "a4ed291ef1474597c1d230e951014f3ca306a02a7999c2210b7a588f9a0bb775"
+      "sha256": "55b5526f8e8bb02ef320dd0dcfbcec88d630e1f7973398d0bc584613d8e5c370",
+      "bytes": 12196
     },
     {
-      "source": "apps/video/jarvis/RELEASE.md",
+      "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/RELEASE.md",
+      "source_sha256": "0b52ca44deaa616aff4c2b611785f452905ab44290360524dfcb159a0fd77463",
+      "license": "MIT",
+      "overlay_source": {
+        "source": "apps/video/jarvis/RELEASE.md",
+        "source_sha256": "a7bc46f67878bdac6a9f20d1443d0976a4595f61eb2471a09bdcef4cc42be687",
+        "license": "MIT"
+      },
       "path": "RELEASE.md",
-      "source_sha256": "b49dd94cccfded7848521b733d522f46657a0f13e5662247570e17b1cdf035c6",
-      "sha256": "0b52ca44deaa616aff4c2b611785f452905ab44290360524dfcb159a0fd77463",
-      "bytes": 4668,
-      "license": "MIT"
+      "sha256": "0879bc090074fb27214bd88474306726c5f0c71c3436340272867f518fd4dc30",
+      "bytes": 5072
     },
     {
       "source": "apps/video/jarvis/SECURITY.md",
@@ -136,12 +159,17 @@
       "license": "MIT"
     },
     {
-      "source": "apps/video/jarvis/THIRD-PARTY-NOTICES.md",
-      "path": "THIRD-PARTY-NOTICES.md",
+      "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/THIRD-PARTY-NOTICES.md",
       "source_sha256": "83efb7b69f5e6a88f76a3a89501d2f20d5e4d2bf53ec5654483644b2c38ac37c",
-      "sha256": "83efb7b69f5e6a88f76a3a89501d2f20d5e4d2bf53ec5654483644b2c38ac37c",
-      "bytes": 2455,
-      "license": "MIT"
+      "license": "MIT",
+      "overlay_source": {
+        "source": "apps/video/jarvis/THIRD-PARTY-NOTICES.md",
+        "source_sha256": "da8f684bcafc0dac61043dfcf68f80b0e3525e9a113dd6cac207d7fd36bb2f40",
+        "license": "MIT"
+      },
+      "path": "THIRD-PARTY-NOTICES.md",
+      "sha256": "ae0454e6631705b023ee6be5e097900e003a63af08e38f237f2286bf59d2d5ed",
+      "bytes": 2796
     },
     {
       "source": "public-repository/docs/AGENT-RUN.md",
@@ -150,6 +178,14 @@
       "sha256": "da817afc649d91fcbc86428dac1bfc1c0a52359fd4df38af61d944ddec6a3446",
       "bytes": 6476,
       "source_sha256": "966664fa08957abcd608fcf671ff28a99d0280928e3b94bdbf7f440b358db906"
+    },
+    {
+      "source": "apps/video/jarvis/docs/OPENGCUA.md",
+      "path": "docs/OPENGCUA.md",
+      "source_sha256": "1e4ef3cdfa33c7ada27ad0feff026f78153dfb12264d293fdce80bd908bef88a",
+      "sha256": "1e4ef3cdfa33c7ada27ad0feff026f78153dfb12264d293fdce80bd908bef88a",
+      "bytes": 8672,
+      "license": "MIT"
     },
     {
       "source": "apps/video/jarvis/docs/PREVIEWS.md",
@@ -169,11 +205,13 @@
     },
     {
       "source": "apps/video/jarvis/pyproject.toml",
+      "source_sha256": "15e407bc4e70c97f5b2f7437ec2b3bf9d7425e8cba8019e8c04fa767b2619e4e",
+      "license": "MIT",
+      "public_base": "0a16a3926c1a45216e839db3e2af6b843fed7c78",
+      "scope": "Version only; retain published dependencies and package data",
       "path": "pyproject.toml",
-      "source_sha256": "70c9f809d9c873c5637af7e783621a3e98580c768ff6468df605a9d425f557fb",
-      "sha256": "76d8bb629fc4635ce8fc3caa206695a6250b53453d50050d04367d6830200b84",
-      "bytes": 1701,
-      "license": "MIT"
+      "sha256": "d65dc0c3e4f3f04a820a3a6a677dd420c122aefca11c09043f216ef8607de368",
+      "bytes": 1701
     },
     {
       "source": "apps/video/jarvis/release/prepare_downloads.py",
@@ -241,11 +279,11 @@
     },
     {
       "source": "apps/video/jarvis/src/taskfilm/__init__.py",
+      "source_sha256": "48a9253620b0a0981ef5b6e763c16ad4f614d8c109d7f2fadf33ec82ccfd1866",
+      "license": "MIT",
       "path": "src/taskfilm/__init__.py",
-      "source_sha256": "0ffb5535fb88c4f5b8e8ff5a9a65aed68c3d50f1680ff97518db3907f47bcac2",
-      "sha256": "15109654f256b519e52ccd2d06e53481cc364d67aaf46316c04f955a41d0c633",
-      "bytes": 95,
-      "license": "MIT"
+      "sha256": "48a9253620b0a0981ef5b6e763c16ad4f614d8c109d7f2fadf33ec82ccfd1866",
+      "bytes": 95
     },
     {
       "source": "apps/video/jarvis/src/taskfilm/__main__.py",
@@ -277,6 +315,14 @@
       "source_sha256": "1cabce4204b5cc13dff476a604136e7b966e52bea347019ba423890e428f420b",
       "sha256": "1cabce4204b5cc13dff476a604136e7b966e52bea347019ba423890e428f420b",
       "bytes": 34997,
+      "license": "MIT"
+    },
+    {
+      "source": "apps/video/capture-lane/opengcua_capture.py",
+      "path": "src/taskfilm/_vendor/video/capture-lane/opengcua_capture.py",
+      "source_sha256": "f2393c69c6848fa986b0325f7c876b66f586dab853b47ee010178d32f86699e7",
+      "sha256": "f2393c69c6848fa986b0325f7c876b66f586dab853b47ee010178d32f86699e7",
+      "bytes": 21487,
       "license": "MIT"
     },
     {
@@ -312,12 +358,14 @@
       "license": "MIT"
     },
     {
-      "source": "apps/video/capture-lane/webrec.py",
+      "source": "apps/video/jarvis/../capture-lane/webrec.py",
+      "source_sha256": "930d767be450cb24dad2ba3359e4eeb324554c20f7e95e5faa58cb0204315f50",
+      "license": "MIT",
+      "public_base": "0a16a3926c1a45216e839db3e2af6b843fed7c78",
+      "scope": "OpenGCUA command dispatch added to the public recorder",
       "path": "src/taskfilm/_vendor/video/capture-lane/webrec.py",
-      "source_sha256": "bc101e1aded3deed6fdbbf39ac8e19a32083c4bbd0df2ab3f40d67c049387299",
-      "sha256": "49dd920023c875957e7d22df38eb1490e06633505bba287c78c4443990bba27a",
-      "bytes": 141287,
-      "license": "MIT"
+      "sha256": "80d55040d5577454970200308450dc04f85b82b539dc04efff0edc6c9c0f0b17",
+      "bytes": 141939
     },
     {
       "source": "apps/video/director/format_select.py",
@@ -688,6 +736,14 @@
       "license": "MIT"
     },
     {
+      "source": "apps/video/jarvis/examples/opengcua-taskboard.py",
+      "path": "src/taskfilm/examples/opengcua-taskboard.py",
+      "source_sha256": "d0403b4ef8a1f08dfce9f8e7cbb80c55f528f1b7eb75d74566b93fa5e3707a81",
+      "sha256": "d0403b4ef8a1f08dfce9f8e7cbb80c55f528f1b7eb75d74566b93fa5e3707a81",
+      "bytes": 2100,
+      "license": "MIT"
+    },
+    {
       "source": "apps/video/jarvis/examples/oss-showcases/README.md",
       "path": "src/taskfilm/examples/oss-showcases/README.md",
       "source_sha256": "107bc808e5e68c6df1eed816a6a4f6e8effd92ca100cf08894592614757cbfb8",
@@ -920,6 +976,14 @@
       "license": "MIT"
     },
     {
+      "source": "apps/video/capture-lane/tests/test_opengcua_capture.py",
+      "path": "tests/test_opengcua_capture.py",
+      "source_sha256": "ced846a5dcec9f501bb161aa9dac944868290c9b0a130935ad3ab56d6b364477",
+      "sha256": "6e3ffd2a1861a7e7766b247504c82cedf55d92ad2d5b70e536e16dbc629780ee",
+      "bytes": 11828,
+      "license": "MIT"
+    },
+    {
       "source": "apps/video/jarvis/tests/test_preview_archive.py",
       "path": "tests/test_preview_archive.py",
       "source_sha256": "d11cdece131db228e648a0bf1b096f217f22033f20c37aaff2eae4801d410886",
@@ -983,5 +1047,7 @@
       }
     }
   ],
-  "public_revision_base": "46104dfd231f292c14c21ad4a178f8992ad489cd"
+  "public_revision_base": "46104dfd231f292c14c21ad4a178f8992ad489cd",
+  "public_base_commit": "0a16a3926c1a45216e839db3e2af6b843fed7c78",
+  "overlay_source_revision": "c1354bceb62b8ee3d2bc9e30e95ea4632764fe6a"
 }
