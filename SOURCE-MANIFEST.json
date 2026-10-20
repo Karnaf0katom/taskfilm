@@ -121,8 +121,9 @@
         "license": "MIT"
       },
       "path": "PUBLIC-README.md",
-      "sha256": "5c545c9e9684b90ddec0bbbcf506a1a7223e289a036975f90b0f4b279b2d3f97",
-      "bytes": 11756
+      "sha256": "f98ce4e815e8d52befc68ee7e53dfad45390d95cd79d9a425ea24fc74579ca0c",
+      "bytes": 12374,
+      "previous_public_sha256": "5c545c9e9684b90ddec0bbbcf506a1a7223e289a036975f90b0f4b279b2d3f97"
     },
     {
       "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/README.md",
@@ -134,8 +135,9 @@
         "license": "MIT"
       },
       "path": "README.md",
-      "sha256": "55b5526f8e8bb02ef320dd0dcfbcec88d630e1f7973398d0bc584613d8e5c370",
-      "bytes": 12196
+      "sha256": "9739fc3c73edee5936f4903e87a9dd0b9a28340b74435067f1126c67d0dd1786",
+      "bytes": 12814,
+      "previous_public_sha256": "55b5526f8e8bb02ef320dd0dcfbcec88d630e1f7973398d0bc584613d8e5c370"
     },
     {
       "source": "https://github.com/Karnaf0katom/taskfilm/blob/0a16a3926c1a45216e839db3e2af6b843fed7c78/RELEASE.md",
@@ -196,11 +198,203 @@
       "license": "MIT"
     },
     {
+      "source": "docs/REVIT-COURSE.md",
+      "path": "docs/REVIT-COURSE.md",
+      "source_sha256": "c8e147aceb13adc065083dfa5f953554fdeec0b5f3f1b35c9ef91b7babdef0a1",
+      "sha256": "c8e147aceb13adc065083dfa5f953554fdeec0b5f3f1b35c9ef91b7babdef0a1",
+      "bytes": 3536,
+      "license": "MIT"
+    },
+    {
       "source": "apps/video/jarvis/docs/WORKFLOWS.md",
       "path": "docs/WORKFLOWS.md",
       "source_sha256": "61670e092a2a00de2664ce438caabbe4927da9a09dde52eacf64da8572549a2b",
       "sha256": "61670e092a2a00de2664ce438caabbe4927da9a09dde52eacf64da8572549a2b",
       "bytes": 10473,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/.env.example",
+      "path": "examples/revit-course/.env.example",
+      "source_sha256": "99cc5ad8330c0726a389ca319260cc1befec2defba71a48edfdebba1a870edbb",
+      "sha256": "99cc5ad8330c0726a389ca319260cc1befec2defba71a48edfdebba1a870edbb",
+      "bytes": 215,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/.gitignore",
+      "path": "examples/revit-course/.gitignore",
+      "source_sha256": "996444a4882c4fc6c6900109b3c7ecc2cf9c62855a51f59fe16bee7ee6b7da31",
+      "sha256": "996444a4882c4fc6c6900109b3c7ecc2cf9c62855a51f59fe16bee7ee6b7da31",
+      "bytes": 40,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/00-SETUP.cmd",
+      "path": "examples/revit-course/00-SETUP.cmd",
+      "source_sha256": "62cf15c935b261fb09c1bb40878031fc598f808fb3de9c17765ea3c1f2f3d91d",
+      "sha256": "62cf15c935b261fb09c1bb40878031fc598f808fb3de9c17765ea3c1f2f3d91d",
+      "bytes": 200,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/01-START.cmd",
+      "path": "examples/revit-course/01-START.cmd",
+      "source_sha256": "35a2880bbc04999f992ebbb57221bcd6451c5c8f9a9c7ad5ada94a7819657dbb",
+      "sha256": "35a2880bbc04999f992ebbb57221bcd6451c5c8f9a9c7ad5ada94a7819657dbb",
+      "bytes": 224,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/AGENTS.md",
+      "path": "examples/revit-course/AGENTS.md",
+      "source_sha256": "a05bf4815114fe26fbeb271278455fd189246ed2e49698c979a9d8632f5412c9",
+      "sha256": "a05bf4815114fe26fbeb271278455fd189246ed2e49698c979a9d8632f5412c9",
+      "bytes": 1190,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/COURSE-OUTLINE.he.txt",
+      "path": "examples/revit-course/COURSE-OUTLINE.he.txt",
+      "source_sha256": "8ff4eaf410a747ad4d2ca52d47ebc676b6674104e9aa707f8629b05dc4924b65",
+      "sha256": "8ff4eaf410a747ad4d2ca52d47ebc676b6674104e9aa707f8629b05dc4924b65",
+      "bytes": 1529,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/FIRST-PROMPT.he.txt",
+      "path": "examples/revit-course/FIRST-PROMPT.he.txt",
+      "source_sha256": "50853a9deccc11c93d0b34f08f3f3f7c65c03748771f02ed3c7bcea38e741517",
+      "sha256": "50853a9deccc11c93d0b34f08f3f3f7c65c03748771f02ed3c7bcea38e741517",
+      "bytes": 1883,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/LESSON-TEMPLATE.he.txt",
+      "path": "examples/revit-course/LESSON-TEMPLATE.he.txt",
+      "source_sha256": "f72a7a44d12fe10a030ca3353fc37e3292e11b377f5fa13087cb39dda4106e27",
+      "sha256": "f72a7a44d12fe10a030ca3353fc37e3292e11b377f5fa13087cb39dda4106e27",
+      "bytes": 898,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/LICENSE",
+      "path": "examples/revit-course/LICENSE",
+      "source_sha256": "b686b29e63edbcc563b72acc5895c2e590e6540216137acda2ed2afd664dc74e",
+      "sha256": "b686b29e63edbcc563b72acc5895c2e590e6540216137acda2ed2afd664dc74e",
+      "bytes": 1086,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/START-HERE.he.txt",
+      "path": "examples/revit-course/START-HERE.he.txt",
+      "source_sha256": "1abf85a8855a33473d0e1a555d9152b2b91dc450b1acbbf232ecbc4580498d9d",
+      "sha256": "1abf85a8855a33473d0e1a555d9152b2b91dc450b1acbbf232ecbc4580498d9d",
+      "bytes": 4831,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/STARTER-MANIFEST.json",
+      "path": "examples/revit-course/STARTER-MANIFEST.json",
+      "source_sha256": "dc74ed59a71d0715f19e35d8f2547e53bb8882ded7eeeeb1481bac1102bd965f",
+      "sha256": "dc74ed59a71d0715f19e35d8f2547e53bb8882ded7eeeeb1481bac1102bd965f",
+      "bytes": 3782,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/Setup.ps1",
+      "path": "examples/revit-course/Setup.ps1",
+      "source_sha256": "84f8ca18dbc359aee73b2c79c5b939810b89103392f141d09f50903a3e4e88d2",
+      "sha256": "84f8ca18dbc359aee73b2c79c5b939810b89103392f141d09f50903a3e4e88d2",
+      "bytes": 3011,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/course.py",
+      "path": "examples/revit-course/course.py",
+      "source_sha256": "7fd5829d53922a39d4bdcd46d7f4e18defe2eaee5195ba4992f0a477569412b7",
+      "sha256": "7fd5829d53922a39d4bdcd46d7f4e18defe2eaee5195ba4992f0a477569412b7",
+      "bytes": 17346,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/capture-lane/hfrec.py",
+      "path": "examples/revit-course/owners/capture-lane/hfrec.py",
+      "source_sha256": "6b7a6c9eec2cbe1a023a9517d02a7d8cc297bc52de5e31372c45e15801c48f36",
+      "sha256": "6b7a6c9eec2cbe1a023a9517d02a7d8cc297bc52de5e31372c45e15801c48f36",
+      "bytes": 24539,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/edit-lane/course_delivery.py",
+      "path": "examples/revit-course/owners/edit-lane/course_delivery.py",
+      "source_sha256": "726b4e0211c74a2f46f16c1c4a4a160074168483edf57aec974929f6308f32ad",
+      "sha256": "726b4e0211c74a2f46f16c1c4a4a160074168483edf57aec974929f6308f32ad",
+      "bytes": 4824,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/edit-lane/tts_registry.py",
+      "path": "examples/revit-course/owners/edit-lane/tts_registry.py",
+      "source_sha256": "d38964eee3a0652a9b4e1e3767117c4834b0b649511c0b63c936d3a907cb0b27",
+      "sha256": "d38964eee3a0652a9b4e1e3767117c4834b0b649511c0b63c936d3a907cb0b27",
+      "bytes": 15912,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/humanflow/humanflow/motion/jitter.py",
+      "path": "examples/revit-course/owners/humanflow/humanflow/motion/jitter.py",
+      "source_sha256": "5f1409c1e0c6e4578bae6ca7a62efdbb9d182422c63f93033a7341e9afc5303a",
+      "sha256": "5f1409c1e0c6e4578bae6ca7a62efdbb9d182422c63f93033a7341e9afc5303a",
+      "bytes": 1590,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/humanflow/humanflow/platform/dpi.py",
+      "path": "examples/revit-course/owners/humanflow/humanflow/platform/dpi.py",
+      "source_sha256": "3346ff0ef5d659947a1ccc2e8fe284bd7247d0710fb33f85c31a3652042b5ff4",
+      "sha256": "3346ff0ef5d659947a1ccc2e8fe284bd7247d0710fb33f85c31a3652042b5ff4",
+      "bytes": 1604,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/humanflow/humanflow/player/base.py",
+      "path": "examples/revit-course/owners/humanflow/humanflow/player/base.py",
+      "source_sha256": "e6cf4a8c3a45df7b801f06ab6049e81413a4fec094469970d8169aa4939c9199",
+      "sha256": "e6cf4a8c3a45df7b801f06ab6049e81413a4fec094469970d8169aa4939c9199",
+      "bytes": 2767,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/humanflow/humanflow/player/input_player.py",
+      "path": "examples/revit-course/owners/humanflow/humanflow/player/input_player.py",
+      "source_sha256": "7c4da225afe2a3bf8044c8092d65e6544b2cc1bf65a1edf01b0c032fd792f731",
+      "sha256": "7c4da225afe2a3bf8044c8092d65e6544b2cc1bf65a1edf01b0c032fd792f731",
+      "bytes": 5709,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/humanflow/humanflow/player/key_resolver.py",
+      "path": "examples/revit-course/owners/humanflow/humanflow/player/key_resolver.py",
+      "source_sha256": "ff31d51fc2be1a6ead62267c9fddd8d6f8bce2e18c15b982d487ab4ecb2f99ae",
+      "sha256": "ff31d51fc2be1a6ead62267c9fddd8d6f8bce2e18c15b982d487ab4ecb2f99ae",
+      "bytes": 4280,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/owners/humanflow/humanflow/recorder/input_recorder.py",
+      "path": "examples/revit-course/owners/humanflow/humanflow/recorder/input_recorder.py",
+      "source_sha256": "d5a234779fbf5a79cac6b68b1d302770559201458b955a5cda61fd3f232be382",
+      "sha256": "d5a234779fbf5a79cac6b68b1d302770559201458b955a5cda61fd3f232be382",
+      "bytes": 5400,
+      "license": "MIT"
+    },
+    {
+      "source": "examples/revit-course/requirements.txt",
+      "path": "examples/revit-course/requirements.txt",
+      "source_sha256": "57bcc241f1db5d4d7ef95a1e677ae2398ae667b1f23c06aae662a227810cbb5e",
+      "sha256": "57bcc241f1db5d4d7ef95a1e677ae2398ae667b1f23c06aae662a227810cbb5e",
+      "bytes": 86,
       "license": "MIT"
     },
     {
@@ -1045,6 +1239,42 @@
         "taskfilm-ccc-demo-20261015.mp4": "baaea9b406da80cfe0e11a08355d237faf08ee6e027d399e44720521ebba568f",
         "taskfilm-watchlist-upgrade-20261015.mp4": "3f67f854f5dc63e9b4f211adceaa1f8cfa803df2e07c7accf0ece87b322dd772"
       }
+    },
+    {
+      "kind": "revit-course-windows-starter",
+      "based_on": "ae8001c673a0273602b6079ff772c87846b583ba",
+      "prepared_at": "2026-10-20T11:48:09.806716+00:00",
+      "scope": [
+        "PUBLIC-README.md",
+        "README.md",
+        "docs/REVIT-COURSE.md",
+        "examples/revit-course/.env.example",
+        "examples/revit-course/.gitignore",
+        "examples/revit-course/00-SETUP.cmd",
+        "examples/revit-course/01-START.cmd",
+        "examples/revit-course/AGENTS.md",
+        "examples/revit-course/COURSE-OUTLINE.he.txt",
+        "examples/revit-course/FIRST-PROMPT.he.txt",
+        "examples/revit-course/LESSON-TEMPLATE.he.txt",
+        "examples/revit-course/LICENSE",
+        "examples/revit-course/START-HERE.he.txt",
+        "examples/revit-course/STARTER-MANIFEST.json",
+        "examples/revit-course/Setup.ps1",
+        "examples/revit-course/course.py",
+        "examples/revit-course/owners/capture-lane/hfrec.py",
+        "examples/revit-course/owners/edit-lane/course_delivery.py",
+        "examples/revit-course/owners/edit-lane/tts_registry.py",
+        "examples/revit-course/owners/humanflow/humanflow/motion/jitter.py",
+        "examples/revit-course/owners/humanflow/humanflow/platform/dpi.py",
+        "examples/revit-course/owners/humanflow/humanflow/player/base.py",
+        "examples/revit-course/owners/humanflow/humanflow/player/input_player.py",
+        "examples/revit-course/owners/humanflow/humanflow/player/key_resolver.py",
+        "examples/revit-course/owners/humanflow/humanflow/recorder/input_recorder.py",
+        "examples/revit-course/requirements.txt"
+      ],
+      "zip_sha256": "4b9f5de54357525f9592e9f43d259fe51ce0ce2267123fa970cb10d170b91073",
+      "windows_revit_acceptance": "required",
+      "autonomous_revit_control": "not_verified"
     }
   ],
   "public_revision_base": "46104dfd231f292c14c21ad4a178f8992ad489cd",

@@ -1,0 +1,5 @@
+.env
+.venv/
+lessons/
+*.whl
+__pycache__/

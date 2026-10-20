@@ -24,6 +24,17 @@ feature lessons, directed product films, After Effects-style HTML/SVG motion,
 OSS walkthroughs and portrait reels. The downloadable projects keep the real
 take, native result and editable composition together.
 
+## Revit lessons in Hebrew: Windows starter
+
+[Download the Windows starter ZIP](https://github.com/Karnaf0katom/taskfilm/releases/download/v0.1.0a4/Taskfilm-Revit-Starter.zip) ·
+[Setup guide and Hebrew instructions](docs/REVIT-COURSE.md)
+
+Prepare short classroom demonstrations with an installer, Hebrew menu, lesson
+and feedback templates, OBS recording, recorded-action replay and optional
+Hebrew narration. Extract the ZIP and start with `00-SETUP.cmd`.
+A voice key is supplied privately. The Windows/Revit flow still needs acceptance
+on the recipient's PC; autonomous execution of new Revit tasks is unverified.
+
 ## Build a feature. Explain it.
 
 Give your agent one checked task and ask for its walkthrough:

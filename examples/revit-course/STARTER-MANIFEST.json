@@ -1,0 +1,120 @@
+{
+  "schema": "taskfilm-revit-starter/v1",
+  "prepared_utc": "2026-10-20T11:14:53.247835+00:00",
+  "files": [
+    {
+      "path": "00-SETUP.cmd",
+      "sha256": "62cf15c935b261fb09c1bb40878031fc598f808fb3de9c17765ea3c1f2f3d91d",
+      "bytes": 200
+    },
+    {
+      "path": "01-START.cmd",
+      "sha256": "35a2880bbc04999f992ebbb57221bcd6451c5c8f9a9c7ad5ada94a7819657dbb",
+      "bytes": 224
+    },
+    {
+      "path": "Setup.ps1",
+      "sha256": "84f8ca18dbc359aee73b2c79c5b939810b89103392f141d09f50903a3e4e88d2",
+      "bytes": 3011
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "57bcc241f1db5d4d7ef95a1e677ae2398ae667b1f23c06aae662a227810cbb5e",
+      "bytes": 86
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "996444a4882c4fc6c6900109b3c7ecc2cf9c62855a51f59fe16bee7ee6b7da31",
+      "bytes": 40
+    },
+    {
+      "path": ".env.example",
+      "sha256": "99cc5ad8330c0726a389ca319260cc1befec2defba71a48edfdebba1a870edbb",
+      "bytes": 215
+    },
+    {
+      "path": "START-HERE.he.txt",
+      "sha256": "1abf85a8855a33473d0e1a555d9152b2b91dc450b1acbbf232ecbc4580498d9d",
+      "bytes": 4831
+    },
+    {
+      "path": "FIRST-PROMPT.he.txt",
+      "sha256": "50853a9deccc11c93d0b34f08f3f3f7c65c03748771f02ed3c7bcea38e741517",
+      "bytes": 1883
+    },
+    {
+      "path": "LESSON-TEMPLATE.he.txt",
+      "sha256": "f72a7a44d12fe10a030ca3353fc37e3292e11b377f5fa13087cb39dda4106e27",
+      "bytes": 898
+    },
+    {
+      "path": "COURSE-OUTLINE.he.txt",
+      "sha256": "8ff4eaf410a747ad4d2ca52d47ebc676b6674104e9aa707f8629b05dc4924b65",
+      "bytes": 1529
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "a05bf4815114fe26fbeb271278455fd189246ed2e49698c979a9d8632f5412c9",
+      "bytes": 1190
+    },
+    {
+      "path": "course.py",
+      "sha256": "7fd5829d53922a39d4bdcd46d7f4e18defe2eaee5195ba4992f0a477569412b7",
+      "bytes": 17346
+    },
+    {
+      "path": "owners/capture-lane/hfrec.py",
+      "sha256": "6b7a6c9eec2cbe1a023a9517d02a7d8cc297bc52de5e31372c45e15801c48f36",
+      "bytes": 24539
+    },
+    {
+      "path": "owners/edit-lane/course_delivery.py",
+      "sha256": "726b4e0211c74a2f46f16c1c4a4a160074168483edf57aec974929f6308f32ad",
+      "bytes": 4824
+    },
+    {
+      "path": "owners/edit-lane/tts_registry.py",
+      "sha256": "d38964eee3a0652a9b4e1e3767117c4834b0b649511c0b63c936d3a907cb0b27",
+      "bytes": 15912
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "b686b29e63edbcc563b72acc5895c2e590e6540216137acda2ed2afd664dc74e",
+      "bytes": 1086
+    },
+    {
+      "path": "owners/humanflow/humanflow/platform/dpi.py",
+      "sha256": "3346ff0ef5d659947a1ccc2e8fe284bd7247d0710fb33f85c31a3652042b5ff4",
+      "bytes": 1604
+    },
+    {
+      "path": "owners/humanflow/humanflow/recorder/input_recorder.py",
+      "sha256": "d5a234779fbf5a79cac6b68b1d302770559201458b955a5cda61fd3f232be382",
+      "bytes": 5400
+    },
+    {
+      "path": "owners/humanflow/humanflow/player/input_player.py",
+      "sha256": "7c4da225afe2a3bf8044c8092d65e6544b2cc1bf65a1edf01b0c032fd792f731",
+      "bytes": 5709
+    },
+    {
+      "path": "owners/humanflow/humanflow/player/base.py",
+      "sha256": "e6cf4a8c3a45df7b801f06ab6049e81413a4fec094469970d8169aa4939c9199",
+      "bytes": 2767
+    },
+    {
+      "path": "owners/humanflow/humanflow/player/key_resolver.py",
+      "sha256": "ff31d51fc2be1a6ead62267c9fddd8d6f8bce2e18c15b982d487ab4ecb2f99ae",
+      "bytes": 4280
+    },
+    {
+      "path": "owners/humanflow/humanflow/motion/jitter.py",
+      "sha256": "5f1409c1e0c6e4578bae6ca7a62efdbb9d182422c63f93033a7341e9afc5303a",
+      "bytes": 1590
+    }
+  ],
+  "credentials_included": false,
+  "windows_revit_acceptance": "required",
+  "autonomous_revit_control": "not_verified",
+  "publication": "not_performed"
+}
