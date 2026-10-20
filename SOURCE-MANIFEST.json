@@ -978,9 +978,9 @@
     {
       "source": "apps/video/capture-lane/tests/test_opengcua_capture.py",
       "path": "tests/test_opengcua_capture.py",
-      "source_sha256": "ced846a5dcec9f501bb161aa9dac944868290c9b0a130935ad3ab56d6b364477",
-      "sha256": "6e3ffd2a1861a7e7766b247504c82cedf55d92ad2d5b70e536e16dbc629780ee",
-      "bytes": 11828,
+      "source_sha256": "9441ec8e50272b6a6e0d194b84d96afbf13c8f6185eac587c74ea84240c45849",
+      "sha256": "70e4c1d348c786859ef73c8dade407bd5ad6c5df0a847ab2ad1cf638e8dcf32f",
+      "bytes": 11941,
       "license": "MIT"
     },
     {

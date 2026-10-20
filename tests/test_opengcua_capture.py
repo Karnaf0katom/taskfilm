@@ -117,6 +117,7 @@ def test_command_help_works_without_loading_an_optional_runtime(tmp_path):
 
 
 def test_startup_failure_leaves_a_failed_manifest_and_no_claimed_result(options, monkeypatch):
+    monkeypatch.setattr(gcua.shutil, "which", lambda command: "/unused/ffmpeg" if command == "ffmpeg" else None)
     class BrokenRuntime:
         async def __aenter__(self):
             raise RuntimeError("example failure; its message is not public evidence")
