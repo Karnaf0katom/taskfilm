@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "taskfilm"
-version = "0.1.0a4"
+version = "0.1.0a5"
 description = "Real product films, editable HTML motion graphics and evidence for lessons, promos and OSS demos"
-readme = "PUBLIC-README.md"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
@@ -22,7 +22,7 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Topic :: Multimedia :: Video",
 ]
-dependencies = ["PyYAML>=6,<7", "Pillow>=10,<13"]
+dependencies = ["Pillow>=10,<13"]
 
 [project.urls]
 Homepage = "https://github.com/Karnaf0katom/taskfilm"
@@ -45,7 +45,7 @@ packages = ["taskfilm"]
 include-package-data = false
 
 [tool.setuptools.package-data]
-taskfilm = ["_vendor/**/*", "examples/**/*", "skill/**/*", "feature_skill/**/*", "templates/*.html"]
+taskfilm = ["_vendor/**/*", "examples/**/*", "skills/**/*", "templates/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

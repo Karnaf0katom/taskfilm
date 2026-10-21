@@ -363,7 +363,10 @@ def showcase_from_manifest(manifest_path, out_dir):
                                   f'rel="noreferrer">{resource_label}</a>')
         if resource_links:
             details.append('<p>' + ' · '.join(resource_links) + '</p>')
-        sections.append(f'<section class="movie" id="film-{i + 1}" data-kind="{kind}"><div class="caption"><h2>{label}</h2><span>{kinds[kind]} · {expected:g}s · {video["width"]}×{video["height"]} · {movie["fps"]}fps</span></div><video controls playsinline preload="metadata"{poster} aria-label="{label}" src="{name}"></video>{"".join(details)}</section>')
+        video_style = f'aspect-ratio:{video["width"]}/{video["height"]};'
+        if video["height"] > video["width"]:
+            video_style += "max-width:480px;margin-inline:auto;"
+        sections.append(f'<section class="movie" id="film-{i + 1}" data-kind="{kind}"><div class="caption"><h2>{label}</h2><span>{kinds[kind]} · {expected:g}s · {video["width"]}×{video["height"]} · {movie["fps"]}fps</span></div><video controls playsinline preload="metadata"{poster} style="{video_style}" aria-label="{label}" src="{name}"></video>{"".join(details)}</section>')
     for i, download in enumerate(downloads):
         data = _proof(download, path.parent, DEFAULT_TAKE_BYTES, budget)
         source = _relative_file(path.parent, download['path'])

@@ -20,7 +20,18 @@ the separate licenses and notices listed below.
 
 ## Separately installed runtime dependencies
 
-- PyYAML (MIT), Pillow (HPND), Playwright (Apache-2.0); installed by pip, not
+[OpenScreen](https://github.com/getopenscreen/openscreen) was consulted as a
+capability reference for the original screencast polishing workflow. No
+OpenScreen source code, assets or dependencies are included. See the
+[comparison](docs/OPENSCREEN-COMPARISON.md).
+
+Animation craft references include **Motionmaxxing by Tejas Makwana**,
+<https://github.com/Tejashmakwana/motionmaxxing>, pinned at
+`8c8ec0f2a6f6c9a0da15cd24f7b1298ab298368c`. The Taskfilm treatment recipes and
+artwork are independently authored. No Motionmaxxing code, runtime, films,
+fonts, brand assets or skill installation are included. See [the animation guide](docs/ANIMATION.md).
+
+- Pillow (HPND), Playwright (Apache-2.0); installed by pip, not
   copied into the source export.
 - OpenGCUA's `qwen-intelligence-sdk` **0.1.2** (Apache-2.0) is an optional,
   separately installed browser driver. The original MIT adapter imports its

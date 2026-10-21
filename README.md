@@ -7,9 +7,14 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 
 Build a feature, then show people how to use it. Taskfilm records a real browser
-workflow, prepares a captioned video and keeps an editable HyperFrames project.
-Use it for feature handoffs, onboarding, release notes and tool walkthroughs.
-Run the local CLI yourself or give its included skill to your coding agent.
+workflow and turns it into a short, editable video with HyperFrames. Use it for
+feature handoffs, onboarding, release notes and tool walkthroughs. Run the local
+CLI yourself or give its included skill to your coding agent.
+
+For a complete course, the [course workflow](docs/COURSES.md) coordinates ordered
+lessons, scripts, narration, editable films, practice tasks and a learner ZIP.
+Instructors can add personal voiceovers and refine individual cuts; batch builds
+reuse unchanged lessons and keep prior versions. Included in **0.1.0a5**.
 
 **Watch Taskfilm in action (43 seconds)**
 
@@ -60,21 +65,20 @@ The Trading Terminal uses labeled sample quotes.
 
 Your agent uses the same capture, composition and render commands as you. A
 recorded lesson can accompany the feature handoff, release notes or an onboarding
-guide. Follow the [workflow guide](docs/WORKFLOWS.md) and install the
-[included agent skill](skills/taskfilm-video/SKILL.md) to adapt it to your app.
-Installing a skill does not install a background watcher.
+guide. The [build-and-explain guide](docs/BUILD-AND-EXPLAIN.md) covers the focused
+workflow and which release includes it. Installing a skill makes the workflow
+available to your agent; it does not install a background watcher.
 
-Install the packaged [feature-explainer skill](skills/taskfilm-feature-explainer/SKILL.md)
-from Taskfilm **0.1.0a3** to include implementation, checks and the walkthrough in
-one agent run:
+## Deliver a checked feature in one command
 
 ```bash
-taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-feature-explainer
+taskfilm run demo/capture.json --out lesson --json
 ```
 
-The destination must be new; retain local customizations before replacing an
-older installed skill. See the [one-run guide](docs/AGENT-RUN.md) for optional
-background filming, reusable takes and the final video handoff.
+Use your own capture script against the running app. The command retains the
+verified take, captions, editable composition and playable preview; unchanged
+stages can resume with `--resume`. See the [one-run guide](docs/AGENT-RUN.md)
+for source hashes, reusable takes and the feature-explainer skill.
 
 ## What you get
 
@@ -84,14 +88,13 @@ background filming, reusable takes and the final video handoff.
 - **Your source files:** the original take, edit decisions, HTML/SVG composition and rendered MP4 stay local.
 - **An agent skill** that uses the same CLI commands as you.
 
-The sample needs no account, API key, GPU or model download. The fast handoff
-prepares the recorded video locally. Optional motion rendering downloads the
-pinned HyperFrames runtime and GSAP; an offline motion render is not promised.
+The sample needs no account, API key, GPU or model download. Rendering downloads
+the pinned HyperFrames runtime and GSAP; an offline render is not promised.
 
 ## Install
 
 Requires **Python 3.10+**. Capture needs **FFmpeg/FFprobe** and **Chromium**;
-optional motion rendering needs **Node.js 22+** and **npm**. Linux is the checked platform for
+rendering needs **Node.js 22+** and **npm**. Linux is the checked platform for
 this first alpha; macOS and Windows have not been verified.
 
 ```bash
@@ -110,10 +113,14 @@ with your system package manager; on Ubuntu use `sudo apt-get install ffmpeg`.
 If Chromium needs Linux system libraries, use
 `python -m playwright install --with-deps chromium`.
 
-Install or upgrade to the wheel from [Taskfilm 0.1.0a4](https://github.com/Karnaf0katom/taskfilm/releases/tag/v0.1.0a4).
-Use `python -m pip install --upgrade` with the downloaded wheel, then check
-`taskfilm --version`. Distribution is through GitHub Releases; PyPI publication
-is not configured.
+Upgrade using the wheel from [Taskfilm 0.1.0a5](https://github.com/Karnaf0katom/taskfilm/releases/tag/v0.1.0a5):
+
+```bash
+python -m pip install --upgrade "./taskfilm-0.1.0a5-py3-none-any.whl[browser,motion]"
+taskfilm --version
+```
+
+Distribution is through GitHub Releases; PyPI publication is not configured.
 
 ## Make your first film
 
@@ -121,29 +128,101 @@ The included Taskboard is an original local app. This recipe adds a task,
 marks it complete and shows the result. Tasks use browser local storage.
 
 ```bash
-taskfilm init demo
-python -m http.server 8765 --bind 127.0.0.1 --directory demo/taskboard
+taskfilm demo my-first-film --render
 ```
 
-Keep the server running. In another terminal with the same environment:
+This starts a temporary local server on an available port, records the real
+task, checks its three result screenshots, and creates an editable lesson plus
+`my-first-film/lesson.mp4`. The server stops after capture. You need no account,
+API key or second terminal. The destination must be a new directory.
+
+The folder retains `sample/`, the exact `take`, `story-plan/`, `composition/`,
+stage logs and `DEMO-RESULT.json`. Edit `composition/index.html` to customize
+the lesson. The original capture stays available for later edits.
+
+To prepare the editable project first and render it later:
 
 ```bash
-taskfilm run demo/capture.json --out lesson --json
+taskfilm demo my-first-film
+taskfilm render my-first-film/composition --output my-first-film/lesson.mp4
 ```
 
-Open the reported `artifacts.preview` to watch the captioned movie. The JSON
-also links the checked result, review frames, original take and editable
-HyperFrames project. Use that project path to change the composition, and
-`--render-mode hyperframes` when you want a motion render. Keep the original
-take so you can revise the film without repeating the task.
+For a faster trial encode, use `taskfilm demo my-first-film --render --quality draft`.
+If a stage fails, read the named log under `my-first-film/logs/`; its sample and
+capture evidence remain available. Retry in a new directory. Review the finished
+movie before sharing it. [Manual commands](docs/WORKFLOWS.md#try-one-real-task)
+show how to adapt the workflow to your own app.
 
-For a directed product promo or the original 24-second animation study,
-follow the [motion recipes](docs/WORKFLOWS.md).
+To try a scored 31-second product promo with kinetic titles, camera moves and
+animated recap cards in both landscape and portrait:
+
+```bash
+taskfilm demo my-product-film --mode promo --format both --render --quality draft
+```
+
+Install the `motion` extra first. One real 4K take supplies both editable cuts,
+four verified result screenshots and an original synthesized score. Omit
+`--render` to prepare the projects first. The report names each composition,
+edit-decision record and rendered movie. Review the finished cuts before sharing.
+The [motion recipes](docs/WORKFLOWS.md) explain customization and the separate
+24-second animation study.
 
 For a narrated app showcase, use the [Excalidraw motion-promo recipe](docs/WORKFLOWS.md#make-a-narrated-excalidraw-motion-promo).
 It combines a real workflow with masked type, a perspective reveal, camera
 choreography and animation of the saved diagram. Bring narration and a licensed
 score; the CLI does not call ElevenLabs or another provider itself.
+
+## Make original animation
+
+Choose a treatment that changes the storytelling and motion: physical typography,
+an orbital perspective journey, or a procedural line sculpture. Both landscape
+and portrait layouts retain editable sources and an original synthesized score.
+
+```bash
+taskfilm treatments --brief "A bold launch headline" --seed 41
+taskfilm animate my-animation --treatment type-sculpture --headline "Make it move."
+taskfilm render my-animation --output my-animation.mp4
+taskfilm animate variety-reel --showreel --format portrait
+taskfilm render variety-reel --output variety-reel.mp4
+```
+
+The `motion` extra supplies audio; `--silent` authors without it. Use `--history`
+to avoid recently reviewed structures while keeping your brand palette.
+Read the [animation guide](docs/ANIMATION.md) for treatments, seeking and review.
+Craft research credits [Tejas Makwana's Motionmaxxing](https://github.com/Tejashmakwana/motionmaxxing);
+the included animation artwork and recipes are original Taskfilm work.
+
+Reuse your colours and copy with `--brand-file demo/brand.json`; `taskfilm init demo`
+includes an editable example. Explicit flags override the file. See the
+[brand-file guide](docs/BRAND-KIT.md).
+
+After watching the finished movie, record that review for future treatment selection:
+
+```bash
+taskfilm record-review my-animation --movie my-animation.mp4 --history history.json \
+  --reviewer "Your name" --confirm-reviewed
+taskfilm animate next-animation --history history.json --brand-file demo/brand.json
+```
+
+The command hashes the supplied movie and retains your review declaration. It does
+not watch the film or certify its quality. See [review history](docs/REVIEW-HISTORY.md).
+
+## Polish a recording you already have
+
+Import your screen recording with a reusable frame style, source-time cuts and
+speed edits, zooms, text labels and optional cursor/click effects. The original
+clip and audio remain available with the editable composition and JSON edits.
+
+```bash
+taskfilm polish recording.mp4 my-screencast --preset paper
+taskfilm render my-screencast --output screencast.mp4
+taskfilm gif screencast.mp4 --output preview.gif --width 960 --fps 15
+```
+
+Read the [screencast guide](docs/SCREENCAST.md) for precise edits, automatic
+focus from supplied clicks, portrait framing and saved styles. The
+[OpenScreen comparison](docs/OPENSCREEN-COMPARISON.md) records what this original
+implementation adds and the desktop features outside its current scope.
 
 ## Plan the story
 
@@ -168,34 +247,6 @@ The 45-second Excalidraw film and 72-second drawDB lesson retain checked native
 exports. **Penpot's complete capture, native export and film remain unverified.**
 The showcase films were recorded before the public rename and retain the earlier wordmark.
 
-## One run: checked feature to video
-
-After your agent finishes and checks a backend/UI change, it can make the
-walkthrough before its final response:
-
-```bash
-taskfilm run capture.json --out feature-film --revision feature-v2 --json
-```
-
-The command records the real app, verifies result assertions, and returns a
-checked MP4, playable local preview, result image and review frames. The fast
-default preserves recorded pixels and adds editable subtitle captions without
-another encode or browser render. It also retains an editable HyperFrames
-project. Choose `--render-mode hyperframes` for motion or burned-in explanations;
-`--quality looks` or `delivery` selects that renderer too. Logs stay on disk,
-and `--resume` reuses unchanged completed stages. The agent still inspects the
-result and movie before delivery.
-
-Install the implementation-and-video workflow with:
-
-```bash
-taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-feature-explainer
-```
-
-It keeps backend/UI checks and the film in the same final handoff, with one
-optional temporary filming worker when authorized and useful. See the
-[one-run guide](docs/AGENT-RUN.md) for source tracking, resume and output details.
-
 ## Adaptive workflows with OpenGCUA
 
 Use the optional [OpenGCUA capture mode](docs/OPENGCUA.md) when a browser task
@@ -217,25 +268,55 @@ No model, account or API key is needed for the example.
 
 ## Use with an agent
 
+For the build → checked feature → walkthrough flow, start with
+[Build a feature, then explain it](docs/BUILD-AND-EXPLAIN.md). It includes the
+setup commands, a prompt for your own app, review steps and in-chat controls.
+
 ```bash
 taskfilm skill ~/.codex/skills/taskfilm-video
 ```
 
 Choose the skill folder used by your agent. Existing destinations are never
-overwritten. The [included skill](skills/taskfilm-video/SKILL.md) explains the
+overwritten. The [included skill](src/taskfilm/skills/taskfilm-video/SKILL.md) explains the
 capture, composition, motion and evidence workflow; it requires no private checkout.
+
+For a feature upgrade that should end with a short how-it-works lesson, install
+the focused workflow too:
+
+```bash
+taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-feature-explainer
+```
+
+Ask your agent: “Use `$taskfilm-feature-explainer` while building this feature.
+When a useful milestone works and its checks pass, film it in the background and
+show progress and a preview in this chat so I can stop, continue or request changes.”
+The [feature skill](src/taskfilm/skills/taskfilm-feature-explainer/SKILL.md) detects readiness,
+keeps demos tied to the version shown, and delivers an editable project, a reviewed
+movie and short usage steps. Background filming uses one temporary helper when
+your agent supports it; otherwise the owning agent performs the stages itself.
+Say “stop filming” to stop the demo, “continue filming” to resume valid work, or
+describe a change to the feature or video. The same chat keeps control.
+
+It uses the same capture and render owners. Installation makes the skill
+discoverable; it does not start an always-on watcher or service. Narration uses
+supplied audio or a separately authorized provider; captioned silence is supported.
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `run` | Capture, compose, render and return a resumable feature-video handoff |
 | `doctor`, `init`, `skill` | Check tools, copy samples and install the skill |
+| `demo DIRECTORY [--mode promo] [--format both] [--render]` | Record the sample and prepare a lesson or directed product films |
 | `story` | Plan a feature lesson, promo or OSS walkthrough |
 | `capture` | Validate, discover and record a browser workflow |
 | `edit` | Prepare edit decisions from a take |
 | `compose`, `reel` | Create landscape or portrait HTML compositions |
+| `polish` | Import a recording with reusable styles, precise edits and optional cursor overlays |
+| `gif` | Convert a finished movie or excerpt to a palette-optimized GIF |
 | `motion` | Author the directed product-film kit |
+| `treatments` | Choose a reproducible motion treatment with recent-history avoidance |
+| `animate` | Author original motion graphics or a three-family showreel |
+| `record-review` | Record your explicit film-review declaration for subsequent treatment selection |
 | `render` | Check and render with pinned HyperFrames 0.8.134 |
 | `repo-pack` | Retain pinned repository source and attribution |
 | `package` | Package evidence or checked films and downloads |
@@ -263,6 +344,7 @@ python -m pytest -q
 TASKFILM_BROWSER_TEST=1 python -m pytest -q
 ```
 
+Start with the [code map](docs/DEVELOPMENT.md) to find the module to change.
 See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and
 [RELEASE.md](RELEASE.md). CI tests installed wheels and source distributions
 outside the checkout, records the original browser task, and checks audio

@@ -51,12 +51,10 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-_MONOREPO_HUMANFLOW = REPO_ROOT / "apps/automation-platform/clicker-man/humanflow/src"
+
 _PACKAGED_HUMANFLOW = Path(__file__).resolve().parents[2] / "humanflow"
-HUMANFLOW_SRC = Path(os.environ.get("CAPTURE_LANE_HUMANFLOW_SRC", str(
-    _MONOREPO_HUMANFLOW if _MONOREPO_HUMANFLOW.is_dir() else _PACKAGED_HUMANFLOW)))
-DEFAULT_OUT = Path(os.environ.get("CAPTURE_LANE_RECORDINGS", str(
-    REPO_ROOT / "dropbox/recordings" if _MONOREPO_HUMANFLOW.is_dir() else Path.cwd() / "recordings")))
+HUMANFLOW_SRC = Path(os.environ.get("CAPTURE_LANE_HUMANFLOW_SRC", str(_PACKAGED_HUMANFLOW)))
+DEFAULT_OUT = Path(os.environ.get("CAPTURE_LANE_RECORDINGS", str(Path.cwd() / "recordings")))
 
 # Real sessions live outside the repo, mode 0700, and are never printed, copied into a bundle, or
 # published. A session cookie is the account; treating it as a build artifact is how it ends up in

@@ -1,15 +1,19 @@
 # Contributing
 
-Use Python 3.10+; install `.[browser,motion,dev]` in a virtual environment. Run
+Start with the [code map](docs/DEVELOPMENT.md). Use Python 3.10+; install
+`.[browser,motion,dev]` in a virtual environment. Run
 `python -m pytest -q` before proposing a change. Browser verification uses the
 original local Taskboard sample and a fresh browser context. It needs FFmpeg
 and Chromium; unit tests need no signed-in browser or provider account.
 
 Preserve the separation between story planning, capture, edit decisions and
 rendering. Put behaviour with its existing owner; the CLI dispatches to those
-owners. In the source monorepo, the release exporter copies an exact allowlist
-and hashes it. Update that inventory when a supported command adds a runtime
-dependency. Confirm both the wheel and source distribution contain the files.
+owners. The public repository includes only the code those commands use.
+`SOURCE-MANIFEST.json` records each shipped file; update its hash and size when
+editing an exported file, or regenerate it with the monorepo exporter. Update
+the inventory when a supported command adds a runtime dependency. Run
+`python release/check_source.py` before building. Confirm both the wheel and
+source distribution contain the files.
 CI installs and tests both built distributions from outside the checkout.
 The opt-in browser integration check allows five minutes per recording,
 including FFmpeg encoding; `TASKFILM_CAPTURE_TEST_TIMEOUT` overrides that limit

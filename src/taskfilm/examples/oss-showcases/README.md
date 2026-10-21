@@ -82,3 +82,21 @@ The promo includes a three-second hold on its actual final diagram. The lesson
 previews the retained native table screenshot while explaining the schema, then
 shows the complete imported task and SQL export. The final SQL dialog is a
 separate result image; it is not used as the introductory diagram.
+
+The action-directed Excalidraw variant follows the original capture's mouse
+clock: camera poses emphasize drawing and connecting, accents mark real presses,
+and the saved native geometry lifts continuously out of the browser. Its five
+scene files stay editable in Studio. It preserves the narrated promo's complete
+source ranges and copies its checked audio unchanged.
+
+Supply the completed 48-second promo project, its original take, and a local
+GSAP 3.14.2 runtime with its upstream license/README notice:
+
+```bash
+python demo/oss-showcases/build-excalidraw-action.py --project checked-promo --take takes/YOUR-TAKE --gsap gsap.min.js --gsap-license GSAP-LICENSE.txt --out action-cut
+taskfilm render action-cut --output excalidraw-action.mp4
+```
+
+The public editable project omits the commissioned score. Supply a licensed
+48-second `assets/music.wav` before rendering that download. The finished movie
+includes the checked score and narration.

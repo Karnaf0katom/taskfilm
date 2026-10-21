@@ -1,36 +1,22 @@
-"""Make the hyphenated lanes importable, without moving a single file.
-
-Modules inside `edit-lane/` import their siblings flat — `from content_score import …`,
-351 times, zero relative imports. That is a fact of the tree, not something this loader
-tries to change: rewriting 351 import statements across 1,009 files would break the 278
-frozen-oracle tests for no product gain.
-
-So the loader does the one thing that makes flat imports legal *and* namespaced:
-
-1. it puts the lane directory on ``sys.path`` (once, centrally — instead of 375 times,
-   scattered), so ``from content_score import …`` still resolves, and
-2. it exposes the same module object under ``videokit.<lane>.<module>``.
-
-Point 2 is deliberately an *alias*, not a second import. ``videokit.editlane.reframe``
-and flat ``reframe`` are the identical object in ``sys.modules``, so a dataclass built
-by one side passes an ``isinstance`` check on the other. Importing the same file twice
-under two names is the classic way to get two incompatible copies of one class; this
-loader exists partly to prevent that.
-"""
+"Resolve a production folder alias to the same module as a flat import."
 
 from __future__ import annotations
 
 import importlib
+
 import importlib.abc
+
 import importlib.machinery
+
 import sys
+
 from pathlib import Path
+
 from types import ModuleType
 
 from ._lanes import LANES, VIDEO_ROOT, lane_dir
 
 _PREFIX = "videokit."
-
 
 def ensure_path(alias: str) -> Path:
     """Put a lane (and `apps/video` itself) at the FRONT of sys.path.
@@ -46,7 +32,6 @@ def ensure_path(alias: str) -> Path:
             sys.path.remove(entry)
         sys.path.insert(0, entry)
     return directory
-
 
 class _AliasLoader(importlib.abc.Loader):
     """Import a lane module under its flat name, then publish it under the alias."""
@@ -67,7 +52,6 @@ class _AliasLoader(importlib.abc.Loader):
         # create_module handed back a fully executed module. Re-running it here would
         # double every import side effect.
         return None
-
 
 class _LaneFinder(importlib.abc.MetaPathFinder):
     """Resolve `videokit.<alias>` and `videokit.<alias>.<module>`."""
@@ -92,7 +76,6 @@ class _LaneFinder(importlib.abc.MetaPathFinder):
             return None
         return importlib.machinery.ModuleSpec(fullname, _AliasLoader(alias, flat_name))
 
-
 class _LanePackageLoader(importlib.abc.Loader):
     """The `videokit.<alias>` package itself — a namespace over the lane folder."""
 
@@ -109,7 +92,6 @@ class _LanePackageLoader(importlib.abc.Loader):
     def exec_module(self, module: ModuleType) -> None:
         return None
 
-
 def _resolvable(directory: Path, parts: list[str]) -> bool:
     """True when `parts` names a real .py file or package under `directory`."""
     head = directory / parts[0]
@@ -117,10 +99,8 @@ def _resolvable(directory: Path, parts: list[str]) -> bool:
         return head.with_suffix(".py").is_file() or (head / "__init__.py").is_file()
     return head.is_dir()
 
-
 class ShadowedModuleError(ImportError):
     """Asked for one lane's module, sys.modules already held another lane's file of that name."""
-
 
 def _reject_shadowed(module: ModuleType, directory: Path, alias: str, flat_name: str) -> None:
     """Fail loudly when a flat name was already claimed by a different lane.
@@ -141,9 +121,7 @@ def _reject_shadowed(module: ModuleType, directory: Path, alias: str, flat_name:
         "(tools/capability-map-check.sh lists every cross-lane name clash)."
     )
 
-
 _FINDER = _LaneFinder()
-
 
 def install() -> None:
     """Register the finder FIRST. Idempotent — safe to call from every entry point.

@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: ${{ matrix.python }}
+      - name: Verify the source inventory
+        run: python release/check_source.py
       - run: python -m pip install build
       - run: python -m build
       - name: Install the wheel
@@ -73,6 +75,21 @@ jobs:
             ${{ runner.temp }}/render-audio/check.log
             ${{ runner.temp }}/render-audio/render.log
             ${{ runner.temp }}/render-audio/out.mp4
+      - name: Check original Canvas animation through a complete render
+        run: |
+          export HYPERFRAMES_BROWSER_PATH="$(find "$RUNNER_TEMP/chrome" -type f -name chrome-headless-shell -print -quit)"
+          export HYPERFRAMES_SKIP_SKILLS=1 HYPERFRAMES_TELEMETRY_DISABLED=1
+          cd "$RUNNER_TEMP"
+          taskfilm animate animation-proof --treatment signal-field --silent
+          taskfilm render animation-proof --output animation-proof.mp4 --quality draft
+          python "$GITHUB_WORKSPACE/release/verify_animation.py" --movie animation-proof.mp4 --project animation-proof --out animation-review
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: original-animation-proof
+          path: |
+            ${{ runner.temp }}/animation-proof.mp4
+            ${{ runner.temp }}/animation-review/
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: distributions

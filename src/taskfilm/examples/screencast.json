@@ -1,0 +1,16 @@
+{
+  "schema": "taskfilm-polish/v1",
+  "preset": "studio",
+  "width": 1920,
+  "height": 1080,
+  "style": {"padding": 72, "radius": 24},
+  "audio": "keep",
+  "cursor_overlay": false,
+  "cursor_smoothing": 0.06,
+  "auto_zoom": false,
+  "cuts": [],
+  "speed": [],
+  "zooms": [],
+  "annotations": [],
+  "cursor": []
+}

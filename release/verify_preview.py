@@ -5,6 +5,7 @@ import argparse
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
+import os
 from pathlib import Path
 from threading import Thread
 
@@ -24,7 +25,8 @@ def verify(site: Path, output: Path) -> dict:
     report = {"viewports": [], "downloads": [], "movies": []}
     try:
         with sync_playwright() as playwright:
-            browser = playwright.chromium.launch()
+            browser = playwright.chromium.launch(executable_path=os.environ.get('HYPERFRAMES_BROWSER_PATH')
+                                                  or os.environ.get('CAPTURE_LANE_BROWSER_PATH'))
             try:
                 for label, width, height in (("desktop", 1440, 1000), ("mobile", 390, 844)):
                     page = browser.new_page(viewport={"width": width, "height": height})
@@ -43,6 +45,9 @@ def verify(site: Path, output: Path) -> dict:
                         assert abs(duration - expected['seconds']) <= 0.05
                         assert movie.evaluate('v => v.videoWidth') == expected['width']
                         assert movie.evaluate('v => v.videoHeight') == expected['height']
+                        bounds = movie.bounding_box()
+                        assert bounds and bounds['width'] > 0 and bounds['height'] > 0
+                        assert abs(bounds['width'] / bounds['height'] - expected['width'] / expected['height']) < 0.005
                         seek = min(5, duration / 2)
                         movie.evaluate("(v, t) => {v.muted = true; v.currentTime = t;}", seek)
                         page.wait_for_function("i => !document.querySelectorAll('video')[i].seeking", arg=index)

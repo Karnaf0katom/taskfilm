@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><title>Taskfilm — original motion study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face{font-family:Manrope;src:url('assets/Manrope.ttf');font-weight:200 800;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;overflow:hidden;background:#142124}
+#motion-study{position:relative;width:__WIDTH__px;height:__HEIGHT__px;overflow:hidden}
+canvas{display:block;width:100%;height:100%}audio{display:none}
+</style>
+</head>
+<body>
+<main id="motion-study" data-composition-id="motion-study" data-width="__WIDTH__" data-height="__HEIGHT__" data-duration="__DURATION__">
+<canvas id="art" width="__WIDTH__" height="__HEIGHT__" aria-label="Original text and geometric animation"></canvas>
+__AUDIO__
+</main>
+<script>window.TASKFILM_STUDY=__CONFIG__;</script>
+<script src="runtime.js"></script>
+<script>
+window.__timelines=window.__timelines||{};
+let position=0;
+const clock={};
+Object.defineProperty(clock,'position',{get:()=>position,set:value=>{position=value;TaskfilmMotion.draw(value)}});
+const tl=gsap.timeline({paused:true});
+tl.to(clock,{position:TASKFILM_STUDY.duration,duration:TASKFILM_STUDY.duration,ease:'none'},0);
+window.__timelines['motion-study']=tl;
+window.__motionReady=false;
+document.fonts.load('800 100px Manrope').then(()=>{TaskfilmMotion.draw(position);window.__motionReady=true;});
+// Preview controls live outside the film and never change its pure frame function.
+if(new URLSearchParams(location.search).has('preview')){
+ const root=document.getElementById('motion-study');
+ const resize=()=>{const s=Math.min(innerWidth/TASKFILM_STUDY.width,(innerHeight-72)/TASKFILM_STUDY.height);root.style.transform=`scale(${s})`;root.style.transformOrigin='top left'};
+ resize();addEventListener('resize',resize);
+ const controls=document.createElement('div');controls.style='position:fixed;bottom:0;left:0;right:0;padding:16px;background:#142124;color:#fff;font:16px sans-serif;display:flex;gap:16px';
+ const play=document.createElement('button');play.textContent='Play / pause';play.onclick=()=>tl.paused(!tl.paused());
+ const scrub=document.createElement('input');scrub.type='range';scrub.min=0;scrub.max=TASKFILM_STUDY.duration;scrub.step=1/30;scrub.value=0;scrub.style.flex=1;scrub.oninput=()=>tl.pause().seek(Number(scrub.value),false);
+ controls.append(play,scrub);document.body.append(controls);
+}
+</script>
+</body>
+</html>

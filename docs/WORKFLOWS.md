@@ -2,6 +2,52 @@
 
 Install Taskfilm using the [README](../README.md), then follow these recipes.
 
+## Run the first film in one command
+
+```bash
+taskfilm doctor
+taskfilm demo my-first-film --render
+```
+
+The demo command uses the installed owners. It serves the original Taskboard
+only on `127.0.0.1`, chooses an available port, records add/complete/filter,
+verifies all three result screenshots, and stops the server after recording.
+It prepares the story plan and editable composition, then checks and renders
+`my-first-film/lesson.mp4` through the pinned HyperFrames CLI.
+
+Omit `--render` to keep the editable lesson without starting the renderer.
+Use `--quality draft` for a trial encode; the default is `looks`. Output goes
+into a new directory and existing directories are refused. A failed stage
+retains its inputs and `logs/STAGE.log`; a completed run also writes
+`DEMO-RESULT.json` with the exact take path, assertion count and movie hash.
+
+The default demo is a silent recorded lesson. To make a directed product film
+with animated type, a perspective reveal, camera moves, recap cards and an
+original synthesized score, select the promo mode:
+
+```bash
+python -m pip install '.[motion]'
+taskfilm demo my-product-film --mode promo --format both --render --quality draft
+```
+
+This captures the original Taskboard once at 4K, measures its actual DOM regions,
+and prepares separate landscape (1920×1080) and portrait (1080×1920) compositions.
+`--format landscape` is the default; choose `portrait` for a single vertical cut.
+Omit `--render` to prepare editable projects first. The movie outputs are
+`promo-landscape.mp4` and `promo-portrait.mp4` in the destination directory.
+Run the install command from your Taskfilm source checkout, or install your
+downloaded wheel with its `motion` extra. The recipe needs those dependencies
+before recording; it uses no media
+provider or generated voice.
+
+`DEMO-RESULT.json` retains four verified result assertions and a `deliverables`
+entry for each requested format, including its composition, edit decisions and
+movie hash when rendered. Edit the prepared `sample/spec.json` to change the
+copy or palette and rerun `taskfilm motion` with the retained take; the HTML
+projects live under `sample/cuts/FORMAT/`. Each stage retains its own log.
+Capture success and a successful render do not replace review of the finished
+movie. For supplied narration or another app, use the separate recipes below.
+
 ## Try one real task
 
 ```bash
@@ -50,6 +96,23 @@ taskfilm render demo/motion-lab --output motion-lab.mp4
 Edit `demo/motion-lab/compositions/*.html` to change its design and choreography.
 HyperFrames owns the timeline and render. These are HTML/SVG motion graphics;
 this release does not read Adobe After Effects `.aep` projects.
+
+## Create a different animation treatment
+
+Use `taskfilm animate` for original text/geometry films: `type-sculpture`,
+`orbit-story` and `signal-field`. `--showreel` demonstrates all three;
+`--format portrait` authors a separate portrait layout. Each project includes
+editable source, a storyboard, a review record and an original score.
+
+```bash
+taskfilm animate my-motion --treatment signal-field --headline "Find your rhythm."
+taskfilm render my-motion --output my-motion.mp4
+```
+
+Use `taskfilm treatments --brief "YOUR IDEA" --history history.json` to compare
+structures before authoring. Supply the same brief/history to `animate` to consume
+the selected treatment. Read the [animation guide](ANIMATION.md) for review,
+seed replay, short signatures and deliberate repeat overrides.
 
 ## Try the product-film kit
 
@@ -122,6 +185,44 @@ account. Review the audio mix and encoded frames before sharing a new version.
 | Promote a product | `saas_launch` | Problem, a small real workflow, payoff, supplied call to action |
 | Show an OSS tool | `github_review` | Pinned source, real task, fit and limitation, source attribution |
 
+## Finish a feature upgrade with a walkthrough
+
+Install the focused skill in the directory your agent uses:
+
+```bash
+taskfilm skill ~/.codex/skills/taskfilm-feature-explainer --name taskfilm-feature-explainer
+```
+
+Include it at the start of a feature request: “Use `$taskfilm-feature-explainer`
+while building this UI. At checked milestones, film a short demo in the background
+and show it here so I can stop, continue or change things.” It also works as the
+last step of a finished upgrade. The agent starts recording when one useful task
+works, its checks pass and the target is stable; it groups related edits into a
+single demo rather than filming every change.
+
+The lesson explains what changed and why, shows one useful task in the working
+product, holds the checked result, and gives a next action. It retains the real
+capture and editable composition, then links the reviewed movie and written
+usage steps in the final feature handoff. The [skill's production reference](../src/taskfilm/skills/taskfilm-feature-explainer/references/workflow.md)
+defines the actual commands and evidence checks. CLI/backend features can use
+verified command excerpts and explanatory diagrams when there is no browser UI.
+
+The [in-chat workflow](../src/taskfilm/skills/taskfilm-feature-explainer/references/in-chat.md)
+keeps readiness, progress and previews in the owning conversation. Requested
+background filming uses one temporary native helper when available. The parent
+can continue unrelated work while the captured target stays stable. “Stop filming”
+stops the demo; “stop” stops active work; “continue filming” resumes valid stages.
+Feature changes invalidate affected takes; explanation/pacing changes can reuse
+them. The agent shows a playable preview when the chat supports it, otherwise a
+direct file link and result screenshot.
+
+This is an active-chat workflow, with no Git hook or always-on render service.
+Capture, render and visual/audio review remain separate stages. A failed
+feature check or missing running app is reported with the retained partial
+files; it is not described as a completed walkthrough.
+
+## Plan an OSS walkthrough
+
 For OSS planning, supply a pinned repo pack from `taskfilm repo-pack --help`, then
 pass `--repo-pack` to `taskfilm story`. Source documents establish attributed
 source assertions; recordings and retained results establish runtime behaviour.
@@ -152,6 +253,7 @@ OSS tool, supply that tool's own claims, actions, fit and limitation.
 | Command | Existing owner |
 |---|---|
 | `taskfilm story` | Director product-story planner |
+| `taskfilm course` | [Ordered course production](COURSES.md), personal voiceovers, editable lessons and learner packaging |
 | `taskfilm capture` | Browser recorder, DOM discovery and capture validation |
 | `taskfilm edit` | Capture edit planner |
 | `taskfilm compose` / `taskfilm reel` | Landscape / portrait HyperFrames adapters |
@@ -160,6 +262,7 @@ OSS tool, supply that tool's own claims, actions, fit and limitation.
 | `taskfilm repo-pack` | Pinned repository source pack |
 | `taskfilm package` | Evidence-bound HTML companion or finished release showcase |
 | `taskfilm doctor` / `taskfilm init` | Install diagnostics / original sample files |
+| `taskfilm demo DIRECTORY [--render]` | First-run recipe over the same capture, planning and composition owners |
 | `taskfilm skill DIRECTORY` | Copy the included agent skill to your chosen skill folder |
 
 Use `taskfilm skill ~/.codex/skills/taskfilm-video` for Codex, or choose the skill

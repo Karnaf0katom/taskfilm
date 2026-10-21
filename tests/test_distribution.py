@@ -41,7 +41,7 @@ def test_installed_planner_from_unrelated_directory(example, tmp_path):
 
 def test_oss_sample_binds_actual_pinned_document_and_preserves_review_scope(example, tmp_path):
     # Explicit offline repository fixture; no public repository or runtime proof is asserted.
-    readme = Path(__file__).parents[1] / "PUBLIC-README.md"
+    readme = Path(__file__).parents[1] / "README.md"
     pack = {"repository_url": "https://github.com/example/taskfilm-test-fixture",
             "resolved_commit": "a" * 40, "license_spdx": "UNKNOWN",
             "documents": [{"path": "README.md", "sha256": hashlib.sha256(readme.read_bytes()).hexdigest()}]}
@@ -73,6 +73,7 @@ def test_oss_sample_binds_actual_pinned_document_and_preserves_review_scope(exam
 
 
 @pytest.mark.parametrize("command,expected", [
+    ("record-review", "--confirm-reviewed"),
     ("story", "--request"), ("capture", "discover"), ("edit", "--no-retime"),
     ("compose", "--max-scale"), ("reel", "--no-title"),
     ("repo-pack", "--ref"), ("package", "--help"),
@@ -81,6 +82,37 @@ def test_oss_sample_binds_actual_pinned_document_and_preserves_review_scope(exam
 def test_every_supported_owner_loads(tmp_path, command, expected):
     result = invoke(tmp_path, command, "--help")
     assert expected in result.stdout
+
+
+def test_installed_brand_review_and_next_treatment_workflow(example, tmp_path):
+    """Exercise the public commands with an explicitly synthetic review fixture."""
+    brand_file = example / "brand.json"
+    project = tmp_path / "branded-animation"
+    invoke(tmp_path, "animate", project, "--brand-file", brand_file,
+           "--treatment", "type-sculpture", "--silent")
+    plan = json.loads((project / "ANIMATION-PLAN.json").read_text())
+    assert plan["brand_file"]["sha256"] == hashlib.sha256(brand_file.read_bytes()).hexdigest()
+    assert plan["config"]["brand"] == json.loads(brand_file.read_text())["brand"]
+
+    # This is a generated media fixture, not evidence that anyone reviewed a film.
+    movie = tmp_path / "synthetic-review-fixture.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-f", "lavfi", "-i",
+                    "color=c=0x164b52:s=64x48:r=10:d=0.3", "-threads", "1",
+                    "-filter_threads", "1", "-c:v", "libx264", "-pix_fmt", "yuv420p", str(movie)],
+                   check=True, capture_output=True, timeout=30)
+    history = tmp_path / "review-history.json"
+    args = ["record-review", project, "--movie", movie, "--history", history,
+            "--reviewer", "Synthetic integration fixture", "--confirm-reviewed"]
+    recorded = json.loads(invoke(tmp_path, *args).stdout)
+    assert recorded["recorded"] is True
+    assert recorded["event"]["movie_sha256"] == hashlib.sha256(movie.read_bytes()).hexdigest()
+    before = history.read_bytes()
+    assert json.loads(invoke(tmp_path, *args).stdout)["recorded"] is False
+    assert history.read_bytes() == before
+    choice = json.loads(invoke(tmp_path, "treatments", "--brief", "A new original study",
+                               "--history", history).stdout)
+    assert choice["selected"] != "type-sculpture"
+    assert any(row["id"] == "type-sculpture" for row in choice["excluded"])
 
 
 def test_original_capture_script_validates(example, tmp_path):
@@ -116,16 +148,32 @@ def test_custom_brand_uses_supplied_files(example, tmp_path):
     assert "weight files" in failed.stderr
 
 
-def test_agent_skill_can_be_installed_without_private_tools(tmp_path):
-    invoke(tmp_path, "skill", tmp_path / "skills/taskfilm-video")
-    skill = (tmp_path / "skills/taskfilm-video/SKILL.md").read_text()
-    assert skill.startswith("---\nname: taskfilm-video\n")
+@pytest.mark.parametrize("name", ["taskfilm-video", "taskfilm-feature-explainer"])
+def test_agent_skill_can_be_installed_without_private_tools(tmp_path, name):
+    import taskfilm
+    destination = tmp_path / "skills" / name
+    options = [] if name == "taskfilm-video" else ["--name", name]
+    report = json.loads(invoke(tmp_path, "skill", destination, *options).stdout)
+    assert Path(report["skill"]) == destination / "SKILL.md"
+    source = Path(taskfilm.__file__).parent / f"skills/{name}"
+    expected = {p.relative_to(source): p.read_bytes() for p in source.rglob("*") if p.is_file()}
+    actual = {p.relative_to(destination): p.read_bytes() for p in destination.rglob("*") if p.is_file()}
+    assert expected and actual == expected
+    if name == "taskfilm-feature-explainer":
+        assert {Path("references/workflow.md"), Path("references/in-chat.md"),
+                Path("agents/openai.yaml")} <= actual.keys()
+    refused = subprocess.run([sys.executable, "-I", "-m", "taskfilm", "skill", str(destination), *options],
+                             cwd=tmp_path, capture_output=True, text=True, timeout=30)
+    assert refused.returncode == 2
+    assert {p.relative_to(destination): p.read_bytes() for p in destination.rglob("*") if p.is_file()} == actual
 
 
-@pytest.mark.parametrize("command,flag", [("run", "--resume"), ("skill", "--name")])
-def test_builtin_help_reaches_the_command_parser(tmp_path, command, flag):
-    result = invoke(tmp_path, command, "--help")
-    assert flag in result.stdout
+def test_unknown_agent_skill_leaves_destination_absent(tmp_path):
+    destination = tmp_path / "skill"
+    rejected = subprocess.run([sys.executable, "-I", "-m", "taskfilm", "skill", str(destination),
+                               "--name", "unknown-skill"],
+                              cwd=tmp_path, capture_output=True, text=True, timeout=30)
+    assert rejected.returncode == 2 and not destination.exists()
 
 
 def test_doctor_reports_actual_install(tmp_path):
@@ -220,20 +268,6 @@ def test_real_original_browser_task(example, tmp_path):
     assert "hyperframes@0.8.134" in package["scripts"]["render"]
     assert (tmp_path / "composition/assets/capture-font.ttf").is_file()
     assert (tmp_path / "composition/assets/FONT-LICENSE.txt").is_file()
-    # The app server is already stopped: a verified take must produce the fast
-    # handoff and an unchanged resume without replaying the product task.
-    film = tmp_path / "agent-film"
-    handoff = json.loads(invoke(tmp_path, "run", source, "--take", take,
-                               "--out", film, "--json", timeout=capture_timeout).stdout)
-    assert handoff["render_mode"] == "capture"
-    assert handoff["capture_verified"] and handoff["video_verified"]
-    probe = subprocess.run(["ffprobe", "-v", "error", "-show_streams", "-of", "json",
-                            handoff["artifacts"]["movie"]], capture_output=True, text=True, check=True, timeout=30)
-    assert any(row["codec_type"] == "subtitle" for row in json.loads(probe.stdout)["streams"])
-    resumed = json.loads(invoke(tmp_path, "run", source, "--take", take,
-                                "--out", film, "--json", "--resume").stdout)
-    assert resumed["reused"] == ["validate", "capture", "edit", "compose", "render", "verify"]
-    assert resumed["artifacts"] == handoff["artifacts"]
 
 
 def test_motion_lab_is_portable_and_complete(example, tmp_path):

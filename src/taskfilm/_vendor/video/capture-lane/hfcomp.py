@@ -148,7 +148,8 @@ def time_map(segments: list):
     return to_cut
 
 
-def tighten(video: Path, out_path: Path, segments: list) -> bool:
+def tighten(video: Path, out_path: Path, segments: list, *, preserve_audio: bool = False,
+            fps: int | None = None) -> bool:
     """Write the cut as a real file rather than as timeline arithmetic.
 
     One video element with one continuous source is the shape HyperFrames is happiest with, and a
@@ -160,12 +161,35 @@ def tighten(video: Path, out_path: Path, segments: list) -> bool:
         a, b = seg[0], seg[1]
         speed = seg[2] if len(seg) > 2 else 1.0
         pts = "PTS-STARTPTS" if speed == 1.0 else f"(PTS-STARTPTS)/{speed}"
-        filters.append(f"[0:v]trim=start={a}:end={b},setpts={pts}[v{i}]")
+        video_filter = f"[0:v]trim=start={a}:end={b},setpts={pts}"
+        if fps is not None:
+            # Normalize each segment before concat. Older FFmpeg versions
+            # otherwise duplicate frames at speed boundaries under CFR output.
+            video_filter += f",fps={fps}:start_time=0,trim=duration={(b-a)/speed},setpts=PTS-STARTPTS"
+        filters.append(video_filter + f"[v{i}]")
         streams += f"[v{i}]"
-    filters.append(f"{streams}concat=n={len(segments)}:v=1:a=0[out]")
+        if preserve_audio:
+            # Pad a short audio stream before trimming so concat cannot shorten
+            # the picture. Factor atempo for FFmpeg builds limited to 0.5–2x.
+            factors, remaining = [], speed
+            while remaining > 2:
+                factors.append(2.0)
+                remaining /= 2
+            while remaining < 0.5:
+                factors.append(0.5)
+                remaining /= 0.5
+            factors.append(remaining)
+            tempo = ",".join(f"atempo={factor}" for factor in factors)
+            filters.append(f"[0:a:0]apad,atrim=start={a}:end={b},asetpts=PTS-STARTPTS,"
+                           f"{tempo},apad,atrim=duration={(b-a)/speed}[a{i}]")
+            streams += f"[a{i}]"
+    filters.append(f"{streams}concat=n={len(segments)}:v=1:a={int(preserve_audio)}[out]"
+                   + ("[audio]" if preserve_audio else ""))
+    audio_args = ["-map", "[audio]", "-c:a", "aac", "-b:a", "192k"] if preserve_audio else []
     proc = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(video),
-         "-filter_complex", ";".join(filters), "-map", "[out]",
+        ["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-y", "-i", str(video),
+         "-filter_complex_threads", "1", "-filter_complex", ";".join(filters), "-map", "[out]",
+         *audio_args, "-threads", "1",
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p",
          str(out_path)],
         capture_output=True, text=True)
@@ -315,7 +339,7 @@ def copy_font_asset(out_dir: Path, font_file: Path | None = None) -> str | None:
 def build_html(plan: dict, video_name: str, chips: list[dict], moves: list[dict],
                width: int, height: int, title: str | None, notes: list[dict] | None = None,
                voice: list[dict] | None = None, lang: str = "en", font_file: str | None = None,
-               note_top: int = 68) -> str:
+               note_top: int = 68, presentation: dict | None = None) -> str:
     duration = round(float(plan["duration_s"]), 3)
     esc = html.escape
     rtl = lang.split("-")[0].lower() in RTL_LANGS
@@ -327,6 +351,10 @@ def build_html(plan: dict, video_name: str, chips: list[dict], moves: list[dict]
         font_faces = (f'      @font-face {{ font-family: CaptureFont; src: url("assets/{font_file}"); '
                       'font-weight: 100 900; font-display: block; }\n')
     text_dir = "rtl" if rtl else "ltr"
+    frame_css = frame_nodes = frame_tweens = ""
+    if presentation is not None:
+        from screen_style import layers
+        frame_css, frame_nodes, frame_tweens = layers(presentation, width, height)
 
     chip_nodes = "\n".join(
         f'''      <div class="overlay clip" id="chip-{i}" data-start="{chip['t']:.3f}"
@@ -374,9 +402,9 @@ def build_html(plan: dict, video_name: str, chips: list[dict], moves: list[dict]
             f'  tl.set(cam, {{ transformOrigin: "{move["ox"]}% {move["oy"]}%" }}, {move["start"]});')
         tweens.append(
             f'  tl.to(cam, {{ scale: {move["scale"]}, duration: {move["in_s"]}, '
-            f'ease: "power2.out" }}, {move["start"]});')
+            f'ease: "{move.get("ease_in", "power2.out")}" }}, {move["start"]});')
         tweens.append(
-            f'  tl.to(cam, {{ scale: 1, duration: {move["out_s"]}, ease: "power2.inOut" }}, '
+            f'  tl.to(cam, {{ scale: 1, duration: {move["out_s"]}, ease: "{move.get("ease_out", "power2.inOut")}" }}, '
             f'{move["out_at"]});')
     for i, chip in enumerate(chips):
         head = chip["t"]
@@ -458,6 +486,7 @@ def build_html(plan: dict, video_name: str, chips: list[dict], moves: list[dict]
         text-transform: uppercase; color: #7dd3fc; margin-bottom: 26px; }}
       .titlecard-h {{ font-size: 84px; line-height: 1.06; font-weight: 700; letter-spacing: -.03em;
         color: #f8fafc; }}
+{frame_css}
     </style>
   </head>
   <body>
@@ -480,6 +509,7 @@ def build_html(plan: dict, video_name: str, chips: list[dict], moves: list[dict]
             muted
             playsinline
           ></video>
+{frame_nodes}
         </div>
       </div>
       <div class="vignette"></div>
@@ -494,6 +524,7 @@ def build_html(plan: dict, video_name: str, chips: list[dict], moves: list[dict]
       const tl = gsap.timeline({{ paused: true }});
       const cam = document.getElementById("camera");
 {tween_block}
+{frame_tweens}
       window.__timelines["main"] = tl;
     </script>
   </body>

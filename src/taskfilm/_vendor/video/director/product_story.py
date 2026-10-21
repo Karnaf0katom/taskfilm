@@ -298,19 +298,19 @@ def build_product_story(request: Mapping, story: Mapping, *, repo_pack: Mapping 
         "claim_verification": "References are caller declarations; no asset resolution or semantic verification was performed.",
         "capture_requirements": captures, "outputs": outputs, "cta": copy.deepcopy(cta),
         "blender": None if blender is None else {**blender, "claim_ids": [], "status": "scene_authoring_required",
-            "owner": "blender-lane", "exchange_owner": "edit-lane/exchange_publish.py",
+            "owner": "blender-lane", "exchange_owner": "capture-lane/hfcomp.py",
             "rule": "Use brand depth or an illustrative transition. Product proof stays in the retained capture.",
             "brand_identity": validated.brand_identity},
         "audio": {"owner": "edit-lane", "music": "client-cleared music; select after direction review",
             "voiceover": "not_planned_by_this_adapter", "sfx": "sparse, aligned to actual interactions", "upstream_audio_imported": False},
         "upstream": upstream,
-        "read_first": [*route["read_first"], "director/PRODUCT-STORY.md",
+        "read_first": [*route["read_first"], "../../../docs/WORKFLOWS.md",
             *[str((UPSTREAM / f["path"]).relative_to(VIDEO_ROOT)) for f in upstream["files"] if f["path"].endswith(".md")]],
         "next_steps": [
             {"owner": "capture-lane/webrec.py", "action": "Discover controls and record the specified real product flow; retain provenance."},
-            {"owner": "director/agent.py", "action": "For repository demos, use run_repo_demo_production and its evidence admission before narration/rendering."},
-            {"owner": "hyperframes-lane/build_reel.py", "action": "Author composition from the briefs and verified take ranges; inspect each output aspect."},
-            {"owner": "edit-lane/exchange_publish.py", "action": "Mix approved clips/audio, run QA and publish the editable exchange for FreeCut/Resolve review."},
+            {"owner": "repo-lane/repo_pack.py", "action": "For repository demos, pin source evidence and retain a real browser capture before narration/rendering."},
+            {"owner": "hyperframes-lane/product-motion/build.py", "action": "Author composition from the briefs and verified take ranges; inspect each output aspect."},
+            {"owner": "capture-lane/hfcomp.py", "action": "Author the composition, render with taskfilm render, then inspect the finished video and audio."},
         ],
     }
     if story["mode"] == "feature_demo":
@@ -363,7 +363,7 @@ def bundle_files(plan: Mapping) -> dict[str, str]:
     for claim in plan["claims"]:
         review += [f"- {claim['id']}: {claim['text']} — {claim['evidence_ref']}"]
     blender = [*common, "## Blender handoff", "", "```json", _json(plan["blender"]).strip(), "```", "",
-        "Use the existing blender-lane scene tools and OTIO exchange. This brief has not rendered a 3D clip.", ""]
+        "Use external 3D tools for this optional brief; Taskfilm does not include a 3D renderer.", ""]
     return {
         "product-story-plan.json": _json(plan), "composition-brief.md": "\n".join(composition),
         "capture-brief.md": "\n".join(capture), "source-review.md": "\n".join(review),

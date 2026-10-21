@@ -1,0 +1,10 @@
+{
+  "schema": "taskfilm-brand/v1",
+  "brand": "Northstar",
+  "tagline": "Ideas in motion.",
+  "palette": {
+    "ink": "#102120",
+    "paper": "#ffffff",
+    "accent": "#f47732"
+  }
+}

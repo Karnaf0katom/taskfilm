@@ -1,0 +1,30 @@
+{
+  "schema": "taskfilm-course/v1",
+  "title": "A reliable taskboard workflow",
+  "audience": "People using the bundled Taskboard for the first time",
+  "language": "en",
+  "lessons": [
+    {
+      "id": "first-task",
+      "module": "Start and finish your work",
+      "title": "Add your first task",
+      "objective": "Create one specific task and recognize it in the task list.",
+      "script": "Start with an empty board. Enter Ship the demo in the task field and select Add task. Read the new task in the list. A specific title makes the next action clear. Your turn: add one task describing something you can finish today.",
+      "exercise": "Create a task with your own action and a clear result.",
+      "success_criteria": "The exact task title you entered appears in the task list.",
+      "source": "",
+      "resources": []
+    },
+    {
+      "id": "finish-and-check",
+      "module": "Start and finish your work",
+      "title": "Complete a task and check the result",
+      "objective": "Complete a task and use the Completed filter to verify it.",
+      "script": "Find the task you created. Select its completion control, then choose Completed. The completed task remains visible in the filtered list, and the count reflects the completed task. This gives you a quick check that the work was recorded as finished. Your turn: complete your own task and verify the filtered result.",
+      "exercise": "Complete your task, open Completed and inspect the count.",
+      "success_criteria": "Your completed task appears under Completed and the completed count increases.",
+      "source": "",
+      "resources": []
+    }
+  ]
+}

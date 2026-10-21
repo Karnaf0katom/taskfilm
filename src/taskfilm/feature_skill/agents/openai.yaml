@@ -1,4 +1,0 @@
-interface:
-  display_name: "Feature walkthrough"
-  short_description: "Ship checked backend/UI changes with a video"
-  default_prompt: "Use $taskfilm-feature-explainer to complete this backend/UI change, run its checks, and include a reviewed Taskfilm walkthrough in your final response."
