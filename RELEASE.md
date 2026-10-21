@@ -1,6 +1,6 @@
 # Taskfilm releases
 
-This source tree prepares **0.1.0a5**, an alpha for Linux, Python 3.10+ and
+This source tree prepares **0.1.0a6**, an alpha for Linux, Python 3.10+ and
 Chromium. Exporting or checking this tree does not publish a release. Original code is MIT licensed.
 Install from the standalone repository or its GitHub release wheel; PyPI
 publication is not configured.

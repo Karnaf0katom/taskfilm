@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0a5
+## 0.1.0a6
 
 - Course production coordinates ordered lessons, editable scripts and exercises,
   browser captures or supplied recordings, optional AI reads and personal voiceovers.

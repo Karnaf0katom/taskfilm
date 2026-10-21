@@ -14,7 +14,7 @@ CLI yourself or give its included skill to your coding agent.
 For a complete course, the [course workflow](docs/COURSES.md) coordinates ordered
 lessons, scripts, narration, editable films, practice tasks and a learner ZIP.
 Instructors can add personal voiceovers and refine individual cuts; batch builds
-reuse unchanged lessons and keep prior versions. Included in **0.1.0a5**.
+reuse unchanged lessons and keep prior versions. Included in **0.1.0a6**.
 
 **Watch Taskfilm in action (43 seconds)**
 
@@ -113,10 +113,10 @@ with your system package manager; on Ubuntu use `sudo apt-get install ffmpeg`.
 If Chromium needs Linux system libraries, use
 `python -m playwright install --with-deps chromium`.
 
-Upgrade using the wheel from [Taskfilm 0.1.0a5](https://github.com/Karnaf0katom/taskfilm/releases/tag/v0.1.0a5):
+Upgrade using the wheel from [Taskfilm 0.1.0a6](https://github.com/Karnaf0katom/taskfilm/releases/tag/v0.1.0a6):
 
 ```bash
-python -m pip install --upgrade "./taskfilm-0.1.0a5-py3-none-any.whl[browser,motion]"
+python -m pip install --upgrade "./taskfilm-0.1.0a6-py3-none-any.whl[browser,motion]"
 taskfilm --version
 ```
 

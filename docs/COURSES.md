@@ -5,7 +5,7 @@ recordings, narration, editable cuts, rendered films, exercises and a learner
 ZIP. Your agent authors the teaching material from your sources and runs the
 production commands. You can add your own voice, examples and edits at any point.
 
-This workflow is included in Taskfilm **0.1.0a5**.
+This workflow is included in Taskfilm **0.1.0a6**.
 
 ## Start from what students should be able to do
 

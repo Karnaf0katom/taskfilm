@@ -4,7 +4,7 @@ Use Taskfilm at a checked milestone while building a browser product. Your agent
 records one useful task in the real app and turns it into a short, editable
 walkthrough: what it does, how to use it, and the visible result.
 
-Taskfilm **0.1.0a5** includes the one-command demo and the feature-explainer
+Taskfilm **0.1.0a6** includes the one-command demo and the feature-explainer
 skill. Existing `taskfilm run` workflows remain supported; see the
 [one-run guide](AGENT-RUN.md).
 

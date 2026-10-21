@@ -35,6 +35,8 @@ jobs:
           if manifest['project_license'] != licence:
               raise SystemExit('source manifest licence must match package metadata')
           PY
+      - name: Install media tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - run: python -m pip install build
       - run: python -m build
       - name: Test the wheel

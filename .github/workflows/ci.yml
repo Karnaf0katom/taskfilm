@@ -23,6 +23,8 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Verify the source inventory
         run: python release/check_source.py
+      - name: Install media tools
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - run: python -m pip install build
       - run: python -m build
       - name: Install the wheel
