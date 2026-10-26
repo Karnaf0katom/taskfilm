@@ -35,6 +35,7 @@ Demo = "https://karnaf0katom.github.io/taskfilm/"
 browser = ["playwright>=1.50,<2"]
 motion = ["numpy>=1.26,<3", "scipy>=1.12,<2"]
 dev = ["pytest>=8,<10", "pytest-asyncio>=0.23,<2", "build>=1,<2"]
+publish = ["google-api-python-client>=2,<3", "google-auth>=2,<3"]
 
 [project.scripts]
 taskfilm = "taskfilm.cli:main"
@@ -45,7 +46,7 @@ packages = ["taskfilm"]
 include-package-data = false
 
 [tool.setuptools.package-data]
-taskfilm = ["_vendor/**/*", "examples/**/*", "skills/**/*", "templates/*.html"]
+taskfilm = ["_vendor/**/*", "examples/**/*", "skills/**/*", "templates/*.html", "studio_assets/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

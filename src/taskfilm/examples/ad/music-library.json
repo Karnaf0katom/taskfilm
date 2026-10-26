@@ -1,0 +1,91 @@
+{
+  "schema": "taskfilm-music/v1",
+  "tracks": [
+    {
+      "id": "carefree",
+      "title": "Carefree",
+      "artist": "Kevin MacLeod",
+      "bpm": 96,
+      "instruments": "Ukulele, Guitar, Marimba, Glockenspiel, Percussion",
+      "tags": [
+        "acoustic",
+        "warm",
+        "bright",
+        "calm"
+      ],
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Carefree.mp3",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400037",
+      "catalog_url": "https://incompetech.com/music/royalty-free/pieces.json",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_source": "https://incompetech.com/music/royalty-free/licenses/",
+      "commercial_use": true,
+      "attribution_required": true,
+      "attribution": "\"Carefree\" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Edited and mixed under narration."
+    },
+    {
+      "id": "life-of-riley",
+      "title": "Life of Riley",
+      "artist": "Kevin MacLeod",
+      "bpm": 102,
+      "instruments": "Glockenspiel, Ukulele, Guitar, Percussion",
+      "tags": [
+        "acoustic",
+        "warm",
+        "uplifting"
+      ],
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Life%20of%20Riley.mp3",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1400054",
+      "catalog_url": "https://incompetech.com/music/royalty-free/pieces.json",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_source": "https://incompetech.com/music/royalty-free/licenses/",
+      "commercial_use": true,
+      "attribution_required": true,
+      "attribution": "\"Life of Riley\" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Edited and mixed under narration."
+    },
+    {
+      "id": "daily-beetle",
+      "title": "Daily Beetle",
+      "artist": "Kevin MacLeod",
+      "bpm": 100,
+      "instruments": "Ukulele, Guitar, Marimba, Music Box, Toy Piano, Drums",
+      "tags": [
+        "acoustic",
+        "bouncy",
+        "warm"
+      ],
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Daily%20Beetle.mp3",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1500025",
+      "catalog_url": "https://incompetech.com/music/royalty-free/pieces.json",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_source": "https://incompetech.com/music/royalty-free/licenses/",
+      "commercial_use": true,
+      "attribution_required": true,
+      "attribution": "\"Daily Beetle\" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Edited and mixed under narration."
+    },
+    {
+      "id": "happy-alley",
+      "title": "Happy Alley",
+      "artist": "Kevin MacLeod",
+      "bpm": 112,
+      "instruments": "Guitar, Bass, Drum Kit",
+      "tags": [
+        "acoustic",
+        "rhythmic",
+        "bright",
+        "energetic"
+      ],
+      "download_url": "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Happy%20Alley.mp3",
+      "source_url": "https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100482",
+      "catalog_url": "https://incompetech.com/music/royalty-free/pieces.json",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_source": "https://incompetech.com/music/royalty-free/licenses/",
+      "commercial_use": true,
+      "attribution_required": true,
+      "attribution": "\"Happy Alley\" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Edited and mixed under narration."
+    }
+  ]
+}

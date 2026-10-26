@@ -78,6 +78,7 @@ def test_oss_sample_binds_actual_pinned_document_and_preserves_review_scope(exam
     ("compose", "--max-scale"), ("reel", "--no-title"),
     ("repo-pack", "--ref"), ("package", "--help"),
     ("motion", "--format"),
+    ("ad", "build"), ("media", "narrate"), ("publish", "enqueue"),
 ])
 def test_every_supported_owner_loads(tmp_path, command, expected):
     result = invoke(tmp_path, command, "--help")

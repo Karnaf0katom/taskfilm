@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Taskfilm — Projects</title>
+<link rel="stylesheet" href="/studio.css">
+<link rel="stylesheet" href="/projects.css">
+<script src="/projects.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#projects">Skip to projects</a>
+<header class="topbar"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">t</span>taskfilm<small>YOUR FILMS</small></a><span class="library-header-note">A home for every story.</span></header>
+<main class="library-main">
+<section class="library-heading"><div><p class="eyebrow">Your creative workspace</p><h1>Projects</h1><p>Open a film. Pick up where you left off.</p></div><button class="button coral" id="new-project">+ New project</button></section>
+<section class="library-tools" aria-label="Project filters"><label class="search-field"><span class="sr-only">Search projects</span><input id="project-search" type="search" placeholder="Search your projects…" autocomplete="off"></label><label><span class="sr-only">Film format</span><select id="format-filter"><option value="all">All formats</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option><option value="square">Square</option></select></label><label><span class="sr-only">Sort projects</span><select id="project-sort"><option value="recent">Last edited</option><option value="name">Name</option></select></label><div class="view-switch" role="group" aria-label="Project view"><button id="grid-view" aria-label="Grid view" aria-pressed="true">▦</button><button id="list-view" aria-label="List view" aria-pressed="false">☰</button></div></section>
+<div class="library-count"><p id="project-count" role="status">Loading your projects…</p><button class="button quiet" id="refresh-projects">↻ Refresh</button></div>
+<section id="projects" class="project-grid" aria-label="Projects"></section>
+<p class="library-footer">Each project keeps its own complete versions. Your originals stay with you.</p>
+</main>
+<dialog id="create-dialog" aria-labelledby="create-title"></dialog>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

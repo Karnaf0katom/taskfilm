@@ -1,6 +1,6 @@
 ---
 name: taskfilm-video
-description: Record real product tasks, coordinate full courses with narration and personal voiceovers, author directed product films, or edit the included HTML/SVG animation study through Taskfilm and HyperFrames. Use for courses, feature lessons, motion promos and source-attributed OSS demos. Provider-generated visual assets and repository sandbox builds are outside this alpha.
+description: Record real product tasks, coordinate full courses with narration and personal voiceovers, author directed product films, or edit the included HTML/SVG animation study through Taskfilm and HyperFrames. Compose branded ads with narration, music, captions and optional presenters, edit them in Studio, or schedule posts to configured social accounts. Use for courses, feature lessons, ads, motion promos and source-attributed OSS demos. Repository sandbox builds are outside this alpha.
 ---
 
 Use the installed `taskfilm` CLI. Read its README for installation and run
@@ -107,6 +107,48 @@ actual review, `taskfilm record-review PROJECT --movie FILM.mp4 --history HISTOR
 --reviewer "REVIEWER" --confirm-reviewed` records that caller's declaration and
 actual media/plan hashes. Do not use it to turn a successful render or probe into
 a claim that a person reviewed the film. See the brand-file and review-history guides.
+
+For ads, use `taskfilm ad` rather than repeating the fixed motion layout. Supply
+the product's actual logo, local fonts and colors in `taskfilm-ad/v1`; retain
+real source footage. `ad templates`, `ad plan` and `ad build` support eight
+layout families, external declarative templates, product/style matching and
+local history/ratings. Crop in source pixels; `media.speed` accelerates source
+time without replacing the real interaction. Keep results readable at delivery
+size. Read `docs/AD-DIRECTION.md` for composition and presenter contracts.
+
+Use `media narrate --provider google --voice Kore` for Google Gemini speech
+generated directly from the current server, using `GOOGLE_API_KEY`, `GEMINI_API_KEY`
+or a server-owned `TASKFILM_GOOGLE_KEY_REF`. Keep keys outside versions and receipts.
+Local/SSH Mac speech and optional video-claw providers are also supported;
+API calls use the configured account's quota and credit. Use
+`media music` to choose/fetch licensed tracks, and `media mix` for timed speech,
+ducked music, attribution receipts and captions. No SFX is the default; effects
+are limited to two types/four events. `media avatar` optionally generates a
+lip-synced presenter through video-claw. Compose a finished mix via `audio.path`,
+render, then `media finish` can burn timed captions or overlay a presenter.
+Read `docs/ADS.md` and command help for the exact flags and schemas.
+
+`publish enqueue` stores a scheduled post in a durable local queue; include its
+`audio_receipt` to carry music credits into the caption. `publish work` previews
+without sending; `work --execute --watch` processes due jobs automatically.
+Read `docs/PUBLISHING.md` for platform credentials and account IDs. Respect the
+user's existing destination/scheduling authorization; recurring authorized
+posts do not need per-post reconfirmation. An ambiguous provider write becomes
+`needs_review`; verify the remote result before reconciliation or a new post.
+
+For visual editing and stage resume, import an existing ad/audio project with
+`taskfilm studio import WORKSPACE --ad ad.json --audio audio.json`, then run
+`taskfilm studio serve WORKSPACE`. For multiple projects, register each workspace
+with `taskfilm studio register LIBRARY WORKSPACE --id PROJECT` and serve with
+`taskfilm studio serve LIBRARY --library`. The Projects home opens isolated editors,
+creates drafts and duplicates complete projects without API generation. Every save and completed stage keeps a full
+portable version with source files, editable plans and available outputs.
+Download or restore any version; do not modify sealed versions directly.
+Copy/crop/layout edits reuse capture and narration. Audio edits regenerate only
+changed lines and reuse the visual render. Voice provider, name and speaking speed
+can be edited in Audio; they invalidate Audio and Render without rebuilding Composition. Update stages marked stale in order.
+Studio Publish prepares a release; it does not execute live posts. Read
+`docs/STUDIO.md` for imports, exports, capture limitations and resume behavior.
 
 `taskfilm package --showcase MANIFEST --out DIRECTORY` packages finished,
 hash-bound movies and distribution downloads as a portable static release

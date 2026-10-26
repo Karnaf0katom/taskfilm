@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- `taskfilm ad` composes branded ads from real captures: eight layout families, external declarative templates, product/style matching, source-pixel crops and speed changes, and local history/ratings.
+- `taskfilm media` prepares narration (Google Gemini TTS, macOS speech locally or over SSH, optional video-claw providers), licensed music, timed mixes with attribution receipts, captions and optional presenters.
+- `taskfilm publish` keeps a durable local queue of scheduled Instagram, Facebook and YouTube posts with preview-by-default workers and reconciliation of ambiguous writes.
+- Visual studio: local stage navigator with editable scenes, narration and publishing metadata; complete portable file versions, verified ZIP exports and restore as a new version.
+- Selective rebuilds reuse capture and unchanged voice clips; audio updates reuse the visual render.
+- Projects library with isolated editors, duplication and import of existing `product-motion/v1` films.
+- External playback controls, byte-range media serving and larger ad copy/captions for phone previews.
+
 ## 0.1.0a6
 
 - Course production coordinates ordered lessons, editable scripts and exercises,

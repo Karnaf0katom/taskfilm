@@ -156,6 +156,9 @@ def initialize(destination: Path, kind: str = "examples") -> int:
 
 def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] in {"ad", "media", "publish", "studio"}:
+        module = __import__(f"taskfilm.{argv[0]}", fromlist=["main"])
+        return module.main(argv[1:])
     # Forward the owner's --help as well as its flags without interpreting them.
     if argv and argv[0] in OWNERS:
         try:
@@ -166,7 +169,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="taskfilm", description=
         "Turn real workflows into editable lessons, complete courses, product promos and OSS demos.")
     parser.add_argument("--version", action="version", version=__version__)
-    parser.add_argument("command", nargs="?", choices=[*OWNERS, "doctor", "init", "skill", "demo", "render", "run"])
+    parser.add_argument("command", nargs="?", choices=[*OWNERS, "ad", "media", "publish", "studio", "doctor", "init", "skill", "demo", "render", "run"])
     if argv and argv[0] in {"doctor", "init", "skill", "demo", "render", "run"}:
         args, rest = argparse.Namespace(command=argv[0]), argv[1:]
     else:

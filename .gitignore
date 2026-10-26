@@ -17,3 +17,9 @@ renders/
 .capture-lane/
 auth/
 profiles/
+.claude/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+.narration-cache/
+.presenter-cache/

@@ -170,7 +170,7 @@ The [motion recipes](docs/WORKFLOWS.md) explain customization and the separate
 For a narrated app showcase, use the [Excalidraw motion-promo recipe](docs/WORKFLOWS.md#make-a-narrated-excalidraw-motion-promo).
 It combines a real workflow with masked type, a perspective reveal, camera
 choreography and animation of the saved diagram. Bring narration and a licensed
-score; the CLI does not call ElevenLabs or another provider itself.
+score, or prepare them with the [media commands](docs/ADS.md).
 
 ## Make original animation
 
@@ -225,6 +225,19 @@ focus from supplied clicks, portrait framing and saved styles. The
 implementation adds and the desktop features outside its current scope.
 
 ## Plan the story
+
+For ads with varied compositions, authentic brand assets, narration, real music,
+captions, optional lip-synced presenters, and scheduled social publishing, use the
+new [ad workflow](docs/ADS.md). `taskfilm ad` selects from eight extensible layout
+families and learns from local history/ratings. `taskfilm media` handles audio
+and final delivery; `taskfilm publish` supplies a durable scheduled posting queue.
+The original lesson and product-motion paths remain available.
+
+For a visual stage-by-stage workspace with complete downloadable file versions,
+scene and narration editing, restore and selective resume, use
+[Taskfilm Studio](docs/STUDIO.md): import a workspace, register it in a Projects library,
+and serve with `taskfilm studio serve LIBRARY --library`. Browse thumbnails, open
+individual editors, create drafts and duplicate complete projects.
 
 ```bash
 taskfilm story --request demo/request.json --story demo/feature.json --out feature-plan
@@ -330,8 +343,10 @@ characters, but the screen still records visible text. Review footage before
 sharing. Keep authentication state, cookies and browser profiles outside your
 take bundles and repository. Run capture scripts and setup JavaScript you trust.
 
-This alpha provides a local CLI and editable compositions. Hosted orchestration,
-provider-generated media, a timeline editor, repository sandbox execution and
+This alpha provides a local CLI and editable compositions. Narration and presenter
+generation are optional integrations through video-claw; social publishing uses
+an explicitly configured worker and platform accounts. Hosted orchestration,
+a timeline editor, repository sandbox execution and
 Adobe After Effects project import are outside its scope. Source assertions,
 capture checks and final visual review remain separate evidence.
 
